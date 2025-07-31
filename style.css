@@ -1,4 +1,3 @@
-/* Apply full reset and box sizing */
 * {
   margin: 0;
   padding: 0;
@@ -15,13 +14,12 @@ body {
   overflow: hidden;
 }
 
-/* NAVIGATION BAR */
+/* NAVIGATION BAR — now transparent */
 nav {
-  background-color: #bfa75a; /* deep gold */
-  padding: 1em 2em;
-  width: 100%;
   position: fixed;
   top: 0;
+  width: 100%;
+  padding: 1em 2em;
   z-index: 1000;
 }
 
@@ -35,29 +33,34 @@ nav ul {
 
 nav li a {
   text-decoration: none;
-  color: white;
+  color: #d4bb73; /* Elegant gold */
   font-weight: 600;
   font-size: 1.1rem;
   transition: color 0.3s ease;
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 0.3em 0.6em;
+  border-radius: 4px;
 }
 
 nav li a:hover {
-  color: #f8e8b4; /* soft light gold hover */
+  color: #fff8d6;
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
-/* SECRET PORTAL */
+/* SECRET PORTAL — repositioned to lighthouse */
 .secret-portal {
   position: absolute;
-  bottom: 5%;
-  left: 5%;
-  width: 80px;
-  height: 80px;
+  bottom: 35%;
+  left: 74%;
+  width: 70px;
+  height: 70px;
   opacity: 0;
-  transition: opacity 0.5s, box-shadow 0.5s;
+  transition: opacity 0.4s, box-shadow 0.4s;
 }
 
 .secret-portal:hover {
   opacity: 1;
-  box-shadow: 0 0 20px 6px rgba(255, 255, 200, 0.6);
+  box-shadow: 0 0 25px 10px rgba(255, 255, 200, 0.4);
   border-radius: 50%;
+  cursor: pointer;
 }
