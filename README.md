@@ -1,16 +1,15 @@
-## Hi there 👋
+# Zetatozion
 
-<!--
-**Zetatozion/Zetatozion** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+**Zetatozion** is a personal and symbolic project — a reflection of truth, beauty, and emergence.  
+This site is public, but not collaborative. Please do not fork or submit pull requests.
 
-Here are some ideas to get you started:
+## Live Site
+Visit here: [https://zetatozion.github.io](https://zetatozion.github.io)
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+## Author
+Built and maintained by **Ryan McGuinness** — father, visionary, and seeker of integrated design.
+
+## Notes
+This project is under personal guardianship.  
+Contributions are not open at this time.  
+Contact only if you feel deeply aligned.
