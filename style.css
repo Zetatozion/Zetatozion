@@ -1,66 +1,26 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: 'Lancelot', serif;
-  background: url('image.jpg') no-repeat center center fixed;
-  background-size: cover;
-  height: 100vh;
-  width: 100vw;
-  position: relative;
-  overflow: hidden;
-}
-
-/* NAVIGATION BAR — now transparent */
 nav {
   position: fixed;
-  top: 0;
+  top: 1em;
+  left: 0;
   width: 100%;
-  padding: 1em 2em;
   z-index: 1000;
+  text-align: center;
 }
 
 nav ul {
   list-style: none;
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
-  gap: 2em;
+  flex-wrap: nowrap;
+  gap: 1.5em;
+  padding: 0;
+  margin: 0;
 }
 
 nav li a {
   text-decoration: none;
-  color: #d4bb73; /* Elegant gold */
-  font-weight: 600;
-  font-size: 1.1rem;
-  transition: color 0.3s ease;
-  background-color: rgba(0, 0, 0, 0.2);
-  padding: 0.3em 0.6em;
-  border-radius: 4px;
-}
-
-nav li a:hover {
-  color: #fff8d6;
-  background-color: rgba(0, 0, 0, 0.4);
-}
-
-/* SECRET PORTAL — repositioned to lighthouse */
-.secret-portal {
-  position: absolute;
-  bottom: 35%;
-  left: 74%;
-  width: 70px;
-  height: 70px;
-  opacity: 0;
-  transition: opacity 0.4s, box-shadow 0.4s;
-}
-
-.secret-portal:hover {
-  opacity: 1;
-  box-shadow: 0 0 25px 10px rgba(255, 255, 200, 0.4);
-  border-radius: 50%;
-  cursor: pointer;
+  color: black;
+  font-weight: 400;
+  font-size: 0.95rem;
+  padding: 0.2em 0.4em;
 }
