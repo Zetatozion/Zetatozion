@@ -1,6 +1,23 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Lancelot', serif;
+  height: 100vh;
+  width: 100vw;
+  background: url('image.jpg') no-repeat center center fixed;
+  background-size: cover;
+  overflow: hidden;
+  position: relative;
+}
+
+/* NAVIGATION BAR */
 nav {
   position: fixed;
-  top: 1em;
+  top: 1.5em;
   left: 0;
   width: 100%;
   z-index: 1000;
@@ -14,13 +31,11 @@ nav ul {
   flex-wrap: nowrap;
   gap: 1.5em;
   padding: 0;
-  margin: 0;
 }
 
 nav li a {
   text-decoration: none;
   color: black;
-  font-weight: 400;
+  font-weight: 500;
   font-size: 0.95rem;
-  padding: 0.2em 0.4em;
 }
