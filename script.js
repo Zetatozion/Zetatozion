@@ -115,4 +115,14 @@ window.addEventListener("load", () => {
     preloader.style.opacity = "0";
     setTimeout(() => preloader.remove(), 1200);
   }
+
+document.querySelector('.lighthouse-portal-zone').addEventListener('click', () => {
+  const burst = document.createElement('div');
+  burst.className = 'lighthouse-burst';
+  burst.style.left = '50%';
+  burst.style.top = '50%';
+  document.querySelector('.lighthouse-portal-zone').appendChild(burst);
+  setTimeout(() => burst.remove(), 1000);
+});
+  
 });
