@@ -1,57 +1,33 @@
-@import url('https://fonts.googleapis.com/css2?family=Lancelot&display=swap');
-
-/* Reset and full background */
-body {
+body, html {
   margin: 0;
   padding: 0;
+  height: 100%;
+  font-family: 'UnifrakturCook', 'Lancelot', sans-serif;
+  background: #fff;
+}
+
+.hero-image {
   background-image: url('image.jpg');
   background-size: cover;
   background-position: center;
-  background-repeat: no-repeat;
   height: 100vh;
-  font-family: 'Lancelot', sans-serif;
-  color: black;
-  overflow: hidden;
 }
 
-/* Floating black sky nav */
-nav {
+.nav-links {
   position: absolute;
-  top: 40px;             /* LIFT from top */
-  left: 5%;              /* LIFT from edge */
-  right: 5%;
-  width: 90%;
+  top: 20px;
+  width: 100%;
   text-align: center;
-  z-index: 100;
+  font-size: 1.2em;
+  z-index: 999;
 }
 
-nav a {
+.nav-links a {
   color: black;
+  margin: 0 12px;
   text-decoration: none;
-  margin: 0 15px;
-  font-size: 1.05rem;
-  transition: color 0.3s ease;
 }
 
-nav a:hover {
-  color: #444;
-}
-
-/* Secret portal over lighthouse */
-#secret-portal {
-  position: absolute;
-  bottom: 8%;
-  right: 14.5%;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0);
-  transition: box-shadow 0.5s ease;
-  z-index: 50;
-}
-
-#secret-portal:hover {
-  box-shadow: 0 0 14px 7px rgba(255, 255, 255, 0.4);
-  background-color: rgba(255, 255, 255, 0.1);
-  cursor: pointer;
+.nav-links a:hover {
+  text-decoration: underline;
 }
