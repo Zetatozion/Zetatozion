@@ -10,28 +10,135 @@
   <!-- Background Image -->
   <img src="image.jpg" alt="Zeta to Zion Cliff" class="bg-image" />
 
-  <!-- Header + Nav Overlay -->
-  <div class="overlay-content">
-    <h1>ZETA TO ZION</h1>
+  <!-- Toggle Button for Mobile -->
+  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+  <!-- Navigation Overlay -->
+  <div class="overlay-content" id="nav-menu">
     <nav>
       <ul>
-        <li><a href="#">▪️ HOME</a></li>
-        <li><a href="#">▪️ PHILOSOPHY</a></li>
-        <li><a href="#">▪️ INTERPLANETARY INFRASTRUCTURE</a></li>
-        <li><a href="#">▪️ POETRY & ART</a></li>
-        <li><a href="#">▪️ MATHEMATICS</a></li>
-        <li><a href="#">▪️ COLLABORATION CONTACTS</a></li>
-        <li><a href="#">▪️ UPCOMING EVENTS</a></li>
-        <li><a href="#">▪️ SHOP</a></li>
-        <li><a href="#">▪️ RESUME</a></li>
-        <li><a href="#">▪️ CONTACT</a></li>
+        <li><a href="#" onclick="playClick()">▪️ HOME</a></li>
+        <li><a href="#" onclick="playClick()">▪️ PHILOSOPHY</a></li>
+        <li><a href="#" onclick="playClick()">▪️ INTERPLANETARY INFRASTRUCTURE</a></li>
+        <li><a href="#" onclick="playClick()">▪️ POETRY & ART</a></li>
+        <li><a href="#" onclick="playClick()">▪️ MATHEMATICS</a></li>
+        <li><a href="#" onclick="playClick()">▪️ COLLABORATION CONTACTS</a></li>
+        <li><a href="#" onclick="playClick()">▪️ UPCOMING EVENTS</a></li>
+        <li><a href="#" onclick="playClick()">▪️ SHOP</a></li>
+        <li><a href="#" onclick="playClick()">▪️ RESUME</a></li>
+        <li><a href="#" onclick="playClick()">▪️ CONTACT</a></li>
       </ul>
     </nav>
   </div>
 
-  <!-- Lighthouse Gateway Star -->
-  <div class="lighthouse-gateway" onclick="window.location.href='/gateway'">
-    ⭐️
-  </div>
+  <!-- Lighthouse Gateway Dot -->
+  <div class="lighthouse-gateway" onclick="window.location.href='/gateway'"></div>
+
+  <!-- Sound -->
+  <audio id="nav-sound" src="click.mp3" preload="auto"></audio>
+
+  <!-- Cursor Trail -->
+  <script>
+    const trail = [];
+    const maxTrail = 20;
+    for (let i = 0; i < maxTrail; i++) {
+      const dot = document.createElement('div');
+      dot.className = 'trail-dot';
+      dot.style.animationDelay = `${i * 100}ms`;
+      document.body.appendChild(dot);
+      trail.push(dot);
+    }
+    window.addEventListener('mousemove', e => {
+      let { clientX: x, clientY: y } = e;
+      trail.forEach((dot, i) => {
+        setTimeout(() => {
+          dot.style.left = `${x}px`;
+          dot.style.top = `${y}px`;
+        }, i * 20);
+      });
+    });
+  </script>
+
+  <!-- Starfield + Scroll-linked Constellations -->
+  <canvas id="starfield"></canvas>
+  <script>
+    const canvas = document.getElementById("starfield");
+    const ctx = canvas.getContext("2d");
+    let stars = [];
+    let constellationImages = [];
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+
+    window.addEventListener("resize", resizeCanvas);
+    resizeCanvas();
+
+    for (let i = 0; i < 100; i++) {
+      stars.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        radius: Math.random() * 1.5 + 0.3,
+        speed: Math.random() * 0.5 + 0.1,
+        alpha: Math.random()
+      });
+    }
+
+    function loadConstellations() {
+      for (let i = 1; i <= 3; i++) {
+        const img = new Image();
+        img.src = `constellation${i}.png`;
+        constellationImages.push(img);
+      }
+    }
+
+    function drawConstellation(index) {
+      if (constellationImages[index]) {
+        ctx.globalAlpha = 0.5;
+        ctx.drawImage(constellationImages[index], 0, 0, canvas.width, canvas.height);
+        ctx.globalAlpha = 1.0;
+      }
+    }
+
+    function animateStars() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (let star of stars) {
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.radius, 0, 2 * Math.PI);
+        ctx.fillStyle = `rgba(255, 255, 255, ${star.alpha})`;
+        ctx.fill();
+        star.y -= star.speed;
+        if (star.y < 0) {
+          star.y = canvas.height;
+          star.x = Math.random() * canvas.width;
+        }
+      }
+
+      const scrollPos = window.scrollY;
+      let index = 0;
+      if (scrollPos >= 300 && scrollPos < 800) {
+        index = 1;
+      } else if (scrollPos >= 800) {
+        index = 2;
+      }
+      drawConstellation(index);
+      requestAnimationFrame(animateStars);
+    }
+
+    loadConstellations();
+    animateStars();
+
+    function toggleMenu() {
+      const menu = document.getElementById('nav-menu');
+      menu.classList.toggle('active');
+    }
+
+    function playClick() {
+      const audio = document.getElementById('nav-sound');
+      audio.currentTime = 0;
+      audio.play();
+    }
+  </script>
 </body>
 </html>
