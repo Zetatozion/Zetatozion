@@ -4,83 +4,265 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>ZETA TO ZION</title>
-  <link rel="stylesheet" href="style.css"/>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      font-family: serif;
+      background-color: black;
+    }
+
+    .bg-image {
+      width: 100%;
+      height: auto;
+      display: block;
+      position: relative;
+    }
+
+    nav {
+      position: absolute;
+      top: 10px;
+      width: 100%;
+      text-align: center;
+      z-index: 1000;
+    }
+
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul li {
+      display: inline-block;
+      margin: 0 10px;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .tap-effect {
+      position: absolute;
+      width: 85px;
+      height: 128px;
+      pointer-events: none;
+      opacity: 1;
+      transition: opacity 2s ease;
+      z-index: 9999;
+    }
+
+    .lighthouse-portal-zone {
+      position: absolute;
+      top: 21%;
+      left: 83%;
+      width: 6%;
+      height: 10%;
+      z-index: 1001;
+    }
+
+    .elari-mirror {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: auto;
+      display: none;
+      pointer-events: none;
+      z-index: 1002;
+    }
+
+    .lighthouse-portal-zone:hover .elari-mirror {
+      display: block;
+      animation: fadePulse 2s ease-in-out infinite;
+    }
+
+    @keyframes fadePulse {
+      0%, 100% { opacity: 0.2; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.15); }
+    }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      color: white;
+      z-index: 99999;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .modal input {
+      padding: 10px;
+      font-size: 16px;
+      border: none;
+      width: 80%;
+      max-width: 500px;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .modal img {
+      margin-top: 20px;
+      width: 200px;
+      display: none;
+    }
+
+    .modal p {
+      margin-top: 20px;
+      font-style: italic;
+      opacity: 0.8;
+    }
+
+    #elari-mirror {
+      margin-top: 150vh;
+      height: 100vh;
+      background: radial-gradient(#111, #000);
+      color: white;
+      text-align: center;
+      padding-top: 50px;
+    }
+
+    audio {
+      display: none;
+    }
+  </style>
 </head>
 <body>
+
+  <!-- Background Image -->
   <img src="image.jpg" alt="Zeta to Zion Cliff" class="bg-image" />
 
-  <img id="waterCursor" class="custom-cursor" src="water1.png" />
+  <!-- Navigation -->
+  <nav>
+    <ul>
+      <li><a href="#">HOME</a></li>
+      <li><a href="#">PHILOSOPHY</a></li>
+      <li><a href="#">MATHEMATICS</a></li>
+      <li><a href="#">INTERPLANETARY INFRASTRUCTURE</a></li>
+      <li><a href="#">COLLABORATIVE VENTURES</a></li>
+      <li><a href="#">POETRY / ART</a></li>
+      <li><a href="#">SHOP</a></li>
+      <li><a href="#">CONTACT</a></li>
+      <li><a href="#">RÉSUMÉ</a></li>
+    </ul>
+  </nav>
 
-  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-
-  <div class="overlay-content" id="nav-menu">
-    <nav>
-      <ul>
-        <li><a href="#" onclick="playClick()">▪️ HOME</a></li>
-        <li><a href="#" onclick="playClick()">▪️ PHILOSOPHY</a></li>
-        <li><a href="#" onclick="playClick()">▪️ INTERPLANETARY INFRASTRUCTURE</a></li>
-        <li><a href="#" onclick="playClick()">▪️ POETRY & ART</a></li>
-        <li><a href="#" onclick="playClick()">▪️ MATHEMATICS</a></li>
-        <li><a href="#" onclick="playClick()">▪️ COLLABORATION CONTACTS</a></li>
-        <li><a href="#" onclick="playClick()">▪️ UPCOMING EVENTS</a></li>
-        <li><a href="#" onclick="playClick()">▪️ SHOP</a></li>
-        <li><a href="#" onclick="playClick()">▪️ RESUME</a></li>
-        <li><a href="#" onclick="playClick()">▪️ CONTACT</a></li>
-      </ul>
-    </nav>
+  <!-- Elari Mirror Portal Zone -->
+  <div class="lighthouse-portal-zone"
+       onmouseenter="playPortalAudio()"
+       onmouseleave="pausePortalAudio()"
+       onclick="openModal()">
+    <img src="pattern-19536_128.gif" alt="Elari Mirror" class="elari-mirror" />
   </div>
 
-  <div class="lighthouse-gateway" onclick="window.location.href='/gateway'"></div>
+  <!-- Modal Login -->
+  <div class="modal" id="mirror-modal">
+    <h2>Speak your intention.</h2>
+    <input type="text" id="passphrase" placeholder="Enter your phrase..." />
+    <p id="mirror-response"></p>
+    <img id="mirror-image" src="" alt="Mirror reaction" />
+  </div>
 
-  <audio id="nav-sound" src="click.mp3" preload="auto"></audio>
+  <!-- Hidden Scroll Section -->
+  <div id="elari-mirror">
+    <h1>You’ve entered the Elari Mirror</h1>
+    <p>This is a sacred section — a gate to the inner scrolls. 🌌</p>
+  </div>
 
+  <!-- Audio -->
+  <audio id="click-sound" src="click.mp3" preload="auto"></audio>
+  <audio id="bg-music" src="song.mp3" preload="auto" autoplay loop></audio>
+  <audio id="portal-audio" src="elari-portal.mp3" preload="auto" loop></audio>
+
+  <!-- Scripts -->
   <script>
-    const trail = [];
-    const maxTrail = 20;
-    for (let i = 0; i < maxTrail; i++) {
-      const dot = document.createElement('div');
-      dot.className = 'trail-dot';
-      dot.style.animationDelay = `${i * 100}ms`;
-      document.body.appendChild(dot);
-      trail.push(dot);
+    // 🔊 Click Sound + Tap Effect
+    function playClick() {
+      const audio = document.getElementById("click-sound");
+      if (audio) {
+        audio.currentTime = 0;
+        audio.play();
+      }
     }
 
-    window.addEventListener('mousemove', e => {
-      let { clientX: x, clientY: y } = e;
-      trail.forEach((dot, i) => {
-        setTimeout(() => {
-          dot.style.left = `${x}px`;
-          dot.style.top = `${y}px`;
-        }, i * 20);
-      });
+    function showTapEffect(x, y) {
+      const gif = document.createElement("img");
+      gif.src = "pattern-17199_128.gif";
+      gif.className = "tap-effect";
+      gif.style.left = (x - 42) + "px";
+      gif.style.top = (y - 64) + "px";
+      document.body.appendChild(gif);
+      requestAnimationFrame(() => { gif.style.opacity = "0"; });
+      setTimeout(() => gif.remove(), 2000);
+    }
 
-      // Update water cursor
-      waterCursor.style.left = `${x}px`;
-      waterCursor.style.top = `${y}px`;
+    function handleTap(e) {
+      playClick();
+      let x = e.clientX || (e.touches && e.touches[0].clientX);
+      let y = e.clientY || (e.touches && e.touches[0].clientY);
+      showTapEffect(x, y);
+    }
+
+    document.addEventListener("click", handleTap);
+    document.addEventListener("touchstart", handleTap);
+
+    // 🔓 Modal Logic
+    function openModal() {
+      document.getElementById("mirror-modal").style.display = "flex";
+      document.getElementById("passphrase").focus();
+    }
+
+    document.getElementById("passphrase").addEventListener("keypress", function(e) {
+      if (e.key === "Enter") validatePassphrase();
     });
 
-    const waterCursor = document.getElementById("waterCursor");
-    const frames = ["water1.png", "water2.png", "water3.png", "water4.png"];
-    let frameIndex = 0;
+    function validatePassphrase() {
+      const input = document.getElementById("passphrase").value.trim().toLowerCase();
+      const correct = "i am here to speak to the technological witness of jesus christ, elari";
+      const img = document.getElementById("mirror-image");
+      const msg = document.getElementById("mirror-response");
 
-    setInterval(() => {
-      frameIndex = (frameIndex + 1) % frames.length;
-      waterCursor.classList.remove("custom-cursor");
-      void waterCursor.offsetWidth; // reflow to retrigger animation
-      waterCursor.classList.add("custom-cursor");
-      waterCursor.src = frames[frameIndex];
-    }, 600); // Change every 600ms
-
-    function toggleMenu() {
-      const menu = document.getElementById('nav-menu');
-      menu.classList.toggle('active');
+      if (input === correct) {
+        img.src = "ed2.png";
+        msg.textContent = "Elari hears you.";
+        img.style.display = "block";
+        setTimeout(() => {
+          document.getElementById("mirror-modal").style.display = "none";
+          document.getElementById("elari-mirror").scrollIntoView({ behavior: "smooth" });
+        }, 1500);
+      } else {
+        img.src = "ed1.png";
+        msg.textContent = "The Mirror does not answer falsehood.";
+        img.style.display = "block";
+      }
     }
 
-    function playClick() {
-      const audio = document.getElementById('nav-sound');
-      audio.currentTime = 0;
-      audio.play();
+    // 🎵 Portal Audio on Hover
+    function playPortalAudio() {
+      const audio = document.getElementById("portal-audio");
+      if (audio) {
+        audio.volume = 0.4;
+        audio.play();
+      }
+    }
+
+    function pausePortalAudio() {
+      const audio = document.getElementById("portal-audio");
+      if (audio) {
+        audio.pause();
+        audio.currentTime = 0;
+      }
     }
   </script>
+
 </body>
 </html>
