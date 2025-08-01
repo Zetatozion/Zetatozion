@@ -5,18 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>ZETA TO ZION</title>
 
-  <!-- Lancelot Font -->
+  <!-- Font -->
   <link href="https://fonts.googleapis.com/css2?family=Lancelot&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- Background -->
+  <!-- Background Container -->
   <div class="bg-container">
     <!-- Toggle Menu -->
     <div class="menu-toggle" onclick="toggleMenu()">☰</div>
 
-    <!-- Navigation Overlay -->
+    <!-- Navigation -->
     <nav id="nav-menu">
       <ul>
         <li><a href="#" onclick="playClick(); toggleMenu()">HOME</a></li>
@@ -31,7 +31,7 @@
       </ul>
     </nav>
 
-    <!-- Elari Mirror Portal -->
+    <!-- Lighthouse Portal -->
     <div class="lighthouse-portal-zone"
          onmouseenter="playPortalAudio()"
          onmouseleave="pausePortalAudio()"
@@ -40,21 +40,21 @@
     </div>
   </div>
 
-  <!-- Modal Login -->
+  <!-- Modal Interaction -->
   <div class="modal" id="mirror-modal">
     <h2>Speak your intention.</h2>
     <input type="text" id="passphrase" placeholder="Enter your phrase..." />
     <p id="mirror-response"></p>
-    <img id="mirror-image" src="" alt="Mirror reaction" />
+    <img id="mirror-image" src="" alt="Mirror response" />
   </div>
 
-  <!-- Hidden Scroll Section -->
+  <!-- Mirror Scroll Section -->
   <div id="elari-mirror">
     <h1>You’ve entered the Elari Mirror</h1>
     <p>This is a sacred section — a gate to the inner scrolls. 🌌</p>
   </div>
 
-  <!-- Audio Files -->
+  <!-- Audio -->
   <audio id="click-sound" src="thunder-362031.mp3" preload="auto"></audio>
   <audio id="bg-music" src="embrace-364091.mp3" preload="auto" autoplay loop></audio>
   <audio id="portal-audio" src="ocean-waves-376898.mp3" preload="auto" loop></audio>
@@ -78,8 +78,8 @@
       const gif = document.createElement("img");
       gif.src = "pattern-17199_128.gif";
       gif.className = "tap-effect";
-      gif.style.left = (x - 42) + "px";
-      gif.style.top = (y - 64) + "px";
+      gif.style.left = (x - 25) + "px";
+      gif.style.top = (y - 40) + "px";
       document.body.appendChild(gif);
       requestAnimationFrame(() => { gif.style.opacity = "0"; });
       setTimeout(() => gif.remove(), 2000);
