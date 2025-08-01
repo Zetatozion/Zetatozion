@@ -8,7 +8,14 @@ function playClick() {
 
 function toggleMenu() {
   const menu = document.getElementById("nav-menu");
-  menu.style.display = (menu.style.display === "flex") ? "none" : "flex";
+  const isOpen = menu.style.display === "flex";
+
+  menu.style.display = isOpen ? "none" : "flex";
+
+  // Fix for mobile scroll-block and auto-scroll to top
+  if (!isOpen) {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
 }
 
 function handleNavClick() {
