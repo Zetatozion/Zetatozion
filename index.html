@@ -7,13 +7,10 @@
   <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-  <!-- Background Image -->
   <img src="image.jpg" alt="Zeta to Zion Cliff" class="bg-image" />
 
-  <!-- Toggle Button for Mobile -->
   <div class="menu-toggle" onclick="toggleMenu()">☰</div>
 
-  <!-- Navigation Overlay -->
   <div class="overlay-content" id="nav-menu">
     <nav>
       <ul>
@@ -31,13 +28,10 @@
     </nav>
   </div>
 
-  <!-- Lighthouse Gateway Dot -->
   <div class="lighthouse-gateway" onclick="window.location.href='/gateway'"></div>
 
-  <!-- Sound -->
   <audio id="nav-sound" src="click.mp3" preload="auto"></audio>
 
-  <!-- Cursor Trail -->
   <script>
     const trail = [];
     const maxTrail = 20;
@@ -48,6 +42,7 @@
       document.body.appendChild(dot);
       trail.push(dot);
     }
+
     window.addEventListener('mousemove', e => {
       let { clientX: x, clientY: y } = e;
       trail.forEach((dot, i) => {
@@ -59,7 +54,6 @@
     });
   </script>
 
-  <!-- Starfield + Scroll-linked Constellations -->
   <canvas id="starfield"></canvas>
   <script>
     const canvas = document.getElementById("starfield");
