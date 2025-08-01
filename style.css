@@ -158,8 +158,3 @@ nav ul li a {
   text-align: center;
   padding-top: 50px;
 }
-
-/* Hide audio elements */
-audio {
-  display: none;
-}
