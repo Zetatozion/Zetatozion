@@ -4,46 +4,71 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>ZETA TO ZION</title>
+
+  <!-- Lancelot Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Lancelot&display=swap" rel="stylesheet">
+
   <style>
     body {
       margin: 0;
       padding: 0;
       overflow-x: hidden;
-      font-family: serif;
+      font-family: 'Lancelot', serif;
       background-color: black;
+      color: white;
     }
 
-    .bg-image {
+    .bg-container {
+      background: url('image.jpg') no-repeat center center fixed;
+      background-size: cover;
       width: 100%;
-      height: auto;
-      display: block;
+      height: 100vh;
       position: relative;
     }
 
-    nav {
-      position: absolute;
+    /* Toggle Menu Icon */
+    .menu-toggle {
+      position: fixed;
       top: 10px;
+      left: 15px;
+      font-size: 28px;
+      color: white;
+      z-index: 10001;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
       width: 100%;
-      text-align: center;
-      z-index: 1000;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.96);
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 10000;
     }
 
     nav ul {
       list-style: none;
-      margin: 0;
       padding: 0;
+      margin: 0;
+      text-align: center;
     }
 
     nav ul li {
-      display: inline-block;
-      margin: 0 10px;
+      margin: 15px 0;
     }
 
     nav ul li a {
       color: white;
       text-decoration: none;
-      font-size: 18px;
-      font-weight: bold;
+      font-size: 22px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
     }
 
     .tap-effect {
@@ -91,22 +116,25 @@
       position: fixed;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.9);
+      background: rgba(0, 0, 0, 0.95);
       color: white;
       z-index: 99999;
       justify-content: center;
       align-items: center;
       flex-direction: column;
+      animation: fadeIn 0.8s ease;
     }
 
     .modal input {
-      padding: 10px;
+      padding: 12px;
       font-size: 16px;
       border: none;
       width: 80%;
       max-width: 500px;
       text-align: center;
       margin-top: 20px;
+      font-family: 'Lancelot', serif;
+      letter-spacing: 1px;
     }
 
     .modal img {
@@ -133,32 +161,41 @@
     audio {
       display: none;
     }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
   </style>
 </head>
 <body>
 
-  <img src="image.jpg" alt="Zeta to Zion Cliff" class="bg-image" />
+  <div class="bg-container">
+    <!-- Toggle Menu -->
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
 
-  <nav>
-    <ul>
-      <li><a href="#">HOME</a></li>
-      <li><a href="#">PHILOSOPHY</a></li>
-      <li><a href="#">MATHEMATICS</a></li>
-      <li><a href="#">INTERPLANETARY INFRASTRUCTURE</a></li>
-      <li><a href="#">COLLABORATIVE VENTURES</a></li>
-      <li><a href="#">POETRY / ART</a></li>
-      <li><a href="#">SHOP</a></li>
-      <li><a href="#">CONTACT</a></li>
-      <li><a href="#">RÉSUMÉ</a></li>
-    </ul>
-  </nav>
+    <!-- Navigation Overlay -->
+    <nav id="nav-menu">
+      <ul>
+        <li><a href="#" onclick="playClick(); toggleMenu()">HOME</a></li>
+        <li><a href="#" onclick="playClick(); toggleMenu()">PHILOSOPHY</a></li>
+        <li><a href="#" onclick="playClick(); toggleMenu()">MATHEMATICS</a></li>
+        <li><a href="#" onclick="playClick(); toggleMenu()">INTERPLANETARY INFRASTRUCTURE</a></li>
+        <li><a href="#" onclick="playClick(); toggleMenu()">COLLABORATIVE VENTURES</a></li>
+        <li><a href="#" onclick="playClick(); toggleMenu()">POETRY / ART</a></li>
+        <li><a href="#" onclick="playClick(); toggleMenu()">SHOP</a></li>
+        <li><a href="#" onclick="playClick(); toggleMenu()">CONTACT</a></li>
+        <li><a href="#" onclick="playClick(); toggleMenu()">RÉSUMÉ</a></li>
+      </ul>
+    </nav>
 
-  <!-- Elari Mirror Portal -->
-  <div class="lighthouse-portal-zone"
-       onmouseenter="playPortalAudio()"
-       onmouseleave="pausePortalAudio()"
-       onclick="openModal()">
-    <img src="pattern-19536_128.gif" alt="Elari Mirror" class="elari-mirror" />
+    <!-- Elari Mirror Portal -->
+    <div class="lighthouse-portal-zone"
+         onmouseenter="playPortalAudio()"
+         onmouseleave="pausePortalAudio()"
+         onclick="openModal()">
+      <img src="pattern-19536_128.gif" alt="Elari Mirror" class="elari-mirror" />
+    </div>
   </div>
 
   <!-- Modal Login -->
@@ -175,7 +212,7 @@
     <p>This is a sacred section — a gate to the inner scrolls. 🌌</p>
   </div>
 
-  <!-- Final Audio Files -->
+  <!-- Audio Files -->
   <audio id="click-sound" src="thunder-362031.mp3" preload="auto"></audio>
   <audio id="bg-music" src="embrace-364091.mp3" preload="auto" autoplay loop></audio>
   <audio id="portal-audio" src="ocean-waves-376898.mp3" preload="auto" loop></audio>
@@ -188,6 +225,11 @@
         audio.currentTime = 0;
         audio.play();
       }
+    }
+
+    function toggleMenu() {
+      const menu = document.getElementById("nav-menu");
+      menu.style.display = (menu.style.display === "flex") ? "none" : "flex";
     }
 
     function showTapEffect(x, y) {
