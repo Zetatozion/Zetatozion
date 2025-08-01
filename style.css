@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Lancelot&display=swap');
 
+/* Reset and full background */
 body {
   margin: 0;
   padding: 0;
@@ -8,53 +9,39 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   height: 100vh;
-  font-family: 'Lancelot', serif;
-  color: white;
+  font-family: 'Lancelot', sans-serif;
+  color: black;
+  overflow: hidden;
 }
 
-/* Lifted and spaced nav bar */
-.navbar {
+/* Floating black sky nav */
+nav {
   position: absolute;
-  top: 40px;             /* LIFTED FROM TOP */
-  left: 5%;              /* LIFTED FROM SIDE EDGE */
+  top: 40px;             /* LIFT from top */
+  left: 5%;              /* LIFT from edge */
   right: 5%;
   width: 90%;
   text-align: center;
-  background-color: rgba(35, 25, 0, 0.85);
-  padding: 12px 0;
-  border-radius: 6px;
   z-index: 100;
 }
 
-.navbar ul {
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  padding: 0;
-  margin: 0;
-}
-
-.navbar li {
-  margin: 0 12px;
-}
-
-.navbar a {
+nav a {
+  color: black;
   text-decoration: none;
-  color: gold;
+  margin: 0 15px;
   font-size: 1.05rem;
   transition: color 0.3s ease;
 }
 
-.navbar a:hover {
-  color: white;
+nav a:hover {
+  color: #444;
 }
 
-/* Secret Portal – positioned over lighthouse */
+/* Secret portal over lighthouse */
 #secret-portal {
   position: absolute;
   bottom: 8%;
-  right: 15%;
+  right: 14.5%;
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -64,7 +51,7 @@ body {
 }
 
 #secret-portal:hover {
-  box-shadow: 0 0 12px 6px rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 14px 7px rgba(255, 255, 255, 0.4);
   background-color: rgba(255, 255, 255, 0.1);
   cursor: pointer;
 }
