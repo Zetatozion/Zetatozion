@@ -1,41 +1,54 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Lancelot&display=swap');
 
 body {
-  font-family: 'Lancelot', serif;
-  height: 100vh;
-  width: 100vw;
-  background: url('image.jpg') no-repeat center center fixed;
-  background-size: cover;
-  overflow: hidden;
-  position: relative;
-}
-
-/* NAVIGATION BAR */
-nav {
-  position: fixed;
-  top: 1.5em;
-  left: 0;
-  width: 100%;
-  z-index: 1000;
-  text-align: center;
-}
-
-nav ul {
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  flex-wrap: nowrap;
-  gap: 1.5em;
+  margin: 0;
   padding: 0;
+  font-family: 'Lancelot', serif;
+  background-image: url('luke-stackpoole-7fRapip6n9g-unsplash.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  color: white;
 }
 
-nav li a {
+/* Navigation Bar */
+nav {
+  position: absolute;
+  top: 40px;             /* lifts nav from top */
+  left: 5%;
+  right: 5%;            /* prevents hugging edge */
+  width: 90%;
+  text-align: center;
+  font-size: 18px;
+  z-index: 1;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Navigation Links */
+nav a {
+  color: white;
   text-decoration: none;
-  color: black;
-  font-weight: 500;
-  font-size: 0.95rem;
+  margin: 0 15px;
+  padding: 5px 10px;
+  transition: color 0.3s ease;
+  font-family: 'Lancelot', serif;
+}
+
+nav a:hover {
+  color: gold;
+}
+
+/* Responsive Tweaks */
+@media screen and (max-width: 600px) {
+  nav {
+    font-size: 16px;
+    top: 30px;
+  }
+
+  nav a {
+    display: block;
+    margin: 10px auto;
+  }
 }
