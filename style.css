@@ -1,8 +1,9 @@
 /* Base Reset */
-body, html {
+html, body {
   margin: 0;
   padding: 0;
   height: 100%;
+  min-height: 100vh;
   overflow-x: hidden;
   font-family: 'Lancelot', serif;
 }
@@ -12,17 +13,19 @@ body, html {
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   background: url('image.jpg') center center no-repeat;
   background-size: cover;
   background-attachment: fixed;
   z-index: -1;
 }
 
+/* Centered Menu Toggle */
 .menu-toggle {
   position: fixed;
-  top: 10px;
-  left: 15px;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
   font-size: 28px;
   color: white;
   z-index: 10001;
@@ -63,6 +66,7 @@ nav ul li a {
   letter-spacing: 2px;
 }
 
+/* Tap Effect (water trail gif) */
 .tap-effect {
   position: absolute;
   width: 51px;
@@ -73,6 +77,7 @@ nav ul li a {
   z-index: 9999;
 }
 
+/* Portal Zone - keeps hitbox and mirror placement */
 .lighthouse-portal-zone {
   position: absolute;
   top: 21%;
@@ -82,19 +87,21 @@ nav ul li a {
   z-index: 1001;
 }
 
+/* Mirror Reveal Animation Fix */
 .elari-mirror {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: auto;
-  display: none;
+  opacity: 0;
   pointer-events: none;
   z-index: 1002;
+  transition: opacity 1.2s ease;
 }
 
 .lighthouse-portal-zone:hover .elari-mirror {
-  display: block;
+  opacity: 1;
   animation: fadePulse 2s ease-in-out infinite;
 }
 
