@@ -1,21 +1,22 @@
 /* Base Reset */
-body {
+body, html {
   margin: 0;
   padding: 0;
+  height: 100%;
   overflow-x: hidden;
   font-family: 'Lancelot', serif;
-  background-color: black;
-  color: white;
-  height: 100%;
 }
 
-/* Fullscreen Responsive Background */
 .bg-container {
-  background: url('image.jpg') no-repeat center center fixed;
-  background-size: cover;
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100vw;
   height: 100vh;
+  background: url('image.jpg') center center no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  z-index: -1;
 }
 
 /* Menu Toggle */
