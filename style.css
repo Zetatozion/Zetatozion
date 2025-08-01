@@ -1,54 +1,70 @@
-/* Import Google Font */
 @import url('https://fonts.googleapis.com/css2?family=Lancelot&display=swap');
 
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Lancelot', serif;
   background-image: url('image.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   height: 100vh;
+  font-family: 'Lancelot', serif;
   color: white;
 }
 
-/* Navigation Bar */
-nav {
+/* Lifted and spaced nav bar */
+.navbar {
   position: absolute;
-  top: 40px;             /* lifts nav from top */
-  left: 5%;
-  right: 5%;            /* prevents hugging edge */
+  top: 40px;             /* LIFTED FROM TOP */
+  left: 5%;              /* LIFTED FROM SIDE EDGE */
+  right: 5%;
   width: 90%;
   text-align: center;
-  font-size: 18px;
-  z-index: 1;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  background-color: rgba(35, 25, 0, 0.85);
+  padding: 12px 0;
+  border-radius: 6px;
+  z-index: 100;
 }
 
-/* Navigation Links */
-nav a {
-  color: white;
+.navbar ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 0;
+  margin: 0;
+}
+
+.navbar li {
+  margin: 0 12px;
+}
+
+.navbar a {
   text-decoration: none;
-  margin: 0 15px;
-  padding: 5px 10px;
-  transition: color 0.3s ease;
-  font-family: 'Lancelot', serif;
-}
-
-nav a:hover {
   color: gold;
+  font-size: 1.05rem;
+  transition: color 0.3s ease;
 }
 
-/* Responsive Tweaks */
-@media screen and (max-width: 600px) {
-  nav {
-    font-size: 16px;
-    top: 30px;
-  }
+.navbar a:hover {
+  color: white;
+}
 
-  nav a {
-    display: block;
-    margin: 10px auto;
-  }
+/* Secret Portal – positioned over lighthouse */
+#secret-portal {
+  position: absolute;
+  bottom: 8%;
+  right: 15%;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0);
+  transition: box-shadow 0.5s ease;
+  z-index: 50;
+}
+
+#secret-portal:hover {
+  box-shadow: 0 0 12px 6px rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.1);
+  cursor: pointer;
 }
