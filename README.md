@@ -25,3 +25,5 @@ Serious inquiries only. Truth before trends.
 ---
 
 🛡️ This project is personally stewarded. Forks welcome only if the soul aligns.
+
+<!-- Triggering GitHub Pages refresh -->
