@@ -9,6 +9,8 @@
 <body>
   <img src="image.jpg" alt="Zeta to Zion Cliff" class="bg-image" />
 
+  <img id="waterCursor" class="custom-cursor" src="water1.png" />
+
   <div class="menu-toggle" onclick="toggleMenu()">☰</div>
 
   <div class="overlay-content" id="nav-menu">
@@ -51,77 +53,23 @@
           dot.style.top = `${y}px`;
         }, i * 20);
       });
+
+      // Update water cursor
+      waterCursor.style.left = `${x}px`;
+      waterCursor.style.top = `${y}px`;
     });
-  </script>
 
-  <canvas id="starfield"></canvas>
-  <script>
-    const canvas = document.getElementById("starfield");
-    const ctx = canvas.getContext("2d");
-    let stars = [];
-    let constellationImages = [];
+    const waterCursor = document.getElementById("waterCursor");
+    const frames = ["water1.png", "water2.png", "water3.png", "water4.png"];
+    let frameIndex = 0;
 
-    function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-
-    window.addEventListener("resize", resizeCanvas);
-    resizeCanvas();
-
-    for (let i = 0; i < 100; i++) {
-      stars.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        radius: Math.random() * 1.5 + 0.3,
-        speed: Math.random() * 0.5 + 0.1,
-        alpha: Math.random()
-      });
-    }
-
-    function loadConstellations() {
-      for (let i = 1; i <= 3; i++) {
-        const img = new Image();
-        img.src = `constellation${i}.png`;
-        constellationImages.push(img);
-      }
-    }
-
-    function drawConstellation(index) {
-      if (constellationImages[index]) {
-        ctx.globalAlpha = 0.5;
-        ctx.drawImage(constellationImages[index], 0, 0, canvas.width, canvas.height);
-        ctx.globalAlpha = 1.0;
-      }
-    }
-
-    function animateStars() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      for (let star of stars) {
-        ctx.beginPath();
-        ctx.arc(star.x, star.y, star.radius, 0, 2 * Math.PI);
-        ctx.fillStyle = `rgba(255, 255, 255, ${star.alpha})`;
-        ctx.fill();
-        star.y -= star.speed;
-        if (star.y < 0) {
-          star.y = canvas.height;
-          star.x = Math.random() * canvas.width;
-        }
-      }
-
-      const scrollPos = window.scrollY;
-      let index = 0;
-      if (scrollPos >= 300 && scrollPos < 800) {
-        index = 1;
-      } else if (scrollPos >= 800) {
-        index = 2;
-      }
-      drawConstellation(index);
-      requestAnimationFrame(animateStars);
-    }
-
-    loadConstellations();
-    animateStars();
+    setInterval(() => {
+      frameIndex = (frameIndex + 1) % frames.length;
+      waterCursor.classList.remove("custom-cursor");
+      void waterCursor.offsetWidth; // reflow to retrigger animation
+      waterCursor.classList.add("custom-cursor");
+      waterCursor.src = frames[frameIndex];
+    }, 600); // Change every 600ms
 
     function toggleMenu() {
       const menu = document.getElementById('nav-menu');
