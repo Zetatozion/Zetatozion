@@ -12,7 +12,7 @@ body {
 .bg-container {
   background: url('image.jpg') no-repeat center center fixed;
   background-size: cover;
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   position: relative;
 }
@@ -63,11 +63,11 @@ nav ul li a {
   letter-spacing: 2px;
 }
 
-/* Tap Effect */
+/* Tap Effect (60% size of original) */
 .tap-effect {
   position: absolute;
-  width: 85px;
-  height: 128px;
+  width: 51px;   /* 60% of 85px */
+  height: 76.8px; /* 60% of 128px */
   pointer-events: none;
   opacity: 1;
   transition: opacity 2s ease;
