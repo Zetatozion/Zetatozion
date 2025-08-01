@@ -12,6 +12,16 @@
 </head>
 <body>
 
+<!-- Preloader -->
+<div id="preloader">
+  <img id="preloader-img" src="image.jpg" alt="Preloader Image" />
+  <div id="preloader-text">
+  <span>I</span><span> </span><span>H</span><span>A</span><span>T</span><span>E</span><span> </span>
+  <span>I</span><span>T</span><span> </span><span>W</span><span>H</span><span>E</span><span>N</span><span> </span>
+  <span>P</span><span>E</span><span>O</span><span>P</span><span>L</span><span>E</span><span> </span>
+  <span>P</span><span>I</span><span>T</span><span>Y</span><span> </span><span>M</span><span>E</span>
+</div>
+  
   <!-- Background Container -->
   <div class="bg-container">
     <!-- Centered Toggle Button -->
@@ -173,6 +183,16 @@
         bg.play();
       }
     }, { once: true });
+
+window.addEventListener("load", () => {
+  const preloader = document.getElementById("preloader");
+  if (preloader) {
+    preloader.style.transition = "opacity 1s ease";
+    preloader.style.opacity = "0";
+    setTimeout(() => preloader.remove(), 1200);
+  }
+});
+    
   </script>
 </body>
 </html>
