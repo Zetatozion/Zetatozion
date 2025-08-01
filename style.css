@@ -19,7 +19,6 @@ body, html {
   z-index: -1;
 }
 
-/* Menu Toggle */
 .menu-toggle {
   position: fixed;
   top: 10px;
@@ -31,7 +30,6 @@ body, html {
   user-select: none;
 }
 
-/* Navigation Menu */
 nav {
   position: fixed;
   top: 0;
@@ -65,7 +63,6 @@ nav ul li a {
   letter-spacing: 2px;
 }
 
-/* Tap Effect (60% of original size) */
 .tap-effect {
   position: absolute;
   width: 51px;
@@ -76,7 +73,6 @@ nav ul li a {
   z-index: 9999;
 }
 
-/* Lighthouse Portal Hover */
 .lighthouse-portal-zone {
   position: absolute;
   top: 21%;
@@ -107,7 +103,6 @@ nav ul li a {
   50% { opacity: 1; transform: scale(1.15); }
 }
 
-/* Modal Login */
 .modal {
   display: none;
   position: fixed;
@@ -151,7 +146,6 @@ nav ul li a {
   to { opacity: 1; }
 }
 
-/* Scroll Reveal Section */
 #elari-mirror {
   margin-top: 150vh;
   height: 100vh;
@@ -160,8 +154,8 @@ nav ul li a {
   text-align: center;
   padding-top: 50px;
 }
-    
-  /* Responsive Fixes */
+
+/* Responsive Enhancements */
 @media (max-width: 768px) {
   .bg-container {
     background-attachment: scroll;
@@ -193,7 +187,6 @@ nav ul li a {
   }
 }
 
-/* This one must be outside the previous block */
 @media screen and (max-width: 600px) {
   .bg-container {
     background-size: contain;
@@ -201,23 +194,25 @@ nav ul li a {
     background-position: center;
   }
 
-  .cursor {
-    width: 24px;
-    height: 24px;
-  }
-
   .menu-toggle {
-    font-size: 24px;
+    font-size: 22px;
   }
 
   nav ul li a {
-    font-size: 18px;
+    font-size: 16px;
   }
 }
 
-/* Optional visual fade-out class */
-.fade-out {
-  opacity: 0;
-  transition: opacity 0.8s ease;
-  pointer-events: none;
+.fade-overlay {
+  display: none;
+}
+
+.fade-overlay.show {
+  display: block;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.05);
+  animation: fadeIn 1s ease;
 }
