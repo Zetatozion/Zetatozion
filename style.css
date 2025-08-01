@@ -1,33 +1,110 @@
-body, html {
+/* Base Reset */
+* {
   margin: 0;
   padding: 0;
-  height: 100%;
-  font-family: 'UnifrakturCook', 'Lancelot', sans-serif;
-  background: #fff;
+  box-sizing: border-box;
 }
 
-.hero-image {
-  background-image: url('image.jpg');
-  background-size: cover;
-  background-position: center;
-  height: 100vh;
+/* Body and Font */
+body {
+  font-family: 'Georgia', serif;
+  background-color: #000;
+  color: #fff;
+  overflow-x: hidden;
 }
 
-.nav-links {
-  position: absolute;
-  top: 20px;
+/* Background Image */
+.bg-image {
   width: 100%;
+  height: auto;
+  display: block;
+  position: relative;
+  z-index: 1;
+}
+
+/* Overlayed Header and Navigation */
+.overlay-content {
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  transform: translateX(-50%);
   text-align: center;
-  font-size: 1.2em;
-  z-index: 999;
+  z-index: 5;
 }
 
-.nav-links a {
-  color: black;
-  margin: 0 12px;
+.overlay-content h1 {
+  font-size: 2.8rem;
+  letter-spacing: 3px;
+  margin-bottom: 15px;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+nav ul li a {
+  color: #fff;
   text-decoration: none;
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 6px 10px;
+  border-radius: 4px;
+  transition: background 0.3s ease;
 }
 
-.nav-links a:hover {
-  text-decoration: underline;
+nav ul li a:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Lighthouse Gateway Star */
+.lighthouse-gateway {
+  position: absolute;
+  top: 58%;
+  left: 80%;
+  transform: translate(-50%, -50%);
+  font-size: 2rem;
+  cursor: pointer;
+  z-index: 10;
+  transition: transform 0.3s ease, text-shadow 0.3s ease;
+  color: #ffeb3b;
+}
+
+.lighthouse-gateway:hover {
+  transform: scale(1.4);
+  text-shadow: 0 0 15px gold;
+}
+
+/* Star Ping Animation */
+.lighthouse-gateway::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 12px;
+  height: 12px;
+  background: rgba(255, 215, 0, 0.6);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: ping 1.5s infinite;
+  z-index: -1;
+  pointer-events: none;
+}
+
+@keyframes ping {
+  0% {
+    width: 12px;
+    height: 12px;
+    opacity: 0.8;
+  }
+  100% {
+    width: 40px;
+    height: 40px;
+    opacity: 0;
+  }
 }
