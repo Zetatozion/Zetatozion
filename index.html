@@ -86,7 +86,6 @@
       50% { opacity: 1; transform: scale(1.15); }
     }
 
-    /* Modal */
     .modal {
       display: none;
       position: fixed;
@@ -138,10 +137,8 @@
 </head>
 <body>
 
-  <!-- Background Image -->
   <img src="image.jpg" alt="Zeta to Zion Cliff" class="bg-image" />
 
-  <!-- Navigation -->
   <nav>
     <ul>
       <li><a href="#">HOME</a></li>
@@ -156,7 +153,7 @@
     </ul>
   </nav>
 
-  <!-- Elari Mirror Portal Zone -->
+  <!-- Elari Mirror Portal -->
   <div class="lighthouse-portal-zone"
        onmouseenter="playPortalAudio()"
        onmouseleave="pausePortalAudio()"
@@ -178,14 +175,13 @@
     <p>This is a sacred section — a gate to the inner scrolls. 🌌</p>
   </div>
 
-  <!-- Audio -->
-  <audio id="click-sound" src="click.mp3" preload="auto"></audio>
-  <audio id="bg-music" src="song.mp3" preload="auto" autoplay loop></audio>
-  <audio id="portal-audio" src="elari-portal.mp3" preload="auto" loop></audio>
+  <!-- Final Audio Files -->
+  <audio id="click-sound" src="thunder-362031.mp3" preload="auto"></audio>
+  <audio id="bg-music" src="embrace-364091.mp3" preload="auto" autoplay loop></audio>
+  <audio id="portal-audio" src="ocean-waves-376898.mp3" preload="auto" loop></audio>
 
   <!-- Scripts -->
   <script>
-    // 🔊 Click Sound + Tap Effect
     function playClick() {
       const audio = document.getElementById("click-sound");
       if (audio) {
@@ -215,7 +211,6 @@
     document.addEventListener("click", handleTap);
     document.addEventListener("touchstart", handleTap);
 
-    // 🔓 Modal Logic
     function openModal() {
       document.getElementById("mirror-modal").style.display = "flex";
       document.getElementById("passphrase").focus();
@@ -246,7 +241,6 @@
       }
     }
 
-    // 🎵 Portal Audio on Hover
     function playPortalAudio() {
       const audio = document.getElementById("portal-audio");
       if (audio) {
