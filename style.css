@@ -305,3 +305,17 @@ nav ul li a {
   to { opacity: 1; transform: translateY(0); }
   from { opacity: 0; transform: translateY(10px); }
 }
+
+/* -------------------------------- */
+/*     Preloader Mobile Tweaks      */
+/* -------------------------------- */
+@media screen and (max-width: 600px) {
+  #preloader-text {
+    font-size: 20px;
+    gap: 6px;
+  }
+
+  #preloader-img {
+    object-fit: contain;
+  }
+}
