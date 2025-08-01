@@ -1,41 +1,52 @@
-/* Base Reset */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap');
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Body and Font */
 body {
-  font-family: 'Georgia', serif;
+  font-family: 'Cinzel', serif;
+  font-size: 0.7rem;
   background-color: #000;
   color: #fff;
-  overflow-x: hidden;
-}
-
-/* Background Image */
-.bg-image {
-  width: 100%;
-  height: auto;
-  display: block;
+  overflow: hidden;
   position: relative;
-  z-index: 1;
+  height: 100vh;
 }
 
-/* Overlayed Header and Navigation */
+.bg-image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -1;
+}
+
+.menu-toggle {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  font-size: 1.8rem;
+  color: white;
+  z-index: 20;
+  cursor: pointer;
+  background: rgba(0,0,0,0.5);
+  padding: 6px 12px;
+  border-radius: 4px;
+  display: none;
+}
+
 .overlay-content {
   position: absolute;
-  top: 5%;
+  top: 6%;
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
   z-index: 5;
-}
-
-.overlay-content h1 {
-  font-size: 2.8rem;
-  letter-spacing: 3px;
-  margin-bottom: 15px;
 }
 
 nav ul {
@@ -44,67 +55,145 @@ nav ul {
   flex-wrap: wrap;
   justify-content: center;
   gap: 12px;
-  margin-top: 10px;
+  padding: 0 10px;
 }
 
 nav ul li a {
   color: #fff;
   text-decoration: none;
-  font-size: 1rem;
+  font-size: 0.7rem;
   font-weight: bold;
   text-transform: uppercase;
   padding: 6px 10px;
   border-radius: 4px;
-  transition: background 0.3s ease;
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.3);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
 }
 
 nav ul li a:hover {
   background-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 8px rgba(255,255,255,0.4);
 }
 
-/* Lighthouse Gateway Star */
-.lighthouse-gateway {
-  position: absolute;
-  top: 58%;
-  left: 80%;
-  transform: translate(-50%, -50%);
-  font-size: 2rem;
-  cursor: pointer;
-  z-index: 10;
-  transition: transform 0.3s ease, text-shadow 0.3s ease;
-  color: #ffeb3b;
-}
-
-.lighthouse-gateway:hover {
-  transform: scale(1.4);
-  text-shadow: 0 0 15px gold;
-}
-
-/* Star Ping Animation */
-.lighthouse-gateway::after {
+nav ul li a::after {
   content: '';
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 12px;
-  height: 12px;
-  background: rgba(255, 215, 0, 0.6);
+  width: 8px;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.7);
   border-radius: 50%;
   transform: translate(-50%, -50%);
   animation: ping 1.5s infinite;
   z-index: -1;
   pointer-events: none;
+  opacity: 0;
+}
+
+nav ul li a:hover::after {
+  opacity: 1;
 }
 
 @keyframes ping {
-  0% {
-    width: 12px;
-    height: 12px;
-    opacity: 0.8;
+  0% { width: 8px; height: 8px; opacity: 0.8; }
+  100% { width: 25px; height: 25px; opacity: 0; }
+}
+
+.lighthouse-gateway {
+  position: absolute;
+  top: 58%;
+  left: 80%;
+  transform: translate(-50%, -50%);
+  width: 10px;
+  height: 10px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #fff;
+  z-index: 10;
+  cursor: pointer;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.lighthouse-gateway:hover {
+  transform: scale(1.8);
+  box-shadow: 0 0 18px #fff, 0 0 30px #ddd;
+}
+
+.lighthouse-gateway::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: ripple 1.5s infinite ease-out;
+  opacity: 0.6;
+}
+
+@keyframes ripple {
+  0% { width: 10px; height: 10px; opacity: 0.6; }
+  100% { width: 30px; height: 30px; opacity: 0; }
+}
+
+.trail-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 999;
+  animation: colorShift 2s infinite, fadeOut 1.4s ease-out forwards;
+  transform: scale(1);
+  transition: top 0.2s ease, left 0.2s ease;
+  opacity: 0.8;
+}
+
+@keyframes colorShift {
+  0%   { background: #ffffff; box-shadow: 0 0 6px #ffffff; }
+  25%  { background: #99ccff; box-shadow: 0 0 6px #99ccff; }
+  50%  { background: #ff99ff; box-shadow: 0 0 6px #ff99ff; }
+  75%  { background: #ffff99; box-shadow: 0 0 6px #ffff99; }
+  100% { background: #ffffff; box-shadow: 0 0 6px #ffffff; }
+}
+
+@keyframes fadeOut {
+  0% { opacity: 0.8; transform: scale(1); }
+  100% { opacity: 0; transform: scale(0.5); }
+}
+
+#starfield {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
   }
-  100% {
-    width: 40px;
-    height: 40px;
-    opacity: 0;
+
+  .overlay-content {
+    top: 60px;
+  }
+
+  nav ul {
+    display: none;
+    flex-direction: column;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 15px;
+    border-radius: 6px;
+  }
+
+  .overlay-content.active nav ul {
+    display: flex;
   }
 }
