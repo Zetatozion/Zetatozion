@@ -160,8 +160,8 @@ nav ul li a {
   text-align: center;
   padding-top: 50px;
 }
-
-/* Responsive Fixes */
+    
+  /* Responsive Fixes */
 @media (max-width: 768px) {
   .bg-container {
     background-attachment: scroll;
@@ -191,4 +191,33 @@ nav ul li a {
   .modal img {
     width: 150px;
   }
+}
+
+/* This one must be outside the previous block */
+@media screen and (max-width: 600px) {
+  .bg-container {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .cursor {
+    width: 24px;
+    height: 24px;
+  }
+
+  .menu-toggle {
+    font-size: 24px;
+  }
+
+  nav ul li a {
+    font-size: 18px;
+  }
+}
+
+/* Optional visual fade-out class */
+.fade-out {
+  opacity: 0;
+  transition: opacity 0.8s ease;
+  pointer-events: none;
 }
