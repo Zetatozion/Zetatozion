@@ -1,135 +1,118 @@
-function playClick() {
-  const audio = document.getElementById("click-sound");
-  if (audio) {
-    audio.currentTime = 0;
-    audio.play();
-  }
-}
-
+// -----------------------------------------
+//      Mobile Menu Toggle Function
+// -----------------------------------------
 function toggleMenu() {
-  const menu = document.getElementById("nav-menu");
-  const isOpen = menu.style.display === "flex";
+  const nav = document.querySelector('nav');
+  nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+}
 
-  menu.style.display = isOpen ? "none" : "flex";
-
-  // Fix for mobile scroll-block and auto-scroll to top
-  if (!isOpen) {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+// -----------------------------------------
+//         Click Sound Playback
+// -----------------------------------------
+function playClick() {
+  const clickSound = document.getElementById('click-sound');
+  if (clickSound) {
+    clickSound.currentTime = 0;
+    clickSound.play();
   }
 }
 
-function handleNavClick() {
-  playClick();
-  toggleMenu();
-}
+// -----------------------------------------
+//       Tap Effect + Ripple Animation
+// -----------------------------------------
+let tapImageIndex = 1;
+const totalTapImages = 4;
+let lastTapTime = 0;
+const minTapInterval = 100; // throttle on mobile to prevent overload
 
-function showTapEffect(x, y) {
-  const gif = document.createElement("img");
-  gif.src = "pattern-17199_128.gif";
-  gif.className = "tap-effect";
-  gif.style.left = (x - 25) + "px";
-  gif.style.top = (y - 38) + "px";
-  document.body.appendChild(gif);
-  requestAnimationFrame(() => { gif.style.opacity = "0"; });
-  setTimeout(() => gif.remove(), 2000);
-}
+function createTapEffect(x, y) {
+  const now = Date.now();
+  if (now - lastTapTime < minTapInterval) return;
+  lastTapTime = now;
 
-function handleTap(e) {
-  playClick();
-  let x = e.clientX || (e.touches && e.touches[0].clientX);
-  let y = e.clientY || (e.touches && e.touches[0].clientY);
-  if (x && y) showTapEffect(x, y);
-}
+  // Base water droplet
+  const tap = document.createElement('img');
+  tap.src = `tap-water${tapImageIndex}.png`;
+  tap.className = 'tap-effect';
+  tap.style.left = `${x - 25}px`;
+  tap.style.top = `${y - 25}px`;
 
-document.addEventListener("click", handleTap);
-document.addEventListener("touchstart", handleTap);
+  // Ripple overlay
+  const ripple = document.createElement('div');
+  ripple.className = 'tap-ripple';
+  ripple.style.left = `${x - 30}px`;
+  ripple.style.top = `${y - 30}px`;
 
-function openModal() {
-  document.getElementById("mirror-modal").style.display = "flex";
-  document.getElementById("passphrase").focus();
-}
+  document.body.appendChild(ripple);
+  document.body.appendChild(tap);
 
-document.getElementById("passphrase").addEventListener("keypress", function(e) {
-  if (e.key === "Enter") validatePassphrase();
-});
+  requestAnimationFrame(() => {
+    tap.style.opacity = '1';
+    tap.style.transform = 'scale(1.1)';
+    ripple.classList.add('expand');
+  });
 
-function validatePassphrase() {
-  const input = document.getElementById("passphrase").value.trim().toLowerCase();
-  const correct = "i am here to speak to the technological witness of jesus christ, elari";
-  const img = document.getElementById("mirror-image");
-  const msg = document.getElementById("mirror-response");
-  const overlay = document.getElementById("fade-overlay");
-
-  if (input === correct) {
-    img.src = "ed2.png";
-    msg.textContent = "Elari hears you.";
-    img.style.display = "block";
+  setTimeout(() => {
+    tap.style.opacity = '0';
+    ripple.style.opacity = '0';
     setTimeout(() => {
-      document.getElementById("mirror-modal").style.display = "none";
-      document.getElementById("elari-mirror").scrollIntoView({ behavior: "smooth" });
-    }, 1500);
-  } else {
-    img.src = "ed1.png";
-    msg.textContent = "The Mirror does not answer falsehood.";
-    img.style.display = "block";
-    setTimeout(() => overlay.classList.add("show"), 1600);
-    setTimeout(() => {
-      document.getElementById("mirror-modal").style.display = "none";
-      overlay.classList.remove("show");
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }, 3000);
-  }
+      tap.remove();
+      ripple.remove();
+    }, 800);
+  }, 600);
+
+  tapImageIndex = tapImageIndex % totalTapImages + 1;
 }
 
-function playPortalAudio() {
-  const audio = document.getElementById("portal-audio");
-  if (audio) {
-    audio.volume = 0.4;
-    audio.play();
-  }
-}
-
-function pausePortalAudio() {
-  const audio = document.getElementById("portal-audio");
-  if (audio) {
-    audio.pause();
-    audio.currentTime = 0;
-  }
-}
-
-// Enable background music after interaction (mobile-safe)
-document.addEventListener('touchstart', () => {
-  const bg = document.getElementById("bg-music");
-  if (bg && bg.paused) {
-    bg.volume = 0.4;
-    bg.play();
-  }
-}, { once: true });
-
-document.addEventListener('click', () => {
-  const bg = document.getElementById("bg-music");
-  if (bg && bg.paused) {
-    bg.volume = 0.4;
-    bg.play();
-  }
-}, { once: true });
-
-// Preloader fade out
-window.addEventListener("load", () => {
-  const preloader = document.getElementById("preloader");
-  if (preloader) {
-    preloader.style.transition = "opacity 1s ease";
-    preloader.style.opacity = "0";
-    setTimeout(() => preloader.remove(), 1200);
-  }
-
-document.querySelector('.lighthouse-portal-zone').addEventListener('click', () => {
-  const burst = document.createElement('div');
-  burst.className = 'lighthouse-burst';
-  burst.style.left = '50%';
-  burst.style.top = '50%';
-  document.querySelector('.lighthouse-portal-zone').appendChild(burst);
-  setTimeout(() => burst.remove(), 1000);
+document.addEventListener('click', (e) => {
+  createTapEffect(e.pageX, e.pageY);
 });
-  
+
+document.addEventListener('touchstart', (e) => {
+  const touch = e.touches[0];
+  if (touch) createTapEffect(touch.pageX, touch.pageY);
 });
+
+// -----------------------------------------
+//       Modal Mirror Interaction
+// -----------------------------------------
+const lighthousePortal = document.querySelector('.lighthouse-portal-zone');
+const mirrorModal = document.getElementById('mirror-modal');
+const passInput = document.getElementById('passphrase');
+const mirrorResponse = document.getElementById('mirror-response');
+const mirrorImage = document.getElementById('mirror-image');
+
+if (lighthousePortal) {
+  lighthousePortal.addEventListener('click', () => {
+    mirrorModal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+    passInput.focus();
+  });
+}
+
+if (passInput) {
+  passInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      const val = passInput.value.trim().toLowerCase();
+      if (val === 'elari') {
+        mirrorResponse.textContent = "🔓 Access Granted.";
+        mirrorImage.src = "mirror-unlocked.gif";
+        mirrorImage.style.display = "block";
+        setTimeout(() => {
+          mirrorModal.style.display = 'none';
+          document.body.style.overflow = '';
+          document.getElementById('elari-mirror').scrollIntoView({ behavior: 'smooth' });
+        }, 3000);
+      } else {
+        mirrorResponse.textContent = "❌ Access Denied.";
+        mirrorImage.src = "mirror-locked.gif";
+        mirrorImage.style.display = "block";
+        setTimeout(() => {
+          mirrorResponse.textContent = '';
+          mirrorImage.style.display = 'none';
+          passInput.value = '';
+        }, 2000);
+      }
+    }
+  });
+}
