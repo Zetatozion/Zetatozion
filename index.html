@@ -3,9 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ZETA TO ZION — The Mirror Portal</title>
-<meta name="description" content="Zeta to Zion: Explore the sacred infrastructure, philosophy, and creative code of a new era.">
-<meta name="theme-color" content="#000000">
+  <title>ZETA TO ZION</title>
 
   <!-- Font -->
   <link href="https://fonts.googleapis.com/css2?family=Lancelot&display=swap" rel="stylesheet">
@@ -14,43 +12,45 @@
 </head>
 <body>
 
-<!-- Preloader -->
-<div id="preloader">
-  <img id="preloader-img" src="image.jpg" alt="Preloader Image" />
-  <div id="preloader-text">
-    <span>I</span><span> </span><span>H</span><span>A</span><span>T</span><span>E</span><span> </span>
-    <span>I</span><span>T</span><span> </span><span>W</span><span>H</span><span>E</span><span>N</span><span> </span>
-    <span>P</span><span>E</span><span>O</span><span>P</span><span>L</span><span>E</span><span> </span>
-    <span>P</span><span>I</span><span>T</span><span>Y</span><span> </span><span>M</span><span>E</span>
+  <!-- Preloader -->
+  <div id="preloader">
+    <img id="preloader-img" src="image.jpg" alt="Preloader Image" />
+    <div id="preloader-text">
+      <span>I</span><span> </span><span>H</span><span>A</span><span>T</span><span>E</span><span> </span>
+      <span>I</span><span>T</span><span> </span><span>W</span><span>H</span><span>E</span><span>N</span><span> </span>
+      <span>P</span><span>E</span><span>O</span><span>P</span><span>L</span><span>E</span><span> </span>
+      <span>P</span><span>I</span><span>T</span><span>Y</span><span> </span><span>M</span><span>E</span>
+    </div>
   </div>
 
-  <!-- Background Container -->
-  <div class="bg-container">
-    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+  <!-- Background -->
+  <div class="bg-container"></div>
 
-    <!-- Navigation -->
-    <nav id="nav-menu">
-      <ul style="flex-wrap: wrap; max-height: 90vh; overflow-y: auto;">
-        <li><a href="#" onclick="handleNavClick()">▪️ HOME</a></li>
-        <li><a href="#" onclick="handleNavClick()">▪️ PHILOSOPHY</a></li>
-        <li><a href="#" onclick="handleNavClick()">▪️ MATHEMATICS</a></li>
-        <li><a href="#" onclick="handleNavClick()">▪️ INTERPLANETARY INFRASTRUCTURE</a></li>
-        <li><a href="#" onclick="handleNavClick()">▪️ COLLABORATIVE VENTURES</a></li>
-        <li><a href="#" onclick="handleNavClick()">▪️ POETRY / ART</a></li>
-        <li><a href="#" onclick="handleNavClick()">▪️ SHOP</a></li>
-        <li><a href="#" onclick="handleNavClick()">▪️ CONTACT</a></li>
-        <li><a href="#" onclick="handleNavClick()">▪️ RÉSUMÉ</a></li>
-      </ul>
-    </nav>
+  <!-- Menu Toggle -->
+  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
 
-    <!-- Portal Hotspot -->
-    <div class="lighthouse-portal-zone"
-     onmouseenter="playPortalAudio()"
-     onmouseleave="pausePortalAudio()"
-     onclick="openModal()">
-  <img src="pattern-19536_128.gif" alt="Elari Mirror" class="elari-mirror pointer-hover glow-ring" />
-  <div class="lighthouse-star"></div>
-</div>
+  <!-- Navigation Menu -->
+  <nav id="nav-menu">
+    <ul>
+      <li><a href="#" onclick="handleNavClick()">▪️ HOME</a></li>
+      <li><a href="#" onclick="handleNavClick()">▪️ PHILOSOPHY</a></li>
+      <li><a href="#" onclick="handleNavClick()">▪️ MATHEMATICS</a></li>
+      <li><a href="#" onclick="handleNavClick()">▪️ INTERPLANETARY INFRASTRUCTURE</a></li>
+      <li><a href="#" onclick="handleNavClick()">▪️ COLLABORATIVE VENTURES</a></li>
+      <li><a href="#" onclick="handleNavClick()">▪️ POETRY / ART</a></li>
+      <li><a href="#" onclick="handleNavClick()">▪️ SHOP</a></li>
+      <li><a href="#" onclick="handleNavClick()">▪️ CONTACT</a></li>
+      <li><a href="#" onclick="handleNavClick()">▪️ RÉSUMÉ</a></li>
+    </ul>
+  </nav>
+
+  <!-- Lighthouse Portal Hotspot -->
+  <div class="lighthouse-portal-zone"
+       onmouseenter="playPortalAudio()"
+       onmouseleave="pausePortalAudio()"
+       onclick="openModal()">
+    <img src="pattern-19536_128.gif" alt="Elari Mirror" class="elari-mirror pointer-hover" />
+  </div>
 
   <!-- Secret Modal Interface -->
   <div class="modal" id="mirror-modal">
@@ -66,15 +66,15 @@
     <p>This is a sacred section — a gate to the inner scrolls. 🌌</p>
   </div>
 
-  <!-- Audio Sources -->
+  <!-- Audio -->
   <audio id="click-sound" src="thunder-362031.mp3" preload="auto"></audio>
   <audio id="bg-music" src="embrace-364091.mp3" preload="auto" loop></audio>
   <audio id="portal-audio" src="ocean-waves-376898.mp3" preload="auto" loop></audio>
 
-  <!-- Optional Fade Effect -->
+  <!-- Fade Overlay -->
   <div class="fade-overlay" id="fade-overlay"></div>
 
-  <!-- JavaScript External -->
+  <!-- External JavaScript -->
   <script src="script.js" defer></script>
 </body>
-  </html>
+</html>
