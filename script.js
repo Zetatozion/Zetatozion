@@ -30,14 +30,12 @@ function createTapEffect(x, y) {
   if (now - lastTapTime < minTapInterval) return;
   lastTapTime = now;
 
-  // Base water droplet
   const tap = document.createElement('img');
   tap.src = `tap-water${tapImageIndex}.png`;
   tap.className = 'tap-effect';
   tap.style.left = `${x - 25}px`;
   tap.style.top = `${y - 25}px`;
 
-  // Ripple overlay
   const ripple = document.createElement('div');
   ripple.className = 'tap-ripple';
   ripple.style.left = `${x - 30}px`;
@@ -116,3 +114,39 @@ if (passInput) {
     }
   });
 }
+
+// -----------------------------------------
+//     Preloader Click-To-Dismiss Logic
+// -----------------------------------------
+const preloader = document.getElementById('preloader');
+if (preloader) {
+  preloader.addEventListener('click', () => {
+    preloader.style.transition = 'opacity 1.5s ease';
+    preloader.style.opacity = 0;
+    setTimeout(() => {
+      preloader.style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }, 1600);
+  });
+}
+
+// -----------------------------------------
+//  Optional: Background Music Fade-In (Preserved)
+// -----------------------------------------
+window.addEventListener('click', () => {
+  const bgMusic = document.getElementById('bg-music');
+  if (bgMusic && bgMusic.paused) {
+    bgMusic.volume = 0;
+    bgMusic.play().then(() => {
+      let vol = 0;
+      const fade = setInterval(() => {
+        if (vol < 1) {
+          vol += 0.05;
+          bgMusic.volume = Math.min(vol, 1);
+        } else {
+          clearInterval(fade);
+        }
+      }, 200);
+    }).catch(e => console.warn('Autoplay blocked:', e));
+  }
+}, { once: true });
