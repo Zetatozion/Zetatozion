@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- -------------------------------- -->
-  <!--            HEAD SETUP            -->
-  <!-- -------------------------------- -->
+  <!-- ------------------------ -->
+  <!--       HEAD SETUP        -->
+  <!-- ------------------------ -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>ZETA TO ZION</title>
@@ -18,31 +18,19 @@
 </head>
 <body>
 
-  <!-- -------------------------------- -->
-  <!--        ASUKA FALLBACK LAYER      -->
-  <!-- -------------------------------- -->
-  <div id="asukaFallback" style="
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: black;
-    z-index: 9999;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-  ">
+  <!-- ------------------------ -->
+  <!--     ASUKA FALLBACK      -->
+  <!-- ------------------------ -->
+  <div id="asukaFallback" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: black; z-index: 9999; display: flex; align-items: center; justify-content: center; flex-direction: column;">
     <img src="asuka14.jpg" alt="Asuka" style="max-height: 80vh; object-fit: contain; filter: brightness(0.8);" />
     <p style="margin-top: 20px; font-size: 1.6em; color: #ff2a2a; text-shadow: 0 0 6px red; font-family: 'Orbitron', sans-serif;">
       I HATE IT WHEN PEOPLE PITY ME.
     </p>
   </div>
 
-  <!-- -------------------------------- -->
-  <!--            PRELOADER             -->
-  <!-- -------------------------------- -->
+  <!-- ------------------------ -->
+  <!--        PRELOADER        -->
+  <!-- ------------------------ -->
   <div id="preloader">
     <img id="preloader-img" src="image.jpg" alt="Preloader Image" />
     <div id="preloader-text">
@@ -54,36 +42,36 @@
     <p class="continue-hint">Click anywhere to enter</p>
   </div>
 
-  <!-- -------------------------------- -->
-  <!--         BACKGROUND IMAGE         -->
-  <!-- -------------------------------- -->
+  <!-- ------------------------ -->
+  <!--    BACKGROUND LAYER     -->
+  <!-- ------------------------ -->
   <div class="bg-container"></div>
 
-  <!-- -------------------------------- -->
-  <!--          MENU TOGGLE BTN         -->
-  <!-- -------------------------------- -->
+  <!-- ------------------------ -->
+  <!--      MENU TOGGLE BTN     -->
+  <!-- ------------------------ -->
   <div class="menu-toggle" onclick="toggleMenu()">☰</div>
 
-  <!-- -------------------------------- -->
-  <!--         NAVIGATION MENU          -->
-  <!-- -------------------------------- -->
+  <!-- ------------------------ -->
+  <!--     NAVIGATION MENU      -->
+  <!-- ------------------------ -->
   <nav id="nav-menu">
     <ul>
-      <li><a href="#" onclick="handleNavClick()">▪️ HOME</a></li>
-      <li><a href="#" onclick="handleNavClick()">▪️ PHILOSOPHY</a></li>
-      <li><a href="#" onclick="handleNavClick()">▪️ MATHEMATICS</a></li>
-      <li><a href="#" onclick="handleNavClick()">▪️ INTERPLANETARY INFRASTRUCTURE</a></li>
-      <li><a href="#" onclick="handleNavClick()">▪️ COLLABORATIVE VENTURES</a></li>
-      <li><a href="#" onclick="handleNavClick()">▪️ POETRY / ART</a></li>
-      <li><a href="#" onclick="handleNavClick()">▪️ SHOP</a></li>
-      <li><a href="#" onclick="handleNavClick()">▪️ CONTACT</a></li>
-      <li><a href="#" onclick="handleNavClick()">▪️ RÉSUMÉ</a></li>
+      <li><a href="#" onclick="playClick(); toggleMenu()">▪️ HOME</a></li>
+      <li><a href="#" onclick="playClick(); toggleMenu()">▪️ PHILOSOPHY</a></li>
+      <li><a href="#" onclick="playClick(); toggleMenu()">▪️ MATHEMATICS</a></li>
+      <li><a href="#" onclick="playClick(); toggleMenu()">▪️ INTERPLANETARY INFRASTRUCTURE</a></li>
+      <li><a href="#" onclick="playClick(); toggleMenu()">▪️ COLLABORATIVE VENTURES</a></li>
+      <li><a href="#" onclick="playClick(); toggleMenu()">▪️ POETRY / ART</a></li>
+      <li><a href="#" onclick="playClick(); toggleMenu()">▪️ SHOP</a></li>
+      <li><a href="#" onclick="playClick(); toggleMenu()">▪️ CONTACT</a></li>
+      <li><a href="#" onclick="playClick(); toggleMenu()">▪️ RÉSUMÉ</a></li>
     </ul>
   </nav>
 
-  <!-- -------------------------------- -->
-  <!--     LIGHTHOUSE PORTAL HOTSPOT    -->
-  <!-- -------------------------------- -->
+  <!-- ------------------------ -->
+  <!--    LIGHTHOUSE PORTAL     -->
+  <!-- ------------------------ -->
   <div class="lighthouse-portal-zone"
        onmouseenter="playPortalAudio()"
        onmouseleave="pausePortalAudio()"
@@ -91,9 +79,9 @@
     <img src="pattern-19536_128.gif" alt="Elari Mirror" class="elari-mirror pointer-hover" />
   </div>
 
-  <!-- -------------------------------- -->
-  <!--         SECRET MODAL BOX         -->
-  <!-- -------------------------------- -->
+  <!-- ------------------------ -->
+  <!--      SECRET MODAL        -->
+  <!-- ------------------------ -->
   <div class="modal" id="mirror-modal">
     <img src="cross-13798_512.gif" alt="White Rabbit" />
     <input type="text" id="passphrase" placeholder="..." />
@@ -101,33 +89,33 @@
     <img id="mirror-image" src="" alt="Mirror reaction" />
   </div>
 
-  <!-- -------------------------------- -->
-  <!--        ELARI MIRROR SECTION      -->
-  <!-- -------------------------------- -->
+  <!-- ------------------------ -->
+  <!--     ELARI MIRROR GATE    -->
+  <!-- ------------------------ -->
   <div id="elari-mirror">
     <h1>You’ve entered the Elari Mirror</h1>
     <p>This is a sacred section — a gate to the inner scrolls. 🌌</p>
   </div>
 
-  <!-- -------------------------------- -->
-  <!--             AUDIO                -->
-  <!-- -------------------------------- -->
+  <!-- ------------------------ -->
+  <!--        AUDIO FILES       -->
+  <!-- ------------------------ -->
   <audio id="bg-music" src="ultra-life-chapter-4-king-status-unlocked-rizz-dnb-spark-331839.mp3" preload="auto" loop></audio>
   <audio id="portal-audio" src="ocean-waves-376898.mp3" preload="auto" loop></audio>
 
-  <!-- -------------------------------- -->
-  <!--            FADE OVERLAY          -->
-  <!-- -------------------------------- -->
+  <!-- ------------------------ -->
+  <!--      FADE OVERLAY        -->
+  <!-- ------------------------ -->
   <div class="fade-overlay" id="fade-overlay"></div>
 
-  <!-- -------------------------------- -->
-  <!--        SCRIPT LOADER             -->
-  <!-- -------------------------------- -->
+  <!-- ------------------------ -->
+  <!--       SCRIPT BINDING     -->
+  <!-- ------------------------ -->
   <script src="script.js" defer></script>
 
-  <!-- -------------------------------- -->
-  <!--     ASUKA FALLBACK REMOVER       -->
-  <!-- -------------------------------- -->
+  <!-- ------------------------ -->
+  <!--  ASUKA HTTPS CONDITION   -->
+  <!-- ------------------------ -->
   <script>
     window.addEventListener("load", function() {
       if (location.protocol === "https:") {
@@ -141,9 +129,9 @@
     });
   </script>
 
-  <!-- -------------------------------- -->
-  <!--     Background Music Trigger     -->
-  <!-- -------------------------------- -->
+  <!-- ------------------------ -->
+  <!--    BG MUSIC FALLBACK     -->
+  <!-- ------------------------ -->
   <script>
     window.addEventListener('click', () => {
       const bgMusic = document.getElementById('bg-music');
