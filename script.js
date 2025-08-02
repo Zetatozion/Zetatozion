@@ -6,7 +6,7 @@ function toggleMenu() {
   nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
 }
 
-// -----------------------------------------
+// // -----------------------------------------
 //         Click Sound Playback
 // -----------------------------------------
 function playClick() {
@@ -15,6 +15,19 @@ function playClick() {
     clickSound.currentTime = 0;
     clickSound.play();
   }
+}
+
+// -----------------------------------------
+//       Lighthouse Portal Audio Control
+// -----------------------------------------
+function playPortalAudio() {
+  const audio = document.getElementById("portal-audio");
+  if (audio) audio.play();
+}
+
+function pausePortalAudio() {
+  const audio = document.getElementById("portal-audio");
+  if (audio) audio.pause();
 }
 
 // -----------------------------------------
