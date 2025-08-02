@@ -10,11 +10,34 @@
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Lancelot&display=swap" rel="stylesheet">
-  
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
+
   <!-- Main Styles -->
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+
+  <!-- -------------------------------- -->
+  <!--        ASUKA FALLBACK LAYER      -->
+  <!-- -------------------------------- -->
+  <div id="asukaFallback" style="
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: black;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  ">
+    <img src="asuka14.jpg" alt="Asuka" style="max-height: 80vh; object-fit: contain; filter: brightness(0.8);" />
+    <p style="margin-top: 20px; font-size: 1.6em; color: #ff2a2a; text-shadow: 0 0 6px red; font-family: 'Orbitron', sans-serif;">
+      I HATE IT WHEN PEOPLE PITY ME.
+    </p>
+  </div>
 
   <!-- -------------------------------- -->
   <!--            PRELOADER             -->
@@ -100,5 +123,19 @@
   <!--        SCRIPT LOADER             -->
   <!-- -------------------------------- -->
   <script src="script.js" defer></script>
+
+  <!-- -------------------------------- -->
+  <!--     ASUKA FALLBACK REMOVER       -->
+  <!-- -------------------------------- -->
+  <script>
+    window.addEventListener("load", function() {
+      if (location.protocol === "https:") {
+        const overlay = document.getElementById("asukaFallback");
+        overlay.style.transition = "opacity 1s ease";
+        overlay.style.opacity = 0;
+        setTimeout(() => overlay.remove(), 1000);
+      }
+    });
+  </script>
 </body>
 </html>
