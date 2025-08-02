@@ -11,6 +11,7 @@
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Lancelot&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
 
   <!-- Main Styles -->
   <link rel="stylesheet" href="style.css" />
@@ -50,6 +51,7 @@
       <span>P</span><span>E</span><span>O</span><span>P</span><span>L</span><span>E</span><span> </span>
       <span>P</span><span>I</span><span>T</span><span>Y</span><span> </span><span>M</span><span>E</span>
     </div>
+    <p class="continue-hint">Click anywhere to enter</p>
   </div>
 
   <!-- -------------------------------- -->
@@ -130,33 +132,37 @@
     window.addEventListener("load", function() {
       if (location.protocol === "https:") {
         const overlay = document.getElementById("asukaFallback");
-        overlay.style.transition = "opacity 1s ease";
-        overlay.style.opacity = 0;
-        setTimeout(() => overlay.remove(), 1000);
+        if (overlay) {
+          overlay.style.transition = "opacity 1s ease";
+          overlay.style.opacity = 0;
+          setTimeout(() => overlay.remove(), 1000);
+        }
       }
     });
   </script>
 
-<script>
-  // 🔊 Trigger background music on first interaction (with fade-in)
-  window.addEventListener('click', () => {
-    const bgMusic = document.getElementById('bg-music');
-    if (bgMusic && bgMusic.paused) {
-      bgMusic.volume = 0;
-      bgMusic.play().then(() => {
-        let vol = 0;
-        const fade = setInterval(() => {
-          if (vol < 1) {
-            vol += 0.05;
-            bgMusic.volume = Math.min(vol, 1);
-          } else {
-            clearInterval(fade);
-          }
-        }, 200);
-      }).catch(e => console.warn('Autoplay blocked:', e));
-    }
-  }, { once: true });
-</script>
-  
+  <!-- -------------------------------- -->
+  <!--     Background Music Trigger     -->
+  <!-- -------------------------------- -->
+  <script>
+    window.addEventListener('click', () => {
+      const bgMusic = document.getElementById('bg-music');
+      if (bgMusic && bgMusic.paused) {
+        bgMusic.volume = 0;
+        bgMusic.play().then(() => {
+          let vol = 0;
+          const fade = setInterval(() => {
+            if (vol < 1) {
+              vol += 0.05;
+              bgMusic.volume = Math.min(vol, 1);
+            } else {
+              clearInterval(fade);
+            }
+          }, 200);
+        }).catch(e => console.warn('Autoplay blocked:', e));
+      }
+    }, { once: true });
+  </script>
+
 </body>
 </html>
