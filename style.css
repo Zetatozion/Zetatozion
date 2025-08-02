@@ -18,7 +18,7 @@ html, body {
   top: 0;
   left: 0;
   width: 100vw;
-  min-height: 100vh;
+  height: 100vh; /* 🛠 Fullscreen Fix */
   background: url('image.jpg') center center no-repeat;
   background-size: cover;
   background-attachment: fixed;
@@ -31,8 +31,7 @@ html, body {
 .menu-toggle {
   position: fixed;
   top: 12px;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 12px; /* 🛠 Moved to top-left */
   font-size: 28px;
   color: white;
   z-index: 10001;
@@ -199,74 +198,7 @@ nav ul li a {
 }
 
 /* -------------------------------- */
-/*        Responsive Tweaks         */
-/* -------------------------------- */
-@media (max-width: 768px) {
-  .bg-container {
-    background-attachment: scroll;
-    background-position: center top;
-    background-size: cover;
-    height: 100vh;
-  }
-
-  nav ul li a {
-    font-size: 18px;
-    letter-spacing: 1px;
-  }
-
-  .menu-toggle {
-    font-size: 24px;
-  }
-
-  .tap-effect {
-    width: 36px;
-    height: 54px;
-  }
-
-  .modal input {
-    font-size: 14px;
-  }
-
-  .modal img {
-    width: 150px;
-  }
-}
-
-@media screen and (max-width: 600px) {
-  .bg-container {
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-  }
-
-  .menu-toggle {
-    font-size: 22px;
-  }
-
-  nav ul li a {
-    font-size: 16px;
-  }
-}
-
-/* -------------------------------- */
 /*        Fade Overlay Trigger      */
-/* -------------------------------- */
-.fade-overlay {
-  display: none;
-}
-
-.fade-overlay.show {
-  display: block;
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.05);
-  animation: fadeIn 1s ease;
-}
-
-/* -------------------------------- */
-/*       Fade Overlay Effect        */
 /* -------------------------------- */
 .fade-overlay {
   position: fixed;
@@ -317,8 +249,9 @@ nav ul li a {
   font-size: 28px;
   font-weight: bold;
   display: flex;
-  gap: 10px;
   flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
   text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000;
 }
 
@@ -340,17 +273,62 @@ nav ul li a {
   from { opacity: 0; transform: translateY(10px); }
 }
 
+.continue-hint {
+  z-index: 2;
+  color: rgba(255, 255, 255, 0.6);
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.9em;
+  margin-top: 2rem;
+  text-shadow: 0 0 4px #000;
+}
+
 /* -------------------------------- */
-/*     Preloader Mobile Tweaks      */
+/*        Responsive Tweaks         */
 /* -------------------------------- */
-@media screen and (max-width: 600px) {
-  #preloader-text {
-    font-size: 20px;
-    gap: 6px;
+@media (max-width: 768px) {
+  .bg-container {
+    background-attachment: scroll;
+    background-position: center top;
+    background-size: cover;
+    height: 100vh;
   }
 
-  #preloader-img {
-    object-fit: contain;
+  nav ul li a {
+    font-size: 18px;
+    letter-spacing: 1px;
+  }
+
+  .menu-toggle {
+    font-size: 24px;
+  }
+
+  .tap-effect {
+    width: 36px;
+    height: 54px;
+  }
+
+  .modal input {
+    font-size: 14px;
+  }
+
+  .modal img {
+    width: 150px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .bg-container {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .menu-toggle {
+    font-size: 22px;
+  }
+
+  nav ul li a {
+    font-size: 16px;
   }
 
   .lighthouse-portal-zone {
@@ -399,4 +377,4 @@ nav ul li a {
       opacity: 0;
     }
   }
-} /* ✅ THIS closes the entire media query */
+}
