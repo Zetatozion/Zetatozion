@@ -110,8 +110,7 @@
   <!-- -------------------------------- -->
   <!--             AUDIO                -->
   <!-- -------------------------------- -->
-  <audio id="click-sound" src="thunder-362031.mp3" preload="auto"></audio>
-  <audio id="bg-music" src="embrace-364091.mp3" preload="auto" loop></audio>
+  <audio id="bg-music" src="ultra-life-chapter-4-king-status-unlocked-rizz-dnb-spark-331839.mp3" preload="auto" loop></audio>
   <audio id="portal-audio" src="ocean-waves-376898.mp3" preload="auto" loop></audio>
 
   <!-- -------------------------------- -->
@@ -137,5 +136,27 @@
       }
     });
   </script>
+
+<script>
+  // 🔊 Trigger background music on first interaction (with fade-in)
+  window.addEventListener('click', () => {
+    const bgMusic = document.getElementById('bg-music');
+    if (bgMusic && bgMusic.paused) {
+      bgMusic.volume = 0;
+      bgMusic.play().then(() => {
+        let vol = 0;
+        const fade = setInterval(() => {
+          if (vol < 1) {
+            vol += 0.05;
+            bgMusic.volume = Math.min(vol, 1);
+          } else {
+            clearInterval(fade);
+          }
+        }, 200);
+      }).catch(e => console.warn('Autoplay blocked:', e));
+    }
+  }, { once: true });
+</script>
+  
 </body>
 </html>
