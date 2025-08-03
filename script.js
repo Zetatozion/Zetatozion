@@ -165,15 +165,36 @@ window.addEventListener('click', () => {
 }, { once: true });
 
 // -----------------------------------------
-//     Asuka Fallback Removal (HTTPS only)
+//     Asuka Fallback Logic (HTTPS + Dev)
 // -----------------------------------------
-window.addEventListener("load", function () {
+window.addEventListener("load", () => {
+  const overlay = document.getElementById("asukaFallback");
+
+  if (!overlay) return;
+
+  // If page is secure, auto-fade after 4 s
   if (location.protocol === "https:") {
-    const overlay = document.getElementById("asukaFallback");
-    if (overlay) {
-      overlay.style.transition = "opacity 1s ease";
-      overlay.style.opacity = 0;
-      setTimeout(() => overlay.remove(), 1000);
-    }
+    setTimeout(() => fadeOutAsuka(), 4000);
+  } else {
+    // HTTP: require triple-click on hidden box
+    const bypass = document.getElementById("asukabypass");
+    let clicks = 0;
+    let resetTimer;
+
+    bypass.addEventListener("click", () => {
+      clicks++;
+      clearTimeout(resetTimer);
+      resetTimer = setTimeout(() => (clicks = 0), 1500); // 1.5 s window
+
+      if (clicks >= 3) fadeOutAsuka();
+    });
+  }
+
+  // helper to fade & remove overlay
+  function fadeOutAsuka() {
+    overlay.style.transition = "opacity 1s ease";
+    overlay.style.opacity = 0;
+    setTimeout(() => overlay.remove(), 1000);
+    document.body.style.overflow = "auto";
   }
 });
