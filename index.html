@@ -21,15 +21,55 @@
 <!-- ------------------------ -->
 <!--     ASUKA FALLBACK      -->
 <!-- ------------------------ -->
-<div id="asukaFallback" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: black; z-index: 9999; display: flex; align-items: center; justify-content: center; flex-direction: column;">
-  <img src="asuka14.jpg" alt="Asuka" style="max-height: 80vh; object-fit: contain; filter: brightness(0.8);" />
-  
+<div id="asukaFallback" style="
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+  width: 100vw; 
+  height: 100vh; 
+  background-color: rgba(0, 0, 0, 0.85); 
+  z-index: 9999; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  flex-direction: column;
+  text-align: center;
+  padding: 2rem;
+  box-sizing: border-box;
+">
+
+  <!-- ASUKA IMAGE -->
+  <img 
+    src="asuka14.jpg" 
+    alt="Asuka Langley Soryu" 
+    style="
+      max-height: 70vh; 
+      max-width: 90vw;
+      object-fit: contain; 
+      filter: brightness(0.9);
+      margin-bottom: 2rem;
+    " 
+  />
+
+  <!-- QUOTE & AUTHOR -->
   <div id="asuka-quote">
-    <p class="quote-line">I hate it when people</p>
-    <p class="quote-line">pity me</p>
-    <p class="quote-author">— Asuka Langley Soryu</p>
-    <div id="asukabypass"></div>
+    <p class="quote-line" style="font-size: 1.5rem; color: white; margin: 0;">I hate it when people</p>
+    <p class="quote-line" style="font-size: 1.5rem; color: white; margin: 0;">pity me</p>
+    <p class="quote-author" style="font-size: 1.1rem; color: #ccc; margin-top: 1rem;">— Asuka Langley Soryu</p>
   </div>
+
+  <!-- BYPASS ZONE (HIDDEN OR TAPPED TO EXIT ON HTTP) -->
+  <div id="asukabypass" style="
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 100px;
+    z-index: 10000;
+    cursor: pointer;
+    /* background: rgba(255, 0, 0, 0.2); */ /* Uncomment for debug */
+  "></div>
 </div>
 
   <!-- ------------------------ -->
