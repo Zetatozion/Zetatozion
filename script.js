@@ -197,6 +197,36 @@ window.addEventListener("load", () => {
   const overlay = document.getElementById("asukaFallback");
 
   if (!overlay) return;
+  
+  const quote = document.getElementById("asuka-line");
+if (quote) {
+  const text = quote.textContent.trim();
+  quote.textContent = "";
+
+  const letters = text.split("").map(char => {
+    const span = document.createElement("span");
+    span.textContent = char;
+    span.style.opacity = "0";
+    span.style.transition = "opacity 0.6s ease";
+    span.style.display = "inline-block";
+    return span;
+  });
+
+  letters.forEach(letter => quote.appendChild(letter));
+
+  // Shuffle for random appearance
+  const indices = [...Array(letters.length).keys()];
+  for (let i = indices.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [indices[i], indices[j]] = [indices[j], indices[i]];
+  }
+
+  indices.forEach((index, i) => {
+    setTimeout(() => {
+      letters[index].style.opacity = "1";
+    }, 150 + i * 90); // adjust speed here
+  });
+}
 
   function fadeOutAsuka() {
     overlay.style.transition = "opacity 1s ease";
