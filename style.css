@@ -106,6 +106,35 @@ nav ul li a {
   z-index: 1001;
 }
 
+/* ------------------------------ */
+/*      Lighthouse Star Glow      */
+/* ------------------------------ */
+.lighthouse-star {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 40px;
+  background: radial-gradient(circle, #fffacd 0%, #ffa 40%, #ff8 70%, transparent 100%);
+  border-radius: 50%;
+  box-shadow: 0 0 12px 4px #fffdc1;
+  opacity: 0.75;
+  animation: pulseStar 2s ease-in-out infinite;
+  z-index: 1001;
+}
+
+@keyframes pulseStar {
+  0%, 100% {
+    transform: translateX(-50%) scale(1);
+    opacity: 0.75;
+  }
+  50% {
+    transform: translateX(-50%) scale(1.2);
+    opacity: 1;
+  }
+}
+
 /* -------------------------------- */
 /*        Elari Mirror Portal       */
 /* -------------------------------- */
