@@ -287,16 +287,11 @@ nav ul li a {
 }
 
 #preloader-text {
-  z-index: 2;
-  color: #ff4444;
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 28px;
-  font-weight: bold;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  font-size: 1.4rem;
+  color: #ff0080;
   text-align: center;
-  text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000;
+  text-shadow: 0 0 6px #ff0080, 0 0 12px #ff0080;
+  opacity: 1;
 }
 
 #preloader-text span {
