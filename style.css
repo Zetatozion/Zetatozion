@@ -395,6 +395,28 @@ nav ul li a {
   position: relative;
 }
 
+/* ------------------------------ */
+/*   Asuka Dreamy Shimmer BG     */
+/* ------------------------------ */
+.asuka-shimmer-bg {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  height: 100%;
+  background: radial-gradient(circle at center, rgba(255, 105, 180, 0.08) 0%, transparent 70%);
+  animation: shimmerMotion 12s ease-in-out infinite;
+  z-index: 1;
+  pointer-events: none;
+}
+
+@keyframes shimmerMotion {
+  0% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-48%) translateY(5px); }
+  100% { transform: translateX(-50%) translateY(0); }
+}
+
 #asuka-line span {
   display: inline-block;
   opacity: 0;
