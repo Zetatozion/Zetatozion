@@ -363,11 +363,15 @@ nav ul li a {
   z-index: 2;
 }
 
-.quote-line {
-  font-size: 2.2rem;
-  line-height: 2.5rem;
-  margin: 0;
-  text-shadow: 0 0 4px black;
+#asuka-line {
+  font-family: 'Zapfino', cursive;
+  font-size: 1.3rem;
+  color: #ff4d8b;
+  line-height: 2.2rem;
+  text-align: center;
+  letter-spacing: 1px;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.6);
+  padding: 0 1rem;
 }
 
 .quote-author {
