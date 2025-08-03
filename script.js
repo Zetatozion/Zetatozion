@@ -199,6 +199,12 @@ window.addEventListener('click', () => {
 window.addEventListener("load", () => {
   const overlay = document.getElementById("asukaFallback");
 
+  function fadeOutAsuka() {
+    overlay.classList.add('fade-out');
+    setTimeout(() => overlay.remove(), 1500);
+    document.body.style.overflow = "auto";
+  }
+
   // -----------------------------------------
   // Simple Quote Fade-In (no per-letter)
   // -----------------------------------------
@@ -206,6 +212,27 @@ window.addEventListener("load", () => {
   if (quote) {
     quote.style.opacity = "1";
   }
+
+  if (!overlay) return;
+
+  if (location.protocol === "https:") {
+    setTimeout(() => fadeOutAsuka(), 15000);
+  } else {
+    const bypass = document.getElementById("asukabypass");
+    let clicks = 0;
+    let resetTimer;
+
+    if (bypass) {
+      bypass.addEventListener("click", () => {
+        clicks++;
+        clearTimeout(resetTimer);
+        resetTimer = setTimeout(() => (clicks = 0), 2000);
+
+        if (clicks >= 3) fadeOutAsuka();
+      });
+    }
+  }
+});
 
   // -----------------------------------------
   // Fade Out Overlay Logic
