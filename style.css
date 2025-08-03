@@ -1,28 +1,20 @@
-/* -------------------------------- */
-/*           Base Reset             */
-/* -------------------------------- */
+/* ----------------------------- */
+/*         Base Reset           */
+/* ----------------------------- */
 html, body {
   margin: 0;
   padding: 0;
   height: 100%;
-  min-height: 100vh;
   overflow-x: hidden;
   font-family: 'Lancelot', serif;
 }
 
-/* -------------------------------- */
-/*        Background Container      */
-/* -------------------------------- */
-html, body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  overflow: hidden;
-}
+/* ----------------------------- */
+/*       Background Layer       */
+/* ----------------------------- */
 .bg-container {
   position: fixed;
-  top: 0;
-  left: 0;
+  top: 0; left: 0;
   width: 100vw;
   height: 100vh;
   background: url('your-image.jpg') center center no-repeat;
@@ -31,9 +23,9 @@ html, body {
   z-index: -1;
 }
 
-/* -------------------------------- */
-/*         Menu Toggle Button       */
-/* -------------------------------- */
+/* ----------------------------- */
+/*       Menu Toggle Button     */
+/* ----------------------------- */
 .menu-toggle {
   position: fixed;
   top: 12px;
@@ -45,13 +37,12 @@ html, body {
   user-select: none;
 }
 
-/* -------------------------------- */
-/*             Navigation           */
-/* -------------------------------- */
+/* ----------------------------- */
+/*         Navigation           */
+/* ----------------------------- */
 nav {
   position: fixed;
-  top: 0;
-  left: 0;
+  top: 0; left: 0;
   width: 100%;
   height: 100vh;
   background: rgba(0, 0, 0, 0.96);
@@ -81,22 +72,9 @@ nav ul li a {
   letter-spacing: 2px;
 }
 
-/* -------------------------------- */
-/*         Tap Water Trail GIF      */
-/* -------------------------------- */
-.tap-effect {
-  position: absolute;
-  width: 51px;
-  height: 76.8px;
-  pointer-events: none;
-  opacity: 1;
-  transition: opacity 2s ease;
-  z-index: 9999;
-}
-
-/* -------------------------------- */
-/*     Lighthouse Portal Trigger    */
-/* -------------------------------- */
+/* ----------------------------- */
+/*       Lighthouse Portal      */
+/* ----------------------------- */
 .lighthouse-portal-zone {
   position: absolute;
   top: 21%;
@@ -106,9 +84,6 @@ nav ul li a {
   z-index: 1001;
 }
 
-/* ------------------------------ */
-/*      Lighthouse Star Glow      */
-/* ------------------------------ */
 .lighthouse-star {
   position: absolute;
   top: -10px;
@@ -125,19 +100,11 @@ nav ul li a {
 }
 
 @keyframes pulseStar {
-  0%, 100% {
-    transform: translateX(-50%) scale(1);
-    opacity: 0.75;
-  }
-  50% {
-    transform: translateX(-50%) scale(1.2);
-    opacity: 1;
-  }
+  0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.75; }
+  50% { transform: translateX(-50%) scale(1.2); opacity: 1; }
 }
 
-/* -------------------------------- */
-/*        Elari Mirror Portal       */
-/* -------------------------------- */
+/* Elari Mirror Portal */
 .elari-mirror {
   position: absolute;
   top: -20px;
@@ -159,24 +126,19 @@ nav ul li a {
 }
 
 @keyframes fadePulse {
-  0%, 100% {
-    opacity: 0.3;
-    transform: translateX(-50%) scale(1);
-  }
-  50% {
-    opacity: 1;
-    transform: translateX(-50%) scale(1.2);
-  }
+  0%, 100% { opacity: 0.3; transform: translateX(-50%) scale(1); }
+  50% { opacity: 1; transform: translateX(-50%) scale(1.2); }
 }
 
-/* -------------------------------- */
-/*             Modal                */
-/* -------------------------------- */
+/* ----------------------------- */
+/*             Modal            */
+/* ----------------------------- */
 .modal {
   display: none;
   position: fixed;
   top: 0; left: 0;
-  width: 100%; height: 100%;
+  width: 100%;
+  height: 100%;
   background: rgba(0, 0, 0, 0.95);
   color: white;
   z-index: 99999;
@@ -215,62 +177,16 @@ nav ul li a {
   to { opacity: 1; }
 }
 
-/* -------------------------------- */
-/*        Elari Mirror Content      */
-/* -------------------------------- */
-#elari-mirror {
-  margin-top: 150vh;
-  height: 100vh;
-  background: radial-gradient(#111, #000);
-  color: white;
-  text-align: center;
-  padding-top: 50px;
-}
-
-/* -------------------------------- */
-/*     Elari Mirror Hover Icon      */
-/* -------------------------------- */
-.elari-mirror.pointer-hover {
-  width: 40px;
-  height: 40px;
-  position: fixed;
-  bottom: 15px;
-  right: 15px;
-  z-index: 1000;
-  animation: pulse 2s infinite;
-  cursor: pointer;
-}
-
-/* -------------------------------- */
-/*        Fade Overlay Trigger      */
-/* -------------------------------- */
-.fade-overlay {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: black;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 1s ease;
-  z-index: 1500;
-}
-
-.fade-overlay.show {
-  opacity: 1;
-  pointer-events: all;
-}
-
-/* -------------------------------- */
-/*          PRELOADER STYLES        */
-/* -------------------------------- */
+/* ----------------------------- */
+/*        Preloader Styles      */
+/* ----------------------------- */
 #preloader {
   position: fixed;
-  z-index: 999999;
   top: 0; left: 0;
   width: 100vw;
   height: 100vh;
   background: black;
+  z-index: 999999;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -292,6 +208,7 @@ nav ul li a {
   text-align: center;
   text-shadow: 0 0 6px #ff0080, 0 0 12px #ff0080;
   opacity: 1;
+  z-index: 2;
 }
 
 #preloader-text span {
@@ -308,77 +225,17 @@ nav ul li a {
 #preloader-text span:nth-child(7) { animation-delay: 2.6s; }
 
 @keyframes fadeInWords {
-  to { opacity: 1; transform: translateY(0); }
   from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.continue-hint {
-  z-index: 2;
-  color: rgba(255, 255, 255, 0.6);
-  font-family: 'Orbitron', sans-serif;
-  font-size: 0.9em;
-  margin-top: 2rem;
-  text-shadow: 0 0 4px #000;
-}
-
-#close-mirror {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  background: none;
-  border: none;
-  font-size: 2rem;
-  color: white;
-  cursor: pointer;
-  z-index: 100000;
-  transition: transform 0.2s ease, color 0.3s ease;
-}
-
-#close-mirror:hover {
-  transform: scale(1.2);
-  color: #ff8888;
-}
-
-/* -------------------------------- */
-/*       ASUKA QUOTE OVERLAY       */
-/* -------------------------------- */
-#asuka-quote {
-  position: absolute;
-  top: 20%;
-  left: 50%;
-  transform: translateX(-50%);
-  text-align: center;
-  font-family: 'Zapfino', cursive;
-  color: #ff4d8b;
-  z-index: 20;
-}
-
-#asuka-line {
-  font-family: 'Zapfino', cursive, 'Segoe Script', 'Brush Script MT', sans-serif;
-  font-size: 1.3rem;
-  color: #ff4d8b;
-  line-height: 2.2rem;
-  text-align: center;
-  letter-spacing: 1px;
-  text-shadow: 0 0 5px rgba(0, 0, 0, 0.6);
-  padding: 0 1rem;
-}
-
-.quote-author {
-  font-size: 1.2rem;
-  margin-top: 1rem;
-  color: #ffcccc;
-  font-style: italic;
-  text-shadow: 0 0 4px black;
-}
-
-/* ------------------------------ */
-/*        ASUKA FALLBACK         */
-/* ------------------------------ */
+/* ----------------------------- */
+/*        Asuka Overlay         */
+/* ----------------------------- */
 #asukaFallback {
   font-family: 'Zapfino', cursive;
   font-size: 1.8rem;
-  color: #ff69b4; /* Hot pink */
+  color: #ff69b4;
   text-shadow: 0 0 8px rgba(255, 105, 180, 0.5);
   line-height: 2rem;
   letter-spacing: 1px;
@@ -395,18 +252,12 @@ nav ul li a {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.85); /* dark transparent bg */
-}
-
-#asuka-line {
-  z-index: 10;
-  position: relative;
+  background-color: rgba(0, 0, 0, 0.85);
 }
 
 #asukaFallback img {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 0; left: 0;
   width: 100%;
   height: 100%;
   object-fit: contain;
@@ -415,32 +266,18 @@ nav ul li a {
   pointer-events: none;
 }
 
-#asukaFallback.fade-out {
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 1s ease, visibility 0s linear 1s;
-}
-
-/* ------------------------------ */
-/*   Asuka Dreamy Shimmer BG     */
-/* ------------------------------ */
-.asuka-shimmer-bg {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100vw;
-  height: 100%;
-  background: radial-gradient(circle at center, rgba(255, 105, 180, 0.08) 0%, transparent 70%);
-  animation: shimmerMotion 12s ease-in-out infinite;
-  z-index: 2;
-  pointer-events: none;
-}
-
-@keyframes shimmerMotion {
-  0% { transform: translateX(-50%) translateY(0); }
-  50% { transform: translateX(-48%) translateY(5px); }
-  100% { transform: translateX(-50%) translateY(0); }
+#asuka-line {
+  font-size: 1.3rem;
+  line-height: 2.2rem;
+  text-align: center;
+  letter-spacing: 1px;
+  font-family: 'Zapfino', cursive, 'Segoe Script', 'Brush Script MT', sans-serif;
+  color: #ff4d8b;
+  z-index: 10;
+  position: relative;
+  text-transform: uppercase;
+  font-weight: bold;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.6);
 }
 
 #asuka-line span {
@@ -452,46 +289,9 @@ nav ul li a {
   opacity: 1;
 }
 
-/* Optional enhancement for dramatic effect */
-#asuka-line {
-  text-transform: uppercase;
-  font-weight: bold;
-}
-
-/* ------------------------------ */
-/*       RIPPLE TAP EFFECT       */
-/* ------------------------------ */
-.tap-effect {
-  position: absolute;
-  width: 50px;
-  height: 50px;
-  pointer-events: none;
-  transform: scale(0.5);
-  transition: all 0.6s ease;
-  opacity: 0;
-  z-index: 999;
-}
-
-.tap-ripple {
-  position: absolute;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  background: rgba(255, 105, 180, 0.4); /* pink ripple */
-  transform: scale(0);
-  transition: transform 0.6s ease, opacity 0.6s ease;
-  pointer-events: none;
-  z-index: 998;
-}
-
-.tap-ripple.expand {
-  transform: scale(2);
-  opacity: 0;
-}
-
-/* -------------------------------- */
-/*        Responsive Tweaks         */
-/* -------------------------------- */
+/* ----------------------------- */
+/*      Responsive Tweaks       */
+/* ----------------------------- */
 @media (max-width: 768px) {
   .bg-container {
     background-attachment: scroll;
@@ -520,68 +320,5 @@ nav ul li a {
 
   .modal img {
     width: 150px;
-  }
-}
-
-@media screen and (max-width: 600px) {
-  .bg-container {
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-  }
-
-  .menu-toggle {
-    font-size: 22px;
-  }
-
-  nav ul li a {
-    font-size: 16px;
-  }
-
-  .lighthouse-portal-zone {
-    position: relative;
-    cursor: pointer;
-    display: inline-block;
-    animation: pulseGlow 4s infinite;
-  }
-
-  .lighthouse-portal-zone:hover .lighthouse-star {
-    opacity: 1;
-    transform: scale(1.4);
-  }
-
-  .lighthouse-star {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 30px;
-    height: 30px;
-    background: radial-gradient(circle, #fffdc1 30%, gold 70%, transparent 100%);
-    border-radius: 50%;
-    transform: translate(-50%, -50%) scale(1);
-    opacity: 0;
-    transition: all 0.6s ease;
-    pointer-events: none;
-    box-shadow: 0 0 15px 5px gold;
-  }
-
-  .lighthouse-burst {
-    position: absolute;
-    width: 80px;
-    height: 80px;
-    background: radial-gradient(circle, white 20%, gold 60%, transparent 100%);
-    border-radius: 50%;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%) scale(0);
-    animation: burstAnim 1s ease-out forwards;
-    pointer-events: none;
-  }
-
-  @keyframes burstAnim {
-    to {
-      transform: translate(-50%, -50%) scale(1.8);
-      opacity: 0;
-    }
   }
 }
