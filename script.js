@@ -6,6 +6,42 @@ function toggleMenu() {
   nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
 }
 
+// =========================================
+//         🎵 AUDIO CONTROLS & VOLUME 🎵
+// =========================================
+//  - Adds mute/unmute toggle button
+//  - Adds live volume slider
+//  - Initializes background music playback
+//  - Gracefully handles autoplay restrictions
+// =========================================
+
+window.addEventListener("DOMContentLoaded", () => {
+  const music = document.getElementById("backgroundMusic");
+  const muteToggle = document.getElementById("mute-toggle");
+  const volumeSlider = document.getElementById("volume-slider");
+
+  if (music) {
+    music.volume = 1;
+    music.play().catch(e => console.warn("Autoplay prevented:", e));
+
+    // Mute / Unmute Toggle
+    muteToggle.addEventListener("click", () => {
+      if (music.muted) {
+        music.muted = false;
+        muteToggle.textContent = "🔈";
+      } else {
+        music.muted = true;
+        muteToggle.textContent = "🔇";
+      }
+    });
+
+    // Volume Slider
+    volumeSlider.addEventListener("input", (e) => {
+      music.volume = parseFloat(e.target.value);
+    });
+  }
+});
+
 // -----------------------------------------
 //         BACKGROUND MUSIC FADE-IN
 // -----------------------------------------
