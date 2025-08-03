@@ -326,6 +326,24 @@ nav ul li a {
   text-shadow: 0 0 4px #000;
 }
 
+#close-mirror {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: white;
+  cursor: pointer;
+  z-index: 100000;
+  transition: transform 0.2s ease, color 0.3s ease;
+}
+
+#close-mirror:hover {
+  transform: scale(1.2);
+  color: #ff8888;
+}
+
 /* -------------------------------- */
 /*       ASUKA QUOTE OVERLAY       */
 /* -------------------------------- */
