@@ -114,6 +114,10 @@ if (lighthousePortal) {
     document.body.style.overflow = 'hidden';
     passInput.focus();
   });
+
+  // ✨ NEW: Hover Sound Trigger
+  lighthousePortal.addEventListener("mouseenter", playPortalAudio);
+  lighthousePortal.addEventListener("mouseleave", pausePortalAudio);
 }
 
 if (passInput) {
