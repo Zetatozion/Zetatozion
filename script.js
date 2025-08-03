@@ -287,5 +287,19 @@ document.addEventListener('click', function (e) {
     ripple.remove();
   }, 600);
 });
+
+document.addEventListener('click', function (e) {
+  const ripple = document.createElement('div');
+  ripple.className = 'tap-ripple';
+  ripple.style.left = `${e.pageX - 30}px`;
+  ripple.style.top = `${e.pageY - 30}px`;
+  document.body.appendChild(ripple);
+  requestAnimationFrame(() => {
+    ripple.classList.add('expand');
+  });
+  setTimeout(() => {
+    ripple.remove();
+  }, 600);
+});
   
 });
