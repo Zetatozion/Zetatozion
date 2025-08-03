@@ -7,6 +7,28 @@ function toggleMenu() {
 }
 
 // -----------------------------------------
+//         BACKGROUND MUSIC FADE-IN
+// -----------------------------------------
+window.addEventListener("DOMContentLoaded", () => {
+  const music = document.getElementById("backgroundMusic");
+  if (music) {
+    music.volume = 0; // start muted
+    music.play().catch(e => console.warn("Autoplay prevented:", e));
+
+    // Fade in over 3 seconds
+    let volume = 0;
+    const fadeIn = setInterval(() => {
+      if (volume < 1) {
+        volume += 0.02;
+        music.volume = Math.min(volume, 1);
+      } else {
+        clearInterval(fadeIn);
+      }
+    }, 100);
+  }
+});
+
+// -----------------------------------------
 //      Click Sound Playback
 // -----------------------------------------
 function playClick() {
