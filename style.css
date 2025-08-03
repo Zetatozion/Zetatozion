@@ -358,6 +358,11 @@ nav ul li a {
   z-index: 20;
 }
 
+#asuka-quote {
+  position: relative;
+  z-index: 2;
+}
+
 .quote-line {
   font-size: 2.2rem;
   line-height: 2.5rem;
