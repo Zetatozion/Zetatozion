@@ -163,3 +163,17 @@ window.addEventListener('click', () => {
     }).catch(e => console.warn('Autoplay blocked:', e));
   }
 }, { once: true });
+
+// -----------------------------------------
+//     Asuka Fallback Removal (HTTPS only)
+// -----------------------------------------
+window.addEventListener("load", function () {
+  if (location.protocol === "https:") {
+    const overlay = document.getElementById("asukaFallback");
+    if (overlay) {
+      overlay.style.transition = "opacity 1s ease";
+      overlay.style.opacity = 0;
+      setTimeout(() => overlay.remove(), 1000);
+    }
+  }
+});
