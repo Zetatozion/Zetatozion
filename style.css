@@ -415,6 +415,12 @@ nav ul li a {
   pointer-events: none;
 }
 
+#asukaFallback.fade-out {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 1s ease, visibility 0s linear 1s;
+}
+
 /* ------------------------------ */
 /*   Asuka Dreamy Shimmer BG     */
 /* ------------------------------ */
