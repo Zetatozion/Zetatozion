@@ -13,13 +13,19 @@ html, body {
 /* -------------------------------- */
 /*        Background Container      */
 /* -------------------------------- */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+}
 .bg-container {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100vh; /* 🛠 Fullscreen Fix */
-  background: url('image.jpg') center center no-repeat;
+  height: 100vh;
+  background: url('your-image.jpg') center center no-repeat;
   background-size: cover;
   background-attachment: fixed;
   z-index: -1;
