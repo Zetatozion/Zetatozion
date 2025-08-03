@@ -301,5 +301,15 @@ document.addEventListener('click', function (e) {
     ripple.remove();
   }, 600);
 });
+
+const asukaLine = document.getElementById('asuka-line');
+const asukaAudio = document.getElementById('asukaAudio');
+
+if (asukaLine && asukaAudio) {
+  asukaLine.addEventListener('mouseenter', () => {
+    asukaAudio.currentTime = 0;
+    asukaAudio.play();
+  });
+}
   
 });
