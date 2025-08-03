@@ -107,7 +107,7 @@ nav ul li a {
 }
 
 /* -------------------------------- */
-/*        Elari Mirror Image        */
+/*        Elari Mirror Portal       */
 /* -------------------------------- */
 .elari-mirror {
   position: absolute;
@@ -117,11 +117,11 @@ nav ul li a {
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  background: radial-gradient(circle, #fff 10%, #0ff 40%, transparent 70%);
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 10%, rgba(0,255,255,0.2) 50%, transparent 70%);
   opacity: 0;
   pointer-events: none;
   z-index: 1002;
-  transition: opacity 1.2s ease;
+  transition: opacity 0.8s ease;
 }
 
 .lighthouse-portal-zone:hover .elari-mirror {
@@ -130,8 +130,14 @@ nav ul li a {
 }
 
 @keyframes fadePulse {
-  0%, 100% { opacity: 0.2; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.15); }
+  0%, 100% {
+    opacity: 0.3;
+    transform: translateX(-50%) scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(-50%) scale(1.2);
+  }
 }
 
 /* -------------------------------- */
