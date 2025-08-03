@@ -6,8 +6,8 @@ function toggleMenu() {
   nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
 }
 
-// // -----------------------------------------
-//         Click Sound Playback
+// -----------------------------------------
+//      Click Sound Playback
 // -----------------------------------------
 function playClick() {
   const clickSound = document.getElementById('click-sound');
@@ -18,7 +18,7 @@ function playClick() {
 }
 
 // -----------------------------------------
-//       Lighthouse Portal Audio Control
+//  Lighthouse Portal Audio Control
 // -----------------------------------------
 function playPortalAudio() {
   const audio = document.getElementById("portal-audio");
@@ -31,12 +31,12 @@ function pausePortalAudio() {
 }
 
 // -----------------------------------------
-//       Tap Effect + Ripple Animation
+//     Tap Effect + Ripple Animation
 // -----------------------------------------
 let tapImageIndex = 1;
 const totalTapImages = 4;
 let lastTapTime = 0;
-const minTapInterval = 100; // throttle on mobile to prevent overload
+const minTapInterval = 100;
 
 function createTapEffect(x, y) {
   const now = Date.now();
@@ -144,7 +144,7 @@ if (preloader) {
 }
 
 // -----------------------------------------
-//  Optional: Background Music Fade-In (Preserved)
+//  Optional: Background Music Fade-In
 // -----------------------------------------
 window.addEventListener('click', () => {
   const bgMusic = document.getElementById('bg-music');
@@ -165,36 +165,46 @@ window.addEventListener('click', () => {
 }, { once: true });
 
 // -----------------------------------------
-//     Asuka Fallback Logic (HTTPS + Dev)
+//     Asuka Fallback Logic
 // -----------------------------------------
 window.addEventListener("load", () => {
   const overlay = document.getElementById("asukaFallback");
 
   if (!overlay) return;
 
-  // If page is secure, auto-fade after 4 s
-  if (location.protocol === "https:") {
-    setTimeout(() => fadeOutAsuka(), 4000);
-  } else {
-    // HTTP: require triple-click on hidden box
-    const bypass = document.getElementById("asukabypass");
-    let clicks = 0;
-    let resetTimer;
-
-    bypass.addEventListener("click", () => {
-      clicks++;
-      clearTimeout(resetTimer);
-      resetTimer = setTimeout(() => (clicks = 0), 1500); // 1.5 s window
-
-      if (clicks >= 3) fadeOutAsuka();
-    });
-  }
-
-  // helper to fade & remove overlay
   function fadeOutAsuka() {
     overlay.style.transition = "opacity 1s ease";
     overlay.style.opacity = 0;
     setTimeout(() => overlay.remove(), 1000);
     document.body.style.overflow = "auto";
+  }
+
+  if (location.protocol === "https:") {
+    setTimeout(() => fadeOutAsuka(), 4000);
+  } else {
+    const bypass = document.getElementById("asukabypass");
+    let clicks = 0;
+    let resetTimer;
+
+    if (bypass) {
+      // Visual trigger zone positioning
+      bypass.style.position = 'absolute';
+      bypass.style.top = '20%';
+      bypass.style.left = '50%';
+      bypass.style.transform = 'translate(-50%, 0)';
+      bypass.style.width = '100px';
+      bypass.style.height = '100px';
+      bypass.style.cursor = 'pointer';
+      bypass.style.zIndex = 30;
+      // bypass.style.background = 'rgba(255,0,0,0.2)'; // uncomment for debug
+
+      bypass.addEventListener("click", () => {
+        clicks++;
+        clearTimeout(resetTimer);
+        resetTimer = setTimeout(() => (clicks = 0), 2000);
+
+        if (clicks >= 3) fadeOutAsuka();
+      });
+    }
   }
 });
