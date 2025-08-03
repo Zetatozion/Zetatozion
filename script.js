@@ -235,6 +235,7 @@ window.addEventListener("load", () => {
   // -----------------------------------------
   // Fade Out Overlay Logic
   // -----------------------------------------
+  
   if (!overlay) return;
 
   function fadeOutAsuka() {
@@ -274,18 +275,7 @@ window.addEventListener("load", () => {
   }
   
   // 💧 Asuka Ripple Tap Effect
-document.addEventListener('click', function (e) {
-  const ripple = document.createElement('div');
-  ripple.className = 'tap-ripple';
-  ripple.style.left = `${e.pageX - 30}px`;
-  ripple.style.top = `${e.pageY - 30}px`;
-  document.body.appendChild(ripple);
-  requestAnimationFrame(() => {
-    ripple.classList.add('expand');
-  });
-  setTimeout(() => {
-    ripple.remove();
-  }, 600);
+
 });
 
 document.addEventListener('click', function (e) {
@@ -302,14 +292,18 @@ document.addEventListener('click', function (e) {
   }, 600);
 });
 
+// ------------------------
+// ASUKA LINE AUDIO TRIGGER
+// ------------------------
 const asukaLine = document.getElementById('asuka-line');
 const asukaAudio = document.getElementById('asukaAudio');
 
 if (asukaLine && asukaAudio) {
   asukaLine.addEventListener('mouseenter', () => {
     asukaAudio.currentTime = 0;
-    asukaAudio.play();
-  });
+    asukaAudio.play().catch(e => {
+      console.warn("Audio play blocked or failed:", e);
+    });
 }
   
 });
