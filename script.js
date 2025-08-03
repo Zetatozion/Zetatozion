@@ -106,6 +106,11 @@ document.addEventListener('touchstart', (e) => {
 });
 
 // -----------------------------------------
+//    🔐 Asuka Overlay Active State
+// -----------------------------------------
+let asukaIsActive = true;
+
+// -----------------------------------------
 //       Modal Mirror Interaction
 // -----------------------------------------
 const lighthousePortal = document.querySelector('.lighthouse-portal-zone');
@@ -116,16 +121,14 @@ const mirrorImage = document.getElementById('mirror-image');
 
 if (lighthousePortal) {
   lighthousePortal.addEventListener('click', () => {
-    const asukaOverlay = document.getElementById("asukaFallback");
-    if (asukaOverlay) return; // 🚫 Prevent portal from opening until Asuka is gone
+    if (asukaIsActive) return; // 🔒 Block if Asuka hasn't faded yet
 
-    playEnterPortalSound(); // ✅ Play entry sound on portal activation
+    playEnterPortalSound();
     mirrorModal.style.display = 'flex';
     document.body.style.overflow = 'hidden';
     passInput.focus();
   });
 
-  // ✨ NEW: Hover Sound Trigger
   lighthousePortal.addEventListener("mouseenter", playPortalAudio);
   lighthousePortal.addEventListener("mouseleave", pausePortalAudio);
 }
@@ -201,14 +204,12 @@ window.addEventListener("load", () => {
   if (!overlay) return;
 
   function fadeOutAsuka() {
+    asukaIsActive = false;
     overlay.classList.add('fade-out');
     setTimeout(() => overlay.remove(), 1500);
     document.body.style.overflow = "auto";
   }
 
-  // -----------------------------------------
-  // Simple Quote Fade-In (no per-letter)
-  // -----------------------------------------
   const quote = document.getElementById("asuka-line");
   if (quote) {
     quote.style.opacity = "1";
@@ -226,14 +227,12 @@ window.addEventListener("load", () => {
         clicks++;
         clearTimeout(resetTimer);
         resetTimer = setTimeout(() => (clicks = 0), 2000);
-
         if (clicks >= 3) fadeOutAsuka();
       });
     }
   }
 });
 
-  // 
 // -----------------------------------------
 // 💧 Asuka Ripple Tap Effect
 // -----------------------------------------
