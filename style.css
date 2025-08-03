@@ -283,6 +283,35 @@ nav ul li a {
 }
 
 /* -------------------------------- */
+/*       ASUKA QUOTE OVERLAY        */
+/* -------------------------------- */
+#asuka-quote {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  font-family: 'Lancelot', serif;
+  color: white;
+  z-index: 20;
+}
+
+.quote-line {
+  font-size: 2.2rem;
+  line-height: 2.5rem;
+  margin: 0;
+  text-shadow: 0 0 4px black;
+}
+
+.quote-author {
+  font-size: 1.2rem;
+  margin-top: 1rem;
+  color: #ffcccc;
+  font-style: italic;
+  text-shadow: 0 0 4px black;
+}
+
+/* -------------------------------- */
 /*        Responsive Tweaks         */
 /* -------------------------------- */
 @media (max-width: 768px) {
