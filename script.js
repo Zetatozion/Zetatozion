@@ -7,12 +7,12 @@ function toggleMenu() {
 }
 
 // =========================================
-//         🎵 AUDIO CONTROLS & VOLUME 🎵
+//         🎵 AUDIO CONTROLS & FADE-IN 🎵
 // =========================================
+//  - Fades in background music
 //  - Adds mute/unmute toggle button
 //  - Adds live volume slider
-//  - Initializes background music playback
-//  - Gracefully handles autoplay restrictions
+//  - Handles autoplay restrictions gracefully
 // =========================================
 
 window.addEventListener("DOMContentLoaded", () => {
@@ -21,36 +21,10 @@ window.addEventListener("DOMContentLoaded", () => {
   const volumeSlider = document.getElementById("volume-slider");
 
   if (music) {
-    music.volume = 1;
+    music.volume = 0; // Start muted for fade-in
     music.play().catch(e => console.warn("Autoplay prevented:", e));
 
-    // Mute / Unmute Toggle
-    muteToggle.addEventListener("click", () => {
-      if (music.muted) {
-        music.muted = false;
-        muteToggle.textContent = "🔈";
-      } else {
-        music.muted = true;
-        muteToggle.textContent = "🔇";
-      }
-    });
-
-    // Volume Slider
-    volumeSlider.addEventListener("input", (e) => {
-      music.volume = parseFloat(e.target.value);
-    });
-  }
-});
-
-// -----------------------------------------
-//         BACKGROUND MUSIC FADE-IN
-// -----------------------------------------
-window.addEventListener("DOMContentLoaded", () => {
-  const music = document.getElementById("backgroundMusic");
-  if (music) {
-    music.volume = 0; // start muted
-    music.play().catch(e => console.warn("Autoplay prevented:", e));
-
+    // 🔊 Fade In Logic (3 seconds)
     let volume = 0;
     const fadeIn = setInterval(() => {
       if (volume < 1) {
@@ -60,6 +34,21 @@ window.addEventListener("DOMContentLoaded", () => {
         clearInterval(fadeIn);
       }
     }, 100);
+
+    // 🔇 Mute / Unmute Toggle
+    if (muteToggle) {
+      muteToggle.addEventListener("click", () => {
+        music.muted = !music.muted;
+        muteToggle.textContent = music.muted ? "🔇" : "🔈";
+      });
+    }
+
+    // 🎚️ Volume Slider
+    if (volumeSlider) {
+      volumeSlider.addEventListener("input", (e) => {
+        music.volume = parseFloat(e.target.value);
+      });
+    }
   }
 });
 
