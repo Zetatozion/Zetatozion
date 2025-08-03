@@ -22,17 +22,24 @@ function playClick() {
 // -----------------------------------------
 function playPortalAudio() {
   const hoverSound = document.getElementById("hover-portal-sound");
+  const ambientLoop = document.getElementById("portal-audio");
+
   if (hoverSound) {
     hoverSound.currentTime = 0;
     hoverSound.play().catch(e => console.warn('Hover sound error:', e));
   }
+
+  if (ambientLoop) {
+    ambientLoop.currentTime = 0;
+    ambientLoop.play().catch(e => console.warn('Ambient loop error:', e));
+  }
 }
 
 function pausePortalAudio() {
-  const hoverSound = document.getElementById("hover-portal-sound");
-  if (hoverSound) {
-    hoverSound.pause();
-    hoverSound.currentTime = 0;
+  const ambientLoop = document.getElementById("portal-audio");
+  if (ambientLoop) {
+    ambientLoop.pause();
+    ambientLoop.currentTime = 0;
   }
 }
 
