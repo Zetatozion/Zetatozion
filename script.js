@@ -198,6 +198,7 @@ window.addEventListener('click', () => {
 // -----------------------------------------
 window.addEventListener("load", () => {
   const overlay = document.getElementById("asukaFallback");
+  if (!overlay) return;
 
   function fadeOutAsuka() {
     overlay.classList.add('fade-out');
@@ -213,8 +214,6 @@ window.addEventListener("load", () => {
     quote.style.opacity = "1";
   }
 
-  if (!overlay) return;
-
   if (location.protocol === "https:") {
     setTimeout(() => fadeOutAsuka(), 15000);
   } else {
@@ -234,48 +233,7 @@ window.addEventListener("load", () => {
   }
 });
 
-  // -----------------------------------------
-  // Fade Out Overlay Logic
-  // -----------------------------------------
-  if (!overlay) return;
-
-  function fadeOutAsuka() {
-    overlay.style.transition = "opacity 1s ease";
-    overlay.style.opacity = 0;
-    setTimeout(() => overlay.remove(), 1000);
-    document.body.style.overflow = "auto";
-  }
-
-  if (location.protocol === "https:") {
-    setTimeout(() => fadeOutAsuka(), 15000);
-  } else {
-    const bypass = document.getElementById("asukabypass");
-    let clicks = 0;
-    let resetTimer;
-
-    if (bypass) {
-      // Visual trigger zone positioning
-      bypass.style.position = 'absolute';
-      bypass.style.top = '20%';
-      bypass.style.left = '50%';
-      bypass.style.transform = 'translate(-50%, 0)';
-      bypass.style.width = '100px';
-      bypass.style.height = '100px';
-      bypass.style.cursor = 'pointer';
-      bypass.style.zIndex = 30;
-      // bypass.style.background = 'rgba(255,0,0,0.2)'; // uncomment for debug
-
-      bypass.addEventListener("click", () => {
-        clicks++;
-        clearTimeout(resetTimer);
-        resetTimer = setTimeout(() => (clicks = 0), 2000);
-
-        if (clicks >= 3) fadeOutAsuka();
-      });
-    }
-  }
-});
-
+  // 
 // -----------------------------------------
 // 💧 Asuka Ripple Tap Effect
 // -----------------------------------------
