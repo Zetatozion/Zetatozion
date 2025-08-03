@@ -164,6 +164,45 @@ onmouseenter="playPortalAudio()"
 <audio id="hover-portal-sound" src="hover-portal.wav" preload="auto"></audio>
 <audio id="enter-portal-sound" src="enter-portal.wav" preload="auto"></audio>
 
+<!-- ========================================= -->
+<!--         🎧 AUDIO CONTROL INTERFACE        -->
+<!-- ========================================= -->
+<div id="audio-controls" style="
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-family: 'Orbitron', sans-serif;
+  color: white;
+  backdrop-filter: blur(6px);
+">
+
+  <!-- Mute Toggle Button -->
+  <button id="mute-toggle" style="
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+  ">🔈</button>
+
+  <!-- Volume Slider -->
+  <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="1" style="
+    width: 100px;
+    cursor: pointer;
+  "/>
+
+</div>
+<!-- ========================================= -->
+<!--       END AUDIO CONTROL INTERFACE         -->
+<!-- ========================================= -->
+
   <!-- ------------------------ -->
   <!--      FADE OVERLAY        -->
   <!-- ------------------------ -->
