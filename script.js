@@ -51,7 +51,6 @@ window.addEventListener("DOMContentLoaded", () => {
     music.volume = 0; // start muted
     music.play().catch(e => console.warn("Autoplay prevented:", e));
 
-    // Fade in over 3 seconds
     let volume = 0;
     const fadeIn = setInterval(() => {
       if (volume < 1) {
@@ -61,6 +60,28 @@ window.addEventListener("DOMContentLoaded", () => {
         clearInterval(fadeIn);
       }
     }, 100);
+  }
+});
+
+// -----------------------------------------
+//         ASUKA OVERLAY FADE-OUT
+// -----------------------------------------
+window.addEventListener("load", () => {
+  const overlay = document.getElementById("asukaFallback");
+  const audio = document.getElementById("asukaAudio");
+
+  if (overlay && audio) {
+    audio.play().catch(e => console.warn("Audio autoplay blocked"));
+
+    setTimeout(() => {
+      overlay.style.transition = "opacity 1s ease";
+      overlay.style.opacity = "0";
+
+      setTimeout(() => {
+        overlay.style.display = "none";
+        // No Ellari trigger here
+      }, 1000);
+    }, 5000);
   }
 });
 
