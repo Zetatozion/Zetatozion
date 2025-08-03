@@ -109,6 +109,7 @@ const mirrorImage = document.getElementById('mirror-image');
 
 if (lighthousePortal) {
   lighthousePortal.addEventListener('click', () => {
+    playEnterPortalSound(); // ✅ Play entry sound on portal activation
     mirrorModal.style.display = 'flex';
     document.body.style.overflow = 'hidden';
     passInput.focus();
