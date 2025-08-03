@@ -116,6 +116,9 @@ const mirrorImage = document.getElementById('mirror-image');
 
 if (lighthousePortal) {
   lighthousePortal.addEventListener('click', () => {
+    const asukaOverlay = document.getElementById("asukaFallback");
+    if (asukaOverlay) return; // 🚫 Prevent portal from opening until Asuka is gone
+
     playEnterPortalSound(); // ✅ Play entry sound on portal activation
     mirrorModal.style.display = 'flex';
     document.body.style.overflow = 'hidden';
