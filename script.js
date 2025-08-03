@@ -206,7 +206,7 @@ window.addEventListener("load", () => {
   }
 
   if (location.protocol === "https:") {
-    setTimeout(() => fadeOutAsuka(), 4000);
+    setTimeout(() => fadeOutAsuka(), 15000);
   } else {
     const bypass = document.getElementById("asukabypass");
     let clicks = 0;
