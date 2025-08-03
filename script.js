@@ -195,6 +195,39 @@ window.addEventListener('click', () => {
 // -----------------------------------------
 window.addEventListener("load", () => {
   const overlay = document.getElementById("asukaFallback");
+  
+  const quote = document.getElementById("asuka-line");
+if (quote) {
+  const text = quote.innerHTML.replace(/<br>/g, '\n'); // keep line breaks
+  quote.innerHTML = "";
+
+  const letters = text.split("").map(char => {
+    const span = document.createElement("span");
+    if (char === "\n") {
+      span.innerHTML = "<br>";
+    } else {
+      span.textContent = char;
+    }
+    span.style.opacity = "0";
+    span.style.transition = "opacity 0.6s ease";
+    span.style.display = "inline-block";
+    return span;
+  });
+
+  letters.forEach(span => quote.appendChild(span));
+
+  const indices = [...Array(letters.length).keys()];
+  for (let i = indices.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [indices[i], indices[j]] = [indices[j], indices[i]];
+  }
+
+  indices.forEach((index, i) => {
+    setTimeout(() => {
+      letters[index].style.opacity = "1";
+    }, 150 + i * 90);
+  });
+}
 
   if (!overlay) return;
   
