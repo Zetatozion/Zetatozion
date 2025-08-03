@@ -18,16 +18,30 @@ function playClick() {
 }
 
 // -----------------------------------------
-//  Lighthouse Portal Audio Control
+//  Lighthouse Portal Audio Control (Updated)
 // -----------------------------------------
 function playPortalAudio() {
-  const audio = document.getElementById("portal-audio");
-  if (audio) audio.play();
+  const hoverSound = document.getElementById("hover-portal-sound");
+  if (hoverSound) {
+    hoverSound.currentTime = 0;
+    hoverSound.play().catch(e => console.warn('Hover sound error:', e));
+  }
 }
 
 function pausePortalAudio() {
-  const audio = document.getElementById("portal-audio");
-  if (audio) audio.pause();
+  const hoverSound = document.getElementById("hover-portal-sound");
+  if (hoverSound) {
+    hoverSound.pause();
+    hoverSound.currentTime = 0;
+  }
+}
+
+function playEnterPortalSound() {
+  const enterSound = document.getElementById("enter-portal-sound");
+  if (enterSound) {
+    enterSound.currentTime = 0;
+    enterSound.play().catch(e => console.warn('Enter sound error:', e));
+  }
 }
 
 // -----------------------------------------
