@@ -359,7 +359,7 @@ nav ul li a {
 }
 
 #asuka-line {
-  font-family: 'Zapfino', cursive;
+  font-family: 'Zapfino', cursive, 'Segoe Script', 'Brush Script MT', sans-serif;
   font-size: 1.3rem;
   color: #ff4d8b;
   line-height: 2.2rem;
