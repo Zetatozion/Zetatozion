@@ -86,7 +86,7 @@ a:hover {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  animation: slowFadeOut 10s ease forwards;
+  animation: slowFadeOut 4s ease 6s forwards; /* 6s delay so it stays visible */
   z-index: 9999;
 }
 
