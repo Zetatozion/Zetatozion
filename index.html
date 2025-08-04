@@ -4,7 +4,7 @@
   <!-- [🧠 HEAD SETUP] -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ZETA TO ZION</title>
+  <title>ZETA TO ZION — PASTURE</title>
 
   <!-- [🌐 FONTS] -->
   <link href="https://fonts.googleapis.com/css2?family=Lancelot&display=swap" rel="stylesheet">
@@ -13,6 +13,7 @@
 
   <!-- [🎨 STYLESHEET] -->
   <link rel="stylesheet" href="style.css" />
+  <script defer src="script.js"></script>
 </head>
 <body>
 
@@ -37,7 +38,7 @@
 
   <!-- [🟩 MAIN CONTENT WRAPPER] -->
   <div id="main-content">
-
+    
     <!-- [🍔 MENU] -->
     <div class="menu-toggle" onclick="toggleMenu()">☰</div>
     <nav id="nav-menu">
@@ -53,6 +54,9 @@
         <li><a href="#">▪️ RÉSUMÉ</a></li>
       </ul>
     </nav>
+
+    <!-- [🌄 BACKGROUND] -->
+    <div class="bg-container"></div>
 
     <!-- [🌸 FLOWER GLYPH GATEWAY] -->
     <img src="flower.png" id="flower-glyph" alt="Flower Glyph" onclick="openFlowerGateway()" />
@@ -78,11 +82,28 @@
       </div>
     </div>
 
-    <!-- [🐑 SHEEP PERSONALITIES] -->
-    <img src="sheep1.png" class="sheep-icon" style="bottom:100px; left:60px;" onclick="talkToSheep(1)" />
-    <img src="sheep2.png" class="sheep-icon" style="bottom:90px; left:140px;" onclick="talkToSheep(2)" />
-    <img src="sheep3.png" class="sheep-icon" style="bottom:110px; left:220px;" onclick="talkToSheep(3)" />
-    <img src="sheep4.png" class="sheep-icon" style="bottom:95px; left:300px;" onclick="talkToSheep(4)" />
+    <!-- [🐑 SHEEP OF THE PASTURE] -->
+    <div id="pasture">
+      <img src="sheep_mystic.png" class="sheep" id="mystic" alt="Mystic Sheep" onclick="talkToSheep('mystic')" />
+      <img src="sheep_scholar.png" class="sheep" id="scholar" alt="Scholar Sheep" onclick="talkToSheep('scholar')" />
+      <img src="sheep_nomad.png" class="sheep" id="nomad" alt="Nomad Sheep" onclick="talkToSheep('nomad')" />
+      <img src="sheep_pastor.png" class="sheep" id="pastor" alt="Pastor’s Kid" onclick="talkToSheep('pastor')" />
+      <img src="sheep_hippie.png" class="sheep" id="hippie" alt="Hippie Christian" onclick="talkToSheep('hippie')" />
+      <img src="sheep_barbarian.png" class="sheep" id="barbarian" alt="Barbarian Believer" onclick="talkToSheep('barbarian')" />
+      <img src="sheep_widow.png" class="sheep" id="widow" alt="The Widow" onclick="talkToSheep('widow')" />
+      <img src="sheep_bluecollar.png" class="sheep" id="bluecollar" alt="Blue Collar Family Man" onclick="talkToSheep('bluecollar')" />
+      <img src="sheep_homeless.png" class="sheep" id="homeless" alt="Broken Wanderer" onclick="talkToSheep('homeless')" />
+      <img src="sheep_drunkirish.png" class="sheep" id="drunkirish" alt="Irish Pint Philosopher" onclick="talkToSheep('drunkirish')" />
+      <img src="sheep_forest.png" class="sheep" id="forest" alt="Wild Shepherdess" onclick="talkToSheep('forest')" />
+      <img src="sheep_elder.png" class="sheep" id="elder" alt="Elder Saint" onclick="talkToSheep('elder')" />
+    </div>
+
+    <!-- [💬 SHEEP DIALOGUE BOX] -->
+    <div id="dialogue-box">
+      <div id="sheep-name"></div>
+      <div id="sheep-response"></div>
+      <button onclick="closeDialogue()">Close</button>
+    </div>
 
     <!-- [🗻 LIGHTHOUSE PORTAL ZONE] -->
     <div class="lighthouse-portal-zone"
@@ -116,6 +137,7 @@
 
     <!-- [🕊️ FADE OVERLAY] -->
     <div class="fade-overlay" id="fade-overlay"></div>
+
   </div>
 
   <!-- [📜 SCRIPT BINDING] -->
