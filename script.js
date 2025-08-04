@@ -52,6 +52,87 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+window.addEventListener("load", () => {
+  const overlay = document.getElementById("asukaFallback");
+  const fallbackImg = overlay?.querySelector("img");
+  const quote = document.getElementById("asuka-line");
+  const audio = document.getElementById("bg-music");
+  const body = document.body;
+
+  // 🔒 Prevent scroll during preloader
+  body.style.overflow = "hidden";
+
+  // ✴️ Animate quote letters slowly
+  if (quote) {
+    const text = quote.innerHTML.replace(/<br>/g, '\n');
+    quote.innerHTML = "";
+
+    const letters = text.split("").map(char => {
+      const span = document.createElement("span");
+      span.style.opacity = "0";
+      span.style.transition = "opacity 0.8s ease";
+      span.style.display = "inline-block";
+      if (char === "\n") span.innerHTML = "<br>";
+      else span.textContent = char;
+      return span;
+    });
+
+    letters.forEach(span => quote.appendChild(span));
+
+    const indices = [...Array(letters.length).keys()];
+    for (let i = indices.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [indices[i], indices[j]] = [indices[j], indices[i]];
+    }
+
+    indices.forEach((i, idx) => {
+      setTimeout(() => {
+        letters[i].style.opacity = "1";
+      }, 80 * idx); // Slower reveal
+    });
+  }
+
+  // Add top category label (optional)
+  const category = document.createElement("div");
+  category.className = "asuka-category";
+  category.textContent = "LAST UP"; // 👈 Change label here if needed
+  overlay?.appendChild(category);
+
+  // ✴️ Fade everything slowly after delay
+  setTimeout(() => {
+    if (fallbackImg) {
+      fallbackImg.style.transition = "opacity 5s ease";
+      fallbackImg.style.opacity = "0";
+    }
+
+    if (quote) {
+      quote.style.transition = "opacity 5s ease";
+      quote.style.opacity = "0";
+    }
+
+    if (category) {
+      category.style.transition = "opacity 5s ease";
+      category.style.opacity = "0";
+    }
+
+    setTimeout(() => {
+      if (fallbackImg) fallbackImg.remove();
+      overlay.style.transition = "opacity 2s ease";
+      overlay.style.opacity = "0";
+
+      setTimeout(() => {
+        overlay.style.display = "none";
+        body.style.overflow = ""; // ✅ Re-enable scrolling
+
+        if (audio) {
+          audio.volume = 0.5;
+          audio.play().catch(e => console.warn("Autoplay blocked:", e));
+        }
+      }, 2000);
+    }, 5000);
+  }, 4000); // Initial wait before fade starts
+});
+
 // -----------------------------------------
 //         ASUKA PRELOADER FADE-OUT
 // -----------------------------------------
