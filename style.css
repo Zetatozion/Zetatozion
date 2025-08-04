@@ -1,4 +1,10 @@
-/* ▪️ GLOBAL RESET */
+/* ========================================================= */
+/*                  🌌 ZETA TO ZION: MASTER CSS              */
+/* ========================================================= */
+
+/* -------------------------- */
+/* GLOBAL RESET + BASE STYLES */
+/* -------------------------- */
 * {
   margin: 0;
   padding: 0;
@@ -7,190 +13,230 @@
 
 body, html {
   height: 100%;
+  width: 100%;
+  overflow-x: hidden;
   font-family: 'Lancelot', serif;
   background-color: black;
-  color: white;
-  overflow-x: hidden;
+  color: #f8f8f8;
 }
 
-/* ▪️ BACKGROUND */
-.bg-container {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100vw; height: 100vh;
-  background: url('image.jpg') center center no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
-  z-index: -1;
-}
-
-/* ▪️ PRELOADER */
-#asukaFallback {
+/* -------------------------- */
+/* FADE OVERLAY               */
+/* -------------------------- */
+.fade-overlay {
   position: fixed;
   top: 0; left: 0;
   width: 100vw; height: 100vh;
   background: black;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-  transition: opacity 1s ease;
+  opacity: 1;
+  transition: opacity 2s ease;
+  z-index: 9998;
 }
 
-#asuka-line {
-  font-size: 1.5rem;
-  color: white;
-  text-align: center;
-  line-height: 2.2rem;
-  padding: 20px;
-  max-width: 90%;
-}
-
-/* ▪️ NAVIGATION MENU */
-.menu-toggle {
-  position: fixed;
-  top: 15px; left: 20px;
-  font-size: 2rem;
-  z-index: 1001;
-  color: white;
-  cursor: pointer;
-}
-
-#nav-menu {
-  position: fixed;
-  top: 60px; left: 20px;
-  display: none;
-  flex-direction: column;
-  z-index: 1001;
-  background-color: rgba(0, 0, 0, 0.8);
-  padding: 15px;
-  border: 1px solid white;
-}
-
-#nav-menu.open {
-  display: flex;
-}
-
-#nav-menu a {
-  color: white;
-  text-decoration: none;
-  padding: 5px 0;
-  font-size: 1.1rem;
-}
-
-#nav-menu a:hover {
-  text-shadow: 0 0 10px #fff;
-}
-
-/* ▪️ MAIN CONTENT */
-#main-content {
-  opacity: 0;
-  transition: opacity 2s ease-in;
-  position: relative;
-  z-index: 1;
-}
-
-/* ▪️ OVERLAY BASE */
-.overlay {
-  display: none;
+/* ========================================================= */
+/*                    🎬 ASUKA PRELOADER                      */
+/* ========================================================= */
+#asukaFallback {
   position: fixed;
   top: 0; left: 0;
   width: 100vw; height: 100vh;
-  background-color: rgba(0, 0, 0, 0.85);
+  background-color: black;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  animation: slowFadeOut 10s ease forwards;
+  z-index: 9999;
+}
+
+#asuka-line {
   text-align: center;
-  z-index: 1002;
-  transition: opacity 1s ease;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2rem;
+  color: #fce4ec;
+  line-height: 2.2rem;
+  max-width: 90%;
+  letter-spacing: 1px;
+  z-index: 2;
 }
 
-input {
-  padding: 10px;
-  font-size: 1rem;
-  border: none;
-  border-radius: 5px;
-  margin-bottom: 10px;
+/* ========================================================= */
+/*                   🌅 MAIN CONTENT FADE IN                  */
+/* ========================================================= */
+#main-content {
+  opacity: 0;
+  transition: opacity 3s ease;
+  z-index: 1;
 }
 
-button {
-  padding: 10px 15px;
-  font-size: 1rem;
-  border: none;
-  border-radius: 5px;
-  background: white;
-  color: black;
-  cursor: pointer;
-  margin-top: 10px;
-}
-
-/* ▪️ TEXT CHAIN RESPONSE */
-.response-text {
-  margin-top: 10px;
-  white-space: pre-line;
-  font-style: italic;
-  font-size: 1rem;
-  color: #f0f0f0;
-}
-
-/* ▪️ GLYPHS (Flower & Ellari) */
-.flower {
+/* ========================================================= */
+/*               🍔 NAVIGATION MENU TOGGLE                   */
+/* ========================================================= */
+.menu-toggle {
   position: fixed;
-  top: 40px;
-  right: 60px;
+  top: 20px; left: 20px;
+  font-size: 2rem;
+  color: #fff;
+  z-index: 1000;
   cursor: pointer;
-  z-index: 1001;
-  transition: transform 0.3s ease;
+  font-family: 'Orbitron', sans-serif;
 }
 
-.flower:hover {
-  transform: scale(1.1);
-  filter: drop-shadow(0 0 8px pink);
-}
-
-#ellari-portal {
+#nav-menu {
+  display: none;
   position: fixed;
-  top: 40px;
-  right: 20px;
-  cursor: pointer;
-  z-index: 1001;
-  transition: transform 0.3s ease;
+  top: 60px; left: 20px;
+  background-color: rgba(0,0,0,0.9);
+  padding: 20px;
+  border-radius: 10px;
+  z-index: 1000;
 }
 
-#ellari-portal:hover {
-  transform: scale(1.1);
-  filter: drop-shadow(0 0 10px cyan);
+#nav-menu.active {
+  display: block;
 }
 
-/* ▪️ SHEEP PERSONALITY ICONS */
-.sheep {
-  position: absolute;
-  bottom: 20px;
-  width: 60px;
-  height: auto;
+#nav-menu ul {
+  list-style: none;
+}
+
+#nav-menu ul li a {
+  color: white;
+  text-decoration: none;
+  display: block;
+  margin: 10px 0;
+  font-size: 1.2rem;
+}
+
+/* ========================================================= */
+/*                🌸 FLOWER GLYPH + OVERLAY                  */
+/* ========================================================= */
+#flower-glyph {
+  position: fixed;
+  top: 10px;
+  right: 80px;
   cursor: pointer;
   z-index: 1000;
-  transition: transform 0.4s ease;
+  animation: floatFlower 60s infinite linear;
+  transition: filter 0.3s ease;
 }
 
-.sheep:hover {
-  transform: rotate(10deg) scale(1.1);
-  filter: drop-shadow(0 0 5px white);
+#flower-glyph:hover {
+  filter: drop-shadow(0 0 5px #f06292);
 }
 
-/* Example positioning */
-#sheep1 { left: 10%; }
-#sheep2 { left: 30%; }
-#sheep3 { left: 50%; }
-#sheep4 { left: 70%; }
-
-/* ▪️ ANIMATED MOVEMENT (future) */
-@keyframes float {
+@keyframes floatFlower {
   0% { transform: translateY(0px); }
-  50% { transform: translateY(-8px); }
+  50% { transform: translateY(-5px); }
   100% { transform: translateY(0px); }
 }
 
-.moving {
-  animation: float 4s infinite ease-in-out;
+#flower-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  z-index: 9998;
+  width: 100%;
+  height: 100%;
+  background: rgba(10,10,10,0.92);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: white;
+  transition: opacity 1s ease;
+}
+
+.gateway-box {
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 2px solid #f06292;
+  padding: 20px;
+  border-radius: 10px;
+  width: 300px;
+  text-align: center;
+}
+
+.gateway-box input {
+  margin-top: 10px;
+  padding: 10px;
+  width: 90%;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid #f8bbd0;
+  color: #fff;
+  font-size: 1rem;
+}
+
+.gateway-box .response {
+  margin-top: 15px;
+  font-style: italic;
+  color: #f8bbd0;
+}
+
+/* ========================================================= */
+/*                  🌀 ELLARI PORTAL OVERLAY                  */
+/* ========================================================= */
+#ellari-portal {
+  position: fixed;
+  top: 10px;
+  right: 20px;
+  cursor: pointer;
+  z-index: 1000;
+  transition: filter 0.3s ease;
+}
+
+#ellari-portal:hover {
+  filter: drop-shadow(0 0 5px #80deea);
+}
+
+#ellari-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  z-index: 9997;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 30, 50, 0.9);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: #fff;
+  transition: opacity 1s ease;
+}
+
+/* ========================================================= */
+/*               🐑 SILLY SHEEP PERSONALITIES                */
+/* ========================================================= */
+.sheep-icon {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.sheep-icon:hover {
+  transform: scale(1.2);
+}
+
+/* ========================================================= */
+/*              🔊 AUDIO + HIDDEN BUTTONS                    */
+/* ========================================================= */
+.audio-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  color: white;
+  z-index: 1000;
+}
+
+/* ========================================================= */
+/*              🌠 FUTURE PIXIE TRAIL EFFECTS                */
+/* ========================================================= */
+/* Will add glow + particles here (JS or canvas layer) */
+
+/* ========================================================= */
+/*                🔄 ANIMATIONS & TRANSITIONS                */
+/* ========================================================= */
+@keyframes slowFadeOut {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
 }
