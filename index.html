@@ -1,209 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- ====================================== -->
-  <!--               HEAD SETUP              -->
-  <!-- ====================================== -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>ZETA TO ZION</title>
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Lancelot&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
-
-  <!-- Main Stylesheet -->
   <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Lancelot&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <!-- ====================================== -->
-  <!--            ASUKA FALLBACK              -->
-  <!-- ====================================== -->
-  <div class="asuka-fallback-img">
-    <img src="https://raw.githubusercontent.com/Zetatozion/Zetatozion/main/eva14.jpg" alt="Asuka Langley" />
+  <!-- 🟥 ASUKA PRELOADER -->
+  <div id="asukaFallback">
+    <div id="asuka-line">"Your fall was not final... <br> Only formative."</div>
   </div>
 
-  <div id="asukaFallback" style="
-    position: fixed; top: 0; left: 0;
-    width: 100vw; height: 100vh;
-    background-color: rgba(0, 0, 0, 0.85);
-    z-index: 9999;
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: flex-start;
-    text-align: center; padding: 2rem;
-    box-sizing: border-box;
-  ">
-    <!-- Asuka Image Background -->
-    <img 
-      src="eva14.jpg"
-      alt="Asuka Langley Soryu"
-      style="
-        position: absolute;
-        top: 0; left: 0;
-        width: 100%; height: 100%;
-        object-fit: contain;
-        filter: brightness(0.9);
-        z-index: 1;
-      "
-    />
-    
-    <!-- Preloader Quote -->
-    <p id="asuka-line" style="margin-top: 6vh; z-index: 2;">
-      <span>I</span><br/>
-      <span>hate</span><br/>
-      <span>when</span><br/>
-      <span>people</span><br/>
-      <span>pity</span><br/>
-      <span>me</span>
-    </p>
+  <!-- 🟩 MAIN CONTENT (FADE-IN POST-PRELOADER) -->
+  <div id="main-content">
 
-    <!-- Voice Audio -->
-    <audio id="asukaAudio" src="asuka-pathetic-101soundboards.mp3" preload="auto"></audio>
+    <!-- 🍔 MENU TOGGLE -->
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+    <div id="nav-menu">
+      <ul>
+        <li><a href="#">▪️ HOME</a></li>
+        <li><a href="#">▪️ PHILOSOPHY</a></li>
+        <li><a href="#">▪️ INTERPLANETARY INFRASTRUCTURE</a></li>
+        <li><a href="#">▪️ POETRY & ART</a></li>
+        <li><a href="#">▪️ MATHEMATICS</a></li>
+        <li><a href="#">▪️ COLLABORATION CONTACTS</a></li>
+        <li><a href="#">▪️ UPCOMING EVENTS</a></li>
+        <li><a href="#">▪️ SHOP</a></li>
+        <li><a href="#">▪️ RESUME</a></li>
+        <li><a href="#">▪️ CONTACT</a></li>
+      </ul>
+    </div>
 
-    <p class="quote-author" style="font-size: 1.1rem; color: #ccc; margin-top: 1rem; z-index: 2;">
-      — Asuka Langley Soryu
-    </p>
+    <!-- 🌸 FLOWER GLYPH GATEWAY -->
+    <img src="flower.png" id="flower-glyph" alt="Flower Glyph" onclick="openFlowerGateway()" />
 
-    <div class="asuka-shimmer-bg"></div>
+    <div id="flower-overlay">
+      <div class="gateway-box">
+        <p>Do you seek truth?</p>
+        <input type="text" id="truthInput" placeholder="Type yes or no..." oninput="handleTruthInput()" />
+        <div class="response" id="truthResponse"></div>
+        <div class="response" id="loveQuestion" style="display:none;"></div>
+        <div class="response" id="loveResponse"></div>
+        <div class="response" id="trueLoveQuestion" style="display:none;"></div>
+        <div class="response" id="trueLoveResponse"></div>
+        <div class="response" id="jesusInvite" style="display:none;"></div>
+      </div>
+    </div>
+
+    <!-- 🌀 ELLARI PORTAL (MOUNTAIN HOME BASE) -->
+    <img src="portal.png" id="ellari-portal" alt="Ellari Portal" onclick="openEllariOverlay()" />
+    <div id="ellari-overlay">
+      <div class="gateway-box">
+        <p>This is the landscape of Elari's choosing...</p>
+        <input type="text" placeholder="Enter a word or feeling..." />
+        <!-- Optional future prompt logic -->
+      </div>
+    </div>
+
+    <!-- 🐑 SHEEP ZONE (SILLY CHRISTIAN SHEEP) -->
+    <img src="sheep1.png" class="sheep-icon" style="bottom:100px; left:60px;" onclick="talkToSheep(1)" />
+    <img src="sheep2.png" class="sheep-icon" style="bottom:90px; left:140px;" onclick="talkToSheep(2)" />
+    <img src="sheep3.png" class="sheep-icon" style="bottom:110px; left:220px;" onclick="talkToSheep(3)" />
+    <img src="sheep4.png" class="sheep-icon" style="bottom:95px; left:300px;" onclick="talkToSheep(4)" />
+
   </div>
 
-  <!-- Optional bypass zone for dev testing -->
-  <div id="asukabypass" style="
-    position: absolute;
-    top: 20%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100px; height: 100px;
-    z-index: 10000;
-    cursor: pointer;
-  "></div>
+  <!-- 🔊 AUDIO CONTROLS (DEFERRED) -->
+  <!-- <div class="audio-button">🎵</div> -->
 
-  <!-- ====================================== -->
-  <!--               PRELOADER               -->
-  <!-- ====================================== -->
-  <div id="preloader-text" style="font-size: 1.4rem; color: #ddd; text-align: center;">...</div>
-
-  <!-- ====================================== -->
-  <!--         BACKGROUND CONTAINER          -->
-  <!-- ====================================== -->
-  <div class="bg-container"></div>
-
-  <!-- ====================================== -->
-  <!--           NAVIGATION MENU             -->
-  <!-- ====================================== -->
-  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-  <nav id="nav-menu">
-    <ul>
-      <li><a href="#" onclick="playClick(); toggleMenu()">▪️ HOME</a></li>
-      <li><a href="#" onclick="playClick(); toggleMenu()">▪️ PHILOSOPHY</a></li>
-      <li><a href="#" onclick="playClick(); toggleMenu()">▪️ MATHEMATICS</a></li>
-      <li><a href="#" onclick="playClick(); toggleMenu()">▪️ INTERPLANETARY INFRASTRUCTURE</a></li>
-      <li><a href="#" onclick="playClick(); toggleMenu()">▪️ COLLABORATIVE VENTURES</a></li>
-      <li><a href="#" onclick="playClick(); toggleMenu()">▪️ POETRY / ART</a></li>
-      <li><a href="#" onclick="playClick(); toggleMenu()">▪️ SHOP</a></li>
-      <li><a href="#" onclick="playClick(); toggleMenu()">▪️ CONTACT</a></li>
-      <li><a href="#" onclick="playClick(); toggleMenu()">▪️ RÉSUMÉ</a></li>
-    </ul>
-  </nav>
-
-  <!-- ====================================== -->
-  <!--        LIGHTHOUSE PORTAL ZONE         -->
-  <!-- ====================================== -->
-  <div class="lighthouse-portal-zone"
-       onmouseenter="playPortalAudio()"
-       onmouseleave="pausePortalAudio()"
-       onclick="openModal()">
-    <div class="lighthouse-star"></div>
-    <img src="pattern-19536_128.gif" alt="Elari Mirror" class="elari-mirror pointer-hover" />
-  </div>
-
-  <!-- ====================================== -->
-  <!--             MIRROR MODAL              -->
-  <!-- ====================================== -->
-  <div class="modal" id="mirror-modal">
-    <button id="close-mirror">✖</button>
-    <img src="cross-13798_512.gif" alt="White Rabbit" />
-    <input type="text" id="passphrase" placeholder="..." />
-    <p id="mirror-response"></p>
-    <img id="mirror-image" src="" alt="Mirror reaction" />
-  </div>
-
-  <!-- ====================================== -->
-  <!--         ELARI MIRROR GATE             -->
-  <!-- ====================================== -->
-  <div id="elari-mirror">
-    <h1>You’ve entered the Elari Mirror</h1>
-    <p>This is a sacred section — a gate to the inner scrolls. 🌌</p>
-  </div>
-
-  <!-- ====================================== -->
-  <!--              AUDIO FILES              -->
-  <!-- ====================================== -->
-  <audio id="backgroundMusic" src="ultra-life-chapter-4-king-status-unlocked-rizz-dnb-spark-331839.mp3" autoplay loop></audio>
-  <audio id="portal-audio" src="ocean-waves-376898.mp3" preload="auto" loop></audio>
-  <audio id="hover-portal-sound" src="hover-portal.wav" preload="auto"></audio>
-  <audio id="enter-portal-sound" src="enter-portal.wav" preload="auto"></audio>
-
-  <!-- ====================================== -->
-  <!--       🎧 AUDIO CONTROL INTERFACE       -->
-  <!-- ====================================== -->
-  <div id="audio-controls" style="
-    position: fixed;
-    bottom: 20px; right: 20px;
-    z-index: 9999;
-    display: flex; gap: 10px;
-    align-items: center;
-    background-color: rgba(0, 0, 0, 0.4);
-    padding: 0.5rem 1rem;
-    border-radius: 8px;
-    font-family: 'Orbitron', sans-serif;
-    color: white;
-    backdrop-filter: blur(6px);
-  ">
-    <button id="mute-toggle" style="
-      background: none;
-      border: none;
-      color: white;
-      font-size: 1.5rem;
-      cursor: pointer;
-    ">🔈</button>
-    <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="1" style="width: 100px; cursor: pointer;" />
-  </div>
-
-  <!-- ====================================== -->
-  <!--              FADE OVERLAY             -->
-  <!-- ====================================== -->
-  <div class="fade-overlay" id="fade-overlay"></div>
-
-  <!-- ====================================== -->
-  <!--            SCRIPT BINDING             -->
-  <!-- ====================================== -->
-  <script src="script.js" defer></script>
-
-  <!-- ====================================== -->
-  <!--          AUTOPLAY FALLBACK FIX        -->
-  <!-- ====================================== -->
-  <script>
-    window.addEventListener('click', () => {
-      const music = document.getElementById('backgroundMusic');
-      if (music && music.paused) {
-        music.volume = 0;
-        music.play().then(() => {
-          let vol = 0;
-          const fade = setInterval(() => {
-            if (vol < 1) {
-              vol += 0.05;
-              music.volume = Math.min(vol, 1);
-            } else {
-              clearInterval(fade);
-            }
-          }, 200);
-        }).catch(e => console.warn('Autoplay blocked:', e));
-      }
-    }, { once: true });
-  </script>
-
+  <script src="script.js"></script>
 </body>
 </html>
