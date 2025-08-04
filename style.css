@@ -1,265 +1,221 @@
-/* ========================================================= */
-/*                    GLOBAL BASE STYLES                    */
-/* ========================================================= */
-body, html {
+/* ======================================
+   🌐 GLOBAL RESET + BASE STYLES
+====================================== */
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
   height: 100%;
-  overflow-x: hidden;
+  width: 100%;
   font-family: 'Lancelot', serif;
   background-color: black;
-  color: white;
+  color: #f8f8f8;
+  overflow-x: hidden;
 }
 
-/* Smooth fade overlays */
-.fade-overlay {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100vw; height: 100vh;
-  background: black;
-  opacity: 1;
-  transition: opacity 2s ease;
-  z-index: 9998;
-}
-
-/* ========================================================= */
-/*                   [ASUKA FALLBACK LAYER]                  */
-/* ========================================================= */
-.asuka-fallback-img img {
-  display: none;
-}
-
+/* ======================================
+   🎬 ASUKA PRELOADER
+====================================== */
 #asukaFallback {
-  animation: slowFadeOut 4s ease forwards;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 2s ease;
 }
 
 #asuka-line {
-  font-size: 2rem;
-  font-family: 'Orbitron', sans-serif;
-  color: white;
-  z-index: 2;
-  position: relative;
-  margin-top: 3rem;
-}
-
-.quote-author {
-  font-family: 'Share Tech Mono', monospace;
-}
-
-.asuka-shimmer-bg {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: radial-gradient(circle, rgba(255,255,255,0.1), transparent);
-  z-index: 0;
-}
-
-/* Optional: shimmer movement (if needed) */
-/*
-@keyframes shimmer {
-  0% { background-position: 0% 50%; }
-  100% { background-position: 100% 50%; }
-}
-*/
-
-#asukabypass {
-  /* Invisible zone to skip preloader */
-}
-
-/* ========================================================= */
-/*                     [PRELOADER TEXT]                      */
-/* ========================================================= */
-#preloader-text {
-  font-family: 'Orbitron', sans-serif;
-  color: #ccc;
   text-align: center;
-  z-index: 9000;
+  font-size: 1.8rem;
+  max-width: 90%;
+  line-height: 2.2rem;
+  color: #fce4ec;
+  font-weight: bold;
+  letter-spacing: 1px;
 }
 
-/* ========================================================= */
-/*                  [BACKGROUND CONTAINER]                   */
-/* ========================================================= */
-.bg-container {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: url('image.jpg') center center no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
-  z-index: -1;
+/* ======================================
+   🌅 MAIN CONTENT FADE IN
+====================================== */
+#main-content {
+  opacity: 0;
+  transition: opacity 3s ease;
+  z-index: 1;
 }
 
-/* ========================================================= */
-/*                     [NAVIGATION MENU]                     */
-/* ========================================================= */
+/* ======================================
+   🍔 NAV MENU TOGGLE
+====================================== */
 .menu-toggle {
   position: fixed;
-  top: 20px; left: 20px;
+  top: 20px;
+  left: 20px;
   font-size: 2rem;
-  z-index: 9999;
+  color: #fff;
+  z-index: 1000;
   cursor: pointer;
-  color: white;
-  font-family: 'Orbitron', sans-serif;
 }
 
 #nav-menu {
   display: none;
   position: fixed;
-  top: 0; left: 0;
-  width: 100%;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.95);
-  z-index: 9998;
-  padding-top: 4rem;
-  text-align: center;
+  top: 60px;
+  left: 20px;
+  background-color: rgba(0,0,0,0.9);
+  padding: 20px;
+  border-radius: 10px;
+  z-index: 1000;
+}
+
+#nav-menu.active {
+  display: block;
 }
 
 #nav-menu ul {
   list-style: none;
-  padding: 0;
 }
 
-#nav-menu li {
-  margin: 1.5rem 0;
-}
-
-#nav-menu a {
+#nav-menu ul li a {
   color: white;
   text-decoration: none;
-  font-size: 1.4rem;
-  font-family: 'Orbitron', sans-serif;
+  display: block;
+  margin: 10px 0;
+  font-size: 1.2rem;
 }
 
-/* ========================================================= */
-/*             [LIGHTHOUSE PORTAL + MIRROR]                  */
-/* ========================================================= */
-.lighthouse-portal-zone {
+/* ======================================
+   🌸 FLOWER GLYPH + OVERLAY
+====================================== */
+#flower-glyph {
   position: fixed;
-  top: 5%; right: 5%;
-  z-index: 9999;
+  top: 10px;
+  right: 80px;
   cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  transition: transform 0.3s ease;
+  z-index: 1000;
+  animation: floatFlower 60s infinite linear;
+  transition: filter 0.3s ease;
 }
 
-.lighthouse-portal-zone:hover {
-  transform: scale(1.1);
+#flower-glyph:hover {
+  filter: drop-shadow(0 0 5px #f06292);
 }
 
-.lighthouse-star {
-  width: 20px;
-  height: 20px;
-  background: gold;
-  border-radius: 50%;
-  box-shadow: 0 0 10px 3px gold;
-  margin-bottom: 5px;
+@keyframes floatFlower {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-5px); }
+  100% { transform: translateY(0px); }
 }
 
-.elari-mirror {
-  width: 60px;
-  height: 60px;
-  object-fit: cover;
-}
-
-/* ========================================================= */
-/*                  [MIRROR MODAL GATE]                      */
-/* ========================================================= */
-.modal {
-  display: none;
+#flower-overlay {
   position: fixed;
-  top: 0; left: 0;
-  width: 100vw; height: 100vh;
-  background-color: rgba(0,0,0,0.95);
-  z-index: 10000;
+  top: 0;
+  left: 0;
+  z-index: 9998;
+  width: 100%;
+  height: 100%;
+  background: rgba(10,10,10,0.92);
+  display: none;
+  align-items: center;
   justify-content: center;
-  align-items: center;
   flex-direction: column;
-  gap: 1rem;
-  padding: 2rem;
-}
-
-#close-mirror {
-  position: absolute;
-  top: 20px; right: 20px;
-  background: none;
   color: white;
-  font-size: 1.5rem;
-  border: none;
-  cursor: pointer;
+  transition: opacity 1s ease;
 }
 
-#passphrase {
-  padding: 0.5rem;
-  font-size: 1.2rem;
-  width: 250px;
+.gateway-box {
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 2px solid #f06292;
+  padding: 20px;
+  border-radius: 10px;
+  width: 300px;
   text-align: center;
-  font-family: 'Orbitron', sans-serif;
 }
 
-#mirror-response {
-  font-size: 1.2rem;
-  color: #ccc;
-  font-family: 'Lancelot', serif;
+.gateway-box input {
+  margin-top: 10px;
+  padding: 10px;
+  width: 90%;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid #f8bbd0;
+  color: #fff;
+  font-size: 1rem;
 }
 
-/* ========================================================= */
-/*                [ELARI MIRROR CONTENT]                     */
-/* ========================================================= */
-#elari-mirror {
-  display: none;
-  padding: 3rem;
-  text-align: center;
-  font-family: 'Lancelot', serif;
+.gateway-box .response {
+  margin-top: 15px;
+  font-style: italic;
+  color: #f8bbd0;
 }
 
-#elari-mirror h1 {
-  font-size: 2.4rem;
-  margin-bottom: 1rem;
-}
-
-#elari-mirror p {
-  font-size: 1.2rem;
-  color: #bbb;
-}
-
-/* ========================================================= */
-/*               [AUDIO CONTROLS INTERFACE]                  */
-/* ========================================================= */
-#audio-controls {
+/* ======================================
+   🌀 ELLARI PORTAL OVERLAY
+====================================== */
+#ellari-portal {
   position: fixed;
-  bottom: 20px; right: 20px;
-  z-index: 9999;
-  display: flex;
-  gap: 10px;
+  top: 10px;
+  right: 20px;
+  cursor: pointer;
+  z-index: 1000;
+  transition: filter 0.3s ease;
+}
+
+#ellari-portal:hover {
+  filter: drop-shadow(0 0 5px #80deea);
+}
+
+#ellari-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9997;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 30, 50, 0.9);
+  display: none;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.4);
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
-  font-family: 'Orbitron', sans-serif;
-  color: white;
-  backdrop-filter: blur(6px);
+  justify-content: center;
+  flex-direction: column;
+  color: #fff;
+  transition: opacity 1s ease;
 }
 
-#mute-toggle {
-  background: none;
-  border: none;
-  color: white;
-  font-size: 1.5rem;
+/* ======================================
+   🐑 SILLY SHEEP ZONES (PLACEHOLDER)
+====================================== */
+.sheep-icon {
+  position: absolute;
+  width: 50px;
+  height: 50px;
   cursor: pointer;
+  transition: transform 0.2s ease;
 }
 
-#volume-slider {
-  width: 100px;
-  cursor: pointer;
+.sheep-icon:hover {
+  transform: scale(1.2);
 }
 
-/* ========================================================= */
-/*              [ANIMATIONS & TRANSITIONS]                   */
-/* ========================================================= */
-@keyframes slowFadeOut {
-  0% { opacity: 1; }
-  100% { opacity: 0; }
+/* ======================================
+   🔊 AUDIO + HIDDEN BUTTONS
+====================================== */
+.audio-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  color: white;
+  z-index: 1000;
 }
+
+/* ======================================
+   🌠 PIXIE TRAIL FOR FLOATING GLYPHS (LATER)
+====================================== */
+/* Add glow, particle effects here in JS or canvas */
