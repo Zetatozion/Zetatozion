@@ -2,7 +2,7 @@
 //        GLOBAL SETUP
 // ==========================
 document.addEventListener("DOMContentLoaded", () => {
-  // Fade-in on load
+  // 🌟 Fade-in on load
   const mainContent = document.getElementById("main-content");
   if (mainContent) {
     setTimeout(() => {
@@ -10,14 +10,14 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 100);
   }
 
-  // Fade overlay exit
+  // 🌑 Fade overlay exit
   const fadeOverlay = document.querySelector(".fade-overlay");
   if (fadeOverlay) {
     fadeOverlay.style.opacity = 0;
     setTimeout(() => fadeOverlay.remove(), 2000);
   }
 
-  // Toggle nav
+  // 📂 Menu Toggle
   const menuToggle = document.querySelector(".menu-toggle");
   const navMenu = document.getElementById("nav-menu");
   if (menuToggle && navMenu) {
@@ -26,18 +26,20 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Global fade on any link click
+  // 🌐 Global fade on any link click
   document.querySelectorAll("a").forEach(link => {
     link.addEventListener("click", e => {
       const href = link.getAttribute("href");
       if (href && href.startsWith("#")) return;
       e.preventDefault();
+      const overlay = document.getElementById('fade-overlay');
+      if (overlay) overlay.classList.add('active');
       document.body.classList.add("fade-out");
-      setTimeout(() => window.location.href = href, 600);
+      setTimeout(() => window.location.href = href, 700);
     });
   });
 
-  // Elari portal interactivity
+  // 🌀 Ellari portal fade logic
   const ellariPortal = document.getElementById("ellari-portal");
   const ellariOverlay = document.getElementById("ellari-overlay");
   if (ellariPortal && ellariOverlay) {
@@ -49,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 30000);
   }
 
-  // Flower glyph fadeout
+  // 🌸 Flower glyph overlay logic
   const flowerOverlay = document.getElementById("flower-overlay");
   const flowerGlyph = document.getElementById("flower-glyph");
   if (flowerGlyph && flowerOverlay) {
@@ -61,21 +63,196 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 30000);
   }
 
-  // Sheep personalities (placeholder)
+  // 🐑 Clickable sheep (placeholder trigger)
   document.querySelectorAll(".sheep-icon").forEach(sheep => {
     sheep.addEventListener("click", () => {
-      const id = sheep.getAttribute("data-id") || "Unnamed";
-      alert(`🐑 You clicked on sheep ${id} — future dialogue goes here!`);
+      const id = sheep.getAttribute("data-id");
+      if (id) talkToSheep(parseInt(id));
     });
   });
 
-  // Optional: preload GIFs
-  const preloadGifs = [
-    "path/to/gif1.gif",
-    "path/to/gif2.gif"
-  ];
+  // 🎧 Audio controls
+  const music = document.getElementById("backgroundMusic");
+  const muteToggle = document.getElementById("mute-toggle");
+  const volumeSlider = document.getElementById("volume-slider");
+
+  if (muteToggle && music) {
+    muteToggle.addEventListener("click", () => {
+      music.muted = !music.muted;
+      muteToggle.textContent = music.muted ? "🔇" : "🔈";
+    });
+  }
+
+  if (volumeSlider && music) {
+    volumeSlider.addEventListener("input", e => {
+      music.volume = parseFloat(e.target.value);
+    });
+  }
+
+  // 📦 Preload GIFs (add paths as needed)
+  const preloadGifs = ["path/to/gif1.gif", "path/to/gif2.gif"];
   preloadGifs.forEach(src => {
     const img = new Image();
     img.src = src;
   });
 });
+
+// ==========================
+//     FLOWER GATEWAY LOGIC
+// ==========================
+function openFlowerGateway() {
+  document.getElementById('flower-overlay').style.display = 'block';
+}
+
+function handleTruthInput() {
+  const input = document.getElementById("truthInput").value.toLowerCase();
+  const response = document.getElementById("truthResponse");
+  const loveQ = document.getElementById("loveQuestion");
+  const loveR = document.getElementById("loveResponse");
+  const trueLoveQ = document.getElementById("trueLoveQuestion");
+  const trueLoveR = document.getElementById("trueLoveResponse");
+  const invite = document.getElementById("jesusInvite");
+
+  if (input.includes("yes")) {
+    response.innerText = "Then you already know the path.";
+    loveQ.style.display = "block";
+    loveQ.innerText = "Do you believe in love?";
+  } else if (input.includes("no")) {
+    response.innerText = "Then why are you here?";
+  }
+
+  if (input.includes("love")) {
+    loveR.innerText = "Then love will reveal the truth.";
+    trueLoveQ.style.display = "block";
+    trueLoveQ.innerText = "Is there such a thing as true love?";
+  }
+
+  if (input.includes("true")) {
+    trueLoveR.innerText = "Then you’ve already met Him.";
+    invite.style.display = "block";
+    invite.innerText = "His name is Jesus.";
+  }
+}
+
+// ==========================
+//     SHEEP PERSONALITIES
+// ==========================
+const sheepProfiles = {
+  mystic: {
+    name: "Mystic",
+    lines: [
+      "The wind speaks if you listen.",
+      "Not all who wander are lost, but some are called.",
+      "He leads me beside still waters—those waters speak."
+    ]
+  },
+  scholar: {
+    name: "Scholar",
+    lines: [
+      "Did you know Aquinas once wept after seeing truth beyond thought?",
+      "Doctrine is scaffolding. Christ is the structure.",
+      "Faith without study is fire without focus."
+    ]
+  },
+  nomad: {
+    name: "Nomad",
+    lines: [
+      "I’ve slept in deserts and danced in storms. Still He finds me.",
+      "Direction is sometimes overrated. Presence is not.",
+      "Everywhere I go, the Shepherd already walked."
+    ]
+  },
+  pastor: {
+    name: "PK (Pastor’s Kid)",
+    lines: [
+      "I knew the rules before I knew the King.",
+      "Being raised in it doesn’t mean it’s in you.",
+      "I’m more prodigal than prophet—still, I’m coming home."
+    ]
+  },
+  hippie: {
+    name: "Hippie",
+    lines: [
+      "Love is the highest frequency, bro.",
+      "The Kingdom’s a garden—not a factory.",
+      "Spirit flows freer when we unclench our fists."
+    ]
+  },
+  barbarian: {
+    name: "Barbarian",
+    lines: [
+      "I break chains. That’s my worship.",
+      "The Lion of Judah is not tame.",
+      "Don't confuse meekness with weakness, brother."
+    ]
+  },
+  widow: {
+    name: "The Widow",
+    lines: [
+      "I know what empty beds feel like.",
+      "I pray with tears that never dry.",
+      "He keeps count of every sigh."
+    ]
+  },
+  bluecollar: {
+    name: "Blue Collar",
+    lines: [
+      "Fix your fence before you preach to the neighbors.",
+      "God loves the 6 a.m. man just as much.",
+      "Kids don’t need sermons. They need example."
+    ]
+  },
+  homeless: {
+    name: "Wanderer",
+    lines: [
+      "I used to have a house. Now I have hope.",
+      "Some nights I preach to stars.",
+      "He feeds me through the crows."
+    ]
+  },
+  drunkirish: {
+    name: "Irish",
+    lines: [
+      "Christ turned water to wine. So I toast in faith.",
+      "It’s not the pint, it’s the pride that ruins a man.",
+      "A good song, a warm fire, and mercy—that’s church."
+    ]
+  },
+  forest: {
+    name: "Wild Shepherdess",
+    lines: [
+      "The forest taught me how to pray.",
+      "Nature doesn’t lie. Neither does grace.",
+      "I named the birds before they flew away."
+    ]
+  },
+  elder: {
+    name: "Elder",
+    lines: [
+      "I’ve buried friends and dreams alike.",
+      "Nothing is wasted in the hands of the Lord.",
+      "The young run fast. The old walk steady."
+    ]
+  }
+};
+
+function talkToSheep(id) {
+  const sheepIds = Object.keys(sheepProfiles);
+  const sheepKey = sheepIds[id - 1];
+  const profile = sheepProfiles[sheepKey];
+
+  if (!profile) return;
+
+  const nameBox = document.getElementById("sheep-name");
+  const dialogueBox = document.getElementById("sheep-response");
+  const box = document.getElementById("dialogue-box");
+
+  nameBox.textContent = profile.name;
+  const quote = profile.lines[Math.floor(Math.random() * profile.lines.length)];
+  dialogueBox.textContent = quote;
+  box.style.display = "block";
+}
+
+function closeDialogue() {
+  document.getElementById("dialogue-box").style.display = "none";
+}
