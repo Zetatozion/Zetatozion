@@ -228,6 +228,74 @@ document.addEventListener('touchstart', (e) => {
 let asukaIsActive = true;
 
 // -----------------------------------------
+//         ASUKA OVERLAY FADE-OUT
+// -----------------------------------------
+window.addEventListener("load", () => {
+  const overlay = document.getElementById("asukaFallback");
+  const fallbackImg = overlay?.querySelector("img"); // 👈 Add this line
+  const quote = document.getElementById("asuka-line");
+  const audio = document.getElementById("bg-music");
+  const body = document.body;
+
+  // Disable scrolling until preload ends
+  body.style.overflow = "hidden";
+
+  // Reveal quote letters
+  if (quote) {
+    const text = quote.innerHTML.replace(/<br>/g, '\n');
+    quote.innerHTML = "";
+
+    const letters = text.split("").map(char => {
+      const span = document.createElement("span");
+      if (char === "\n") {
+        span.innerHTML = "<br>";
+      } else {
+        span.textContent = char;
+      }
+      span.style.opacity = "0";
+      span.style.transition = "opacity 0.6s ease";
+      span.style.display = "inline-block";
+      return span;
+    });
+
+    letters.forEach(span => quote.appendChild(span));
+
+    const indices = [...Array(letters.length).keys()];
+    for (let i = indices.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [indices[i], indices[j]] = [indices[j], indices[i]];
+    }
+
+    indices.forEach((i, idx) => {
+      setTimeout(() => {
+        letters[i].style.opacity = "1";
+      }, 40 * idx);
+    });
+  }
+
+  // Wait 2.5s before fading out
+  setTimeout(() => {
+    overlay.style.opacity = "0";
+    overlay.style.transition = "opacity 1s ease";
+
+    setTimeout(() => {
+      // 💥 Remove the fallback image but keep structure if needed
+      if (fallbackImg) fallbackImg.remove();
+
+      overlay.style.display = "none"; // optional, keeps DOM cleaner
+      body.style.overflow = ""; // re-enable scrolling
+
+      // Start music safely
+      if (audio) {
+        audio.volume = 0.5;
+        audio.play().catch(e => console.warn("Autoplay blocked:", e));
+      }
+
+    }, 1000);
+  }, 2500);
+});
+
+// -----------------------------------------
 //       Modal Mirror Interaction
 // -----------------------------------------
 const lighthousePortal = document.querySelector('.lighthouse-portal-zone');
