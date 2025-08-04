@@ -16,25 +16,66 @@ body, html {
   width: 100%;
   overflow-x: hidden;
   font-family: 'Lancelot', serif;
-  background-color: black;
-  color: #f8f8f8;
+  background-color: #000;
+  color: #fff;
+}
+
+/* -------------------------- */
+/* GLOBAL LINKS               */
+/* -------------------------- */
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: opacity 0.4s ease;
+}
+
+a:hover {
+  opacity: 0.7;
 }
 
 /* -------------------------- */
 /* FADE OVERLAY               */
 /* -------------------------- */
+.fade-overlay,
+.fade-out {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  z-index: 9999;
+  opacity: 1;
+  transition: opacity 0.6s ease;
+}
+
 .fade-overlay {
+  pointer-events: none;
+}
+
+.fade-out {
+  opacity: 0;
+}
+
+@keyframes slowFadeOut {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* -------------------------- */
+/* BACKGROUND CONTAINER       */
+/* -------------------------- */
+.bg-container {
   position: fixed;
   top: 0; left: 0;
   width: 100vw; height: 100vh;
-  background: black;
-  opacity: 1;
-  transition: opacity 2s ease;
-  z-index: 9998;
+  background: url('image.jpg') center center no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  z-index: -1;
 }
 
 /* ========================================================= */
-/*                    🎬 ASUKA PRELOADER                      */
+/*                   🎬 ASUKA PRELOADER                      */
 /* ========================================================= */
 #asukaFallback {
   position: fixed;
@@ -61,7 +102,7 @@ body, html {
 }
 
 /* ========================================================= */
-/*                   🌅 MAIN CONTENT FADE IN                  */
+/*                   🌅 MAIN CONTENT FADE IN                 */
 /* ========================================================= */
 #main-content {
   opacity: 0;
@@ -113,37 +154,36 @@ body, html {
 /* ========================================================= */
 #flower-glyph {
   position: fixed;
-  top: 10px;
-  right: 80px;
+  bottom: 10%;
+  right: 10%;
+  width: 60px;
+  height: 60px;
   cursor: pointer;
-  z-index: 1000;
-  animation: floatFlower 60s infinite linear;
+  z-index: 20;
+  animation: float 10s infinite ease-in-out;
   transition: filter 0.3s ease;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
 }
 
 #flower-glyph:hover {
   filter: drop-shadow(0 0 5px #f06292);
 }
 
-@keyframes floatFlower {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-5px); }
-  100% { transform: translateY(0px); }
-}
-
 #flower-overlay {
   position: fixed;
   top: 0; left: 0;
-  z-index: 9998;
   width: 100%;
   height: 100%;
-  background: rgba(10,10,10,0.92);
+  background: radial-gradient(rgba(255, 192, 203, 0.2), rgba(0,0,0,0.9));
   display: none;
-  align-items: center;
   justify-content: center;
-  flex-direction: column;
-  color: white;
-  transition: opacity 1s ease;
+  align-items: center;
+  z-index: 1001;
+  backdrop-filter: blur(6px);
 }
 
 .gateway-box {
@@ -172,14 +212,16 @@ body, html {
 }
 
 /* ========================================================= */
-/*                  🌀 ELLARI PORTAL OVERLAY                  */
+/*                  🌀 ELLARI PORTAL OVERLAY                 */
 /* ========================================================= */
 #ellari-portal {
   position: fixed;
-  top: 10px;
-  right: 20px;
+  top: 25%;
+  left: 5%;
+  width: 60px;
+  height: 60px;
   cursor: pointer;
-  z-index: 1000;
+  z-index: 20;
   transition: filter 0.3s ease;
 }
 
@@ -190,16 +232,16 @@ body, html {
 #ellari-overlay {
   position: fixed;
   top: 0; left: 0;
-  z-index: 9997;
   width: 100%;
   height: 100%;
-  background: rgba(0, 30, 50, 0.9);
+  background: radial-gradient(rgba(173, 216, 230, 0.3), rgba(0,0,0,0.95));
   display: none;
-  align-items: center;
   justify-content: center;
-  flex-direction: column;
+  align-items: center;
+  z-index: 1001;
+  backdrop-filter: blur(6px);
   color: #fff;
-  transition: opacity 1s ease;
+  flex-direction: column;
 }
 
 /* ========================================================= */
@@ -207,36 +249,70 @@ body, html {
 /* ========================================================= */
 .sheep-icon {
   position: absolute;
-  width: 50px;
-  height: 50px;
+  width: 48px;
+  height: 48px;
   cursor: pointer;
-  transition: transform 0.2s ease;
+  transition: transform 0.3s ease;
 }
 
 .sheep-icon:hover {
   transform: scale(1.2);
 }
 
+/* Example roaming placement — to be randomized or animated later */
+.sheep1 { top: 60%; left: 20%; }
+.sheep2 { top: 70%; left: 50%; }
+.sheep3 { top: 55%; left: 75%; }
+/* ... repeat sheep4–sheep12 if desired */
+
+/* ========================================================= */
+/*              💬 DIALOGUE BOX OVERLAY                      */
+/* ========================================================= */
+#dialogue-box {
+  position: fixed;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 255, 255, 0.1);
+  padding: 1rem 2rem;
+  border: 1px solid #fff;
+  border-radius: 12px;
+  z-index: 1002;
+  display: none;
+  text-align: center;
+  font-family: 'Georgia', serif;
+  max-width: 70%;
+  backdrop-filter: blur(4px);
+}
+
+#dialogue-box p {
+  margin: 0.5rem 0;
+  font-size: 1.2rem;
+}
+
 /* ========================================================= */
 /*              🔊 AUDIO + HIDDEN BUTTONS                    */
 /* ========================================================= */
-.audio-button {
+#audio-controls {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
-  color: white;
+  bottom: 2%;
+  right: 2%;
   z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+#mute-toggle {
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+#volume-slider {
+  width: 100px;
 }
 
 /* ========================================================= */
 /*              🌠 FUTURE PIXIE TRAIL EFFECTS                */
 /* ========================================================= */
-/* Will add glow + particles here (JS or canvas layer) */
-
-/* ========================================================= */
-/*                🔄 ANIMATIONS & TRANSITIONS                */
-/* ========================================================= */
-@keyframes slowFadeOut {
-  0% { opacity: 1; }
-  100% { opacity: 0; }
-}
+/* Placeholder: canvas / glow trail scripts go here */
