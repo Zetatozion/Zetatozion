@@ -1,6 +1,6 @@
-/* ----------------------------- */
-/*         Base Reset           */
-/* ----------------------------- */
+/* ========================================== */
+/*               🌌 BASE RESET                */
+/* ========================================== */
 html, body {
   margin: 0;
   padding: 0;
@@ -9,9 +9,9 @@ html, body {
   font-family: 'Lancelot', serif;
 }
 
-/* ----------------------------- */
-/*       Background Layer       */
-/* ----------------------------- */
+/* ========================================== */
+/*           🌄 BACKGROUND LAYER              */
+/* ========================================== */
 .bg-container {
   position: fixed;
   top: 0; left: 0;
@@ -23,9 +23,9 @@ html, body {
   z-index: -1;
 }
 
-/* ----------------------------- */
-/*       Menu Toggle Button     */
-/* ----------------------------- */
+/* ========================================== */
+/*        🧭 MENU TOGGLE (HAMBURGER)         */
+/* ========================================== */
 .menu-toggle {
   position: fixed;
   top: 12px;
@@ -37,9 +37,9 @@ html, body {
   user-select: none;
 }
 
-/* ----------------------------- */
-/*         Navigation           */
-/* ----------------------------- */
+/* ========================================== */
+/*              🌌 MAIN NAVIGATION            */
+/* ========================================== */
 nav {
   position: fixed;
   top: 0; left: 0;
@@ -72,9 +72,9 @@ nav ul li a {
   letter-spacing: 2px;
 }
 
-/* ----------------------------- */
-/*       Lighthouse Portal      */
-/* ----------------------------- */
+/* ========================================== */
+/*         ✨ LIGHTHOUSE PORTAL ZONE          */
+/* ========================================== */
 .lighthouse-portal-zone {
   position: absolute;
   top: 21%;
@@ -96,7 +96,6 @@ nav ul li a {
   box-shadow: 0 0 12px 4px #fffdc1;
   opacity: 0.75;
   animation: pulseStar 2s ease-in-out infinite;
-  z-index: 1001;
 }
 
 @keyframes pulseStar {
@@ -104,7 +103,7 @@ nav ul li a {
   50% { transform: translateX(-50%) scale(1.2); opacity: 1; }
 }
 
-/* Elari Mirror Portal */
+/* ============ 🪞 ELARI MIRROR PORTAL ============ */
 .elari-mirror {
   position: absolute;
   top: -20px;
@@ -130,9 +129,9 @@ nav ul li a {
   50% { opacity: 1; transform: translateX(-50%) scale(1.2); }
 }
 
-/* ----------------------------- */
-/*             Modal            */
-/* ----------------------------- */
+/* ========================================== */
+/*                 🔐 MODAL BOX               */
+/* ========================================== */
 .modal {
   display: none;
   position: fixed;
@@ -177,9 +176,77 @@ nav ul li a {
   to { opacity: 1; }
 }
 
-/* ----------------------------- */
-/*        Preloader Styles      */
-/* ----------------------------- */
+/* ========================================== */
+/*            🕊️ ASUKA FALLBACK LAYER         */
+/* ========================================== */
+#asukaFallback {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1001;
+  overflow: hidden;
+  transition: opacity 2s ease;
+  font-family: 'Zapfino', cursive;
+  font-size: 1.8rem;
+  color: #ff69b4;
+  text-shadow: 0 0 8px rgba(255, 105, 180, 0.5);
+  line-height: 2rem;
+  letter-spacing: 1px;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+#asukaFallback img {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: brightness(0.9);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ========================================== */
+/*       📝 ASUKA QUOTE: STYLED + HOVER       */
+/* ========================================== */
+#asuka-line {
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  font-size: 1.5rem;
+  line-height: 2.2rem;
+  color: #ff4d8b;
+  font-family: 'Zapfino', cursive, 'Segoe Script', 'Brush Script MT', sans-serif;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.6);
+  z-index: 10;
+  text-transform: uppercase;
+  opacity: 0;
+  transition: opacity 6s ease;
+}
+
+#asuka-line span {
+  display: inline-block;
+  opacity: 0.5;
+  transition: opacity 0.4s ease;
+}
+#asuka-line:hover span {
+  opacity: 1;
+}
+
+/* ========================================== */
+/*           🎬 PRELOADER STYLING             */
+/* ========================================== */
 #preloader {
   position: fixed;
   top: 0; left: 0;
@@ -229,102 +296,9 @@ nav ul li a {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* -------------------------------------------
-   ASUKA QUOTE POSITIONING & FADE STYLES
--------------------------------------------- */
-#asuka-line {
-  position: absolute;
-  top: 5%;
-  left: 50%;
-  transform: translateX(-50%);
-  text-align: center;
-  font-size: 1.5rem;
-  line-height: 1.6;
-  color: white;
-  opacity: 0;
-  z-index: 1002;
-  transition: opacity 6s ease;
-}
-
-/* Optional: If your fallback overlay has a background image */
-#asukaFallback {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  width: 100vw;
-  background: #000; /* or transparent/gradient if desired */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1001;
-  overflow: hidden;
-  transition: opacity 2s ease;
-}
-
-/* ----------------------------- */
-/*        Asuka Overlay         */
-/* ----------------------------- */
-#asukaFallback {
-  font-family: 'Zapfino', cursive;
-  font-size: 1.8rem;
-  color: #ff69b4;
-  text-shadow: 0 0 8px rgba(255, 105, 180, 0.5);
-  line-height: 2rem;
-  letter-spacing: 1px;
-  z-index: 9999;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 2rem;
-  box-sizing: border-box;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.85);
-}
-
-#asukaFallback img {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  filter: brightness(0.9);
-  z-index: 1;
-  pointer-events: none;
-}
-
-#asuka-line {
-  font-size: 1.3rem;
-  line-height: 2.2rem;
-  text-align: center;
-  letter-spacing: 1px;
-  font-family: 'Zapfino', cursive, 'Segoe Script', 'Brush Script MT', sans-serif;
-  color: #ff4d8b;
-  z-index: 10;
-  position: relative;
-  text-transform: uppercase;
-  font-weight: bold;
-  text-shadow: 0 0 5px rgba(0, 0, 0, 0.6);
-}
-
-#asuka-line span {
-  display: inline-block;
-  opacity: 0.5;
-  transition: opacity 0.4s ease;
-}
-#asuka-line:hover span {
-  opacity: 1;
-}
-
-/* ----------------------------- */
-/*      Responsive Tweaks       */
-/* ----------------------------- */
+/* ========================================== */
+/*          📱 RESPONSIVE TWEAKS              */
+/* ========================================== */
 @media (max-width: 768px) {
   .bg-container {
     background-attachment: scroll;
