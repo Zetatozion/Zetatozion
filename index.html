@@ -1,43 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- [🧠 HEAD SETUP] -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>ZETA TO ZION</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+  <!-- [🌐 FONTS] -->
   <link href="https://fonts.googleapis.com/css2?family=Lancelot&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+  <!-- [🎨 STYLESHEET] -->
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- 🟥 ASUKA PRELOADER -->
+  <!-- [🟥 ASUKA PRELOADER] -->
   <div id="asukaFallback">
-    <div id="asuka-line">"Your fall was not final... <br> Only formative."</div>
+    <img src="eva14.jpg" alt="Asuka Langley" />
+    <p id="asuka-line">
+      <span>I</span><br/>
+      <span>hate</span><br/>
+      <span>when</span><br/>
+      <span>people</span><br/>
+      <span>pity</span><br/>
+      <span>me</span>
+    </p>
+    <audio id="asukaAudio" src="asuka-pathetic-101soundboards.mp3" preload="auto"></audio>
+    <p class="quote-author">— Asuka Langley Soryu</p>
+    <div class="asuka-shimmer-bg"></div>
   </div>
 
-  <!-- 🟩 MAIN CONTENT (FADE-IN POST-PRELOADER) -->
+  <!-- [🟨 BYPASS FOR DEV TESTING] -->
+  <div id="asukabypass"></div>
+
+  <!-- [🟩 MAIN CONTENT WRAPPER] -->
   <div id="main-content">
 
-    <!-- 🍔 MENU TOGGLE -->
+    <!-- [🍔 MENU] -->
     <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-    <div id="nav-menu">
+    <nav id="nav-menu">
       <ul>
         <li><a href="#">▪️ HOME</a></li>
         <li><a href="#">▪️ PHILOSOPHY</a></li>
-        <li><a href="#">▪️ INTERPLANETARY INFRASTRUCTURE</a></li>
-        <li><a href="#">▪️ POETRY & ART</a></li>
         <li><a href="#">▪️ MATHEMATICS</a></li>
-        <li><a href="#">▪️ COLLABORATION CONTACTS</a></li>
-        <li><a href="#">▪️ UPCOMING EVENTS</a></li>
+        <li><a href="#">▪️ INTERPLANETARY INFRASTRUCTURE</a></li>
+        <li><a href="#">▪️ COLLABORATIVE VENTURES</a></li>
+        <li><a href="#">▪️ POETRY / ART</a></li>
         <li><a href="#">▪️ SHOP</a></li>
-        <li><a href="#">▪️ RESUME</a></li>
         <li><a href="#">▪️ CONTACT</a></li>
+        <li><a href="#">▪️ RÉSUMÉ</a></li>
       </ul>
-    </div>
+    </nav>
 
-    <!-- 🌸 FLOWER GLYPH GATEWAY -->
+    <!-- [🌸 FLOWER GLYPH GATEWAY] -->
     <img src="flower.png" id="flower-glyph" alt="Flower Glyph" onclick="openFlowerGateway()" />
-
     <div id="flower-overlay">
       <div class="gateway-box">
         <p>Do you seek truth?</p>
@@ -51,27 +69,77 @@
       </div>
     </div>
 
-    <!-- 🌀 ELLARI PORTAL (MOUNTAIN HOME BASE) -->
-    <img src="portal.png" id="ellari-portal" alt="Ellari Portal" onclick="openEllariOverlay()" />
+    <!-- [🌀 ELLARI PORTAL] -->
+    <img src="portal.png" id="ellari-portal" alt="Elari Portal" onclick="openEllariOverlay()" />
     <div id="ellari-overlay">
       <div class="gateway-box">
         <p>This is the landscape of Elari's choosing...</p>
         <input type="text" placeholder="Enter a word or feeling..." />
-        <!-- Optional future prompt logic -->
       </div>
     </div>
 
-    <!-- 🐑 SHEEP ZONE (SILLY CHRISTIAN SHEEP) -->
+    <!-- [🐑 SHEEP PERSONALITIES] -->
     <img src="sheep1.png" class="sheep-icon" style="bottom:100px; left:60px;" onclick="talkToSheep(1)" />
     <img src="sheep2.png" class="sheep-icon" style="bottom:90px; left:140px;" onclick="talkToSheep(2)" />
     <img src="sheep3.png" class="sheep-icon" style="bottom:110px; left:220px;" onclick="talkToSheep(3)" />
     <img src="sheep4.png" class="sheep-icon" style="bottom:95px; left:300px;" onclick="talkToSheep(4)" />
 
+    <!-- [🗻 LIGHTHOUSE PORTAL ZONE] -->
+    <div class="lighthouse-portal-zone"
+         onmouseenter="playPortalAudio()"
+         onmouseleave="pausePortalAudio()"
+         onclick="openModal()">
+      <div class="lighthouse-star"></div>
+      <img src="pattern-19536_128.gif" alt="Elari Mirror" class="elari-mirror pointer-hover" />
+    </div>
+
+    <!-- [🔲 MIRROR MODAL] -->
+    <div class="modal" id="mirror-modal">
+      <button id="close-mirror">✖</button>
+      <img src="cross-13798_512.gif" alt="White Rabbit" />
+      <input type="text" id="passphrase" placeholder="..." />
+      <p id="mirror-response"></p>
+      <img id="mirror-image" src="" alt="Mirror reaction" />
+    </div>
+
+    <!-- [🎧 AUDIO INTERFACE] -->
+    <div id="audio-controls">
+      <button id="mute-toggle">🔈</button>
+      <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="1" />
+    </div>
+
+    <!-- [🔊 AUDIO FILES] -->
+    <audio id="backgroundMusic" src="ultra-life-chapter-4-king-status-unlocked-rizz-dnb-spark-331839.mp3" autoplay loop></audio>
+    <audio id="portal-audio" src="ocean-waves-376898.mp3" preload="auto" loop></audio>
+    <audio id="hover-portal-sound" src="hover-portal.wav" preload="auto"></audio>
+    <audio id="enter-portal-sound" src="enter-portal.wav" preload="auto"></audio>
+
+    <!-- [🕊️ FADE OVERLAY] -->
+    <div class="fade-overlay" id="fade-overlay"></div>
   </div>
 
-  <!-- 🔊 AUDIO CONTROLS (DEFERRED) -->
-  <!-- <div class="audio-button">🎵</div> -->
+  <!-- [📜 SCRIPT BINDING] -->
+  <script src="script.js" defer></script>
 
-  <script src="script.js"></script>
+  <!-- [🎵 AUTOPLAY FIX] -->
+  <script>
+    window.addEventListener('click', () => {
+      const music = document.getElementById('backgroundMusic');
+      if (music && music.paused) {
+        music.volume = 0;
+        music.play().then(() => {
+          let vol = 0;
+          const fade = setInterval(() => {
+            if (vol < 1) {
+              vol += 0.05;
+              music.volume = Math.min(vol, 1);
+            } else {
+              clearInterval(fade);
+            }
+          }, 200);
+        }).catch(e => console.warn('Autoplay blocked:', e));
+      }
+    }, { once: true });
+  </script>
 </body>
 </html>
