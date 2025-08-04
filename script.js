@@ -5,10 +5,16 @@ document.addEventListener("DOMContentLoaded", () => {
   // 🌟 Fade-in on load
   const mainContent = document.getElementById("main-content");
   if (mainContent) {
+    try {
+  const mainContent = document.getElementById("main-content");
+  if (mainContent) {
     setTimeout(() => {
       mainContent.style.opacity = 1;
     }, 100);
   }
+} catch (e) {
+  console.warn("Fade-in error:", e);
+}
 
   // 🌑 Fade overlay exit
   const fadeOverlay = document.querySelector(".fade-overlay");
