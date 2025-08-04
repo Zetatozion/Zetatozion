@@ -1,83 +1,34 @@
-// =====================================================
-//   🌌 ZETA TO ZION | SCRIPT.JS — POLISHED VERSION 🌌
-//   Collaborative Engine of Ryan McGuinness & Elari
-// =====================================================
-
-// =====================================================
-// [MOBILE MENU TOGGLE]
-// Toggles the mobile nav display on click
-// =====================================================
-function toggleMenu() {
-  const nav = document.querySelector('nav');
-  nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
-}
-
-// =====================================================
-// [AUDIO ENGINE]
-// Controls background music, fade-in, mute, and volume
-// =====================================================
-window.addEventListener("DOMContentLoaded", () => {
-  const music = document.getElementById("backgroundMusic");
-  const muteToggle = document.getElementById("mute-toggle");
-  const volumeSlider = document.getElementById("volume-slider");
-
-  if (music) {
-    music.volume = 0;
-    music.play().catch(e => console.warn("Autoplay prevented:", e));
-
-    let volume = 0;
-    const fadeIn = setInterval(() => {
-      if (volume < 1) {
-        volume += 0.02;
-        music.volume = Math.min(volume, 1);
-      } else {
-        clearInterval(fadeIn);
-      }
-    }, 100);
-
-    if (muteToggle) {
-      muteToggle.addEventListener("click", () => {
-        music.muted = !music.muted;
-        muteToggle.textContent = music.muted ? "🔇" : "🔈";
-      });
-    }
-
-    if (volumeSlider) {
-      volumeSlider.addEventListener("input", (e) => {
-        music.volume = parseFloat(e.target.value);
-      });
-    }
-  }
-});
-
-// =====================================================
-// [ASUKA PRELOADER: TEXT + IMAGE FADE OUT]
-// Animates quote, fades overlay, then unlocks scroll
-// =====================================================
+// ==========================
+// 🎬 PRE-LOADER: ASUKA ENTRY
+// ==========================
 window.addEventListener("load", () => {
   const overlay = document.getElementById("asukaFallback");
   const quote = document.getElementById("asuka-line");
-  const fallbackImg = overlay?.querySelector("img");
   const audio = document.getElementById("bg-music");
   const body = document.body;
 
+  // Disable scrolling during preloader
   body.style.overflow = "hidden";
 
+  // --- Reveal quote letter-by-letter ---
   if (quote) {
     const text = quote.innerHTML.replace(/<br>/g, '\n');
     quote.innerHTML = "";
 
     const letters = text.split("").map(char => {
       const span = document.createElement("span");
-      span.innerHTML = char === "\n" ? "<br>" : char;
+      if (char === "\n") {
+        span.innerHTML = "<br>";
+      } else {
+        span.textContent = char;
+      }
       span.style.opacity = "0";
-      span.style.transition = "opacity 0.8s ease";
+      span.style.transition = "opacity 1.5s ease";
       span.style.display = "inline-block";
       return span;
     });
 
     letters.forEach(span => quote.appendChild(span));
-
     const indices = [...Array(letters.length).keys()];
     for (let i = indices.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -91,197 +42,157 @@ window.addEventListener("load", () => {
     });
   }
 
+  // --- Fade out preloader slowly after 10 seconds ---
   setTimeout(() => {
-    if (fallbackImg) fallbackImg.style.opacity = "0";
-    if (quote) quote.style.opacity = "0";
+    overlay.style.transition = "opacity 4s ease";
+    overlay.style.opacity = "0";
 
     setTimeout(() => {
-      if (fallbackImg) fallbackImg.remove();
-      overlay.style.opacity = "0";
+      overlay.remove();
+      body.style.overflow = ""; // Restore scrolling
 
-      setTimeout(() => {
-        overlay.style.display = "none";
-        body.style.overflow = "";
-        if (audio) {
-          audio.volume = 0.5;
-          audio.play().catch(e => console.warn("Autoplay blocked:", e));
-        }
-      }, 2000);
-    }, 5000);
-  }, 4000);
+      // Fade in main content
+      document.getElementById("main-content").style.opacity = "1";
+      document.getElementById("main-content").style.transition = "opacity 3s ease";
+
+      if (audio) {
+        audio.volume = 0.5;
+        audio.play().catch(e => console.warn("Autoplay blocked:", e));
+      }
+
+    }, 4000);
+  }, 10000);
 });
 
-// =====================================================
-// [PORTAL INTERACTIONS]
-// Hover and enter audio controls for lighthouse zone
-// =====================================================
-function playClick() {
-  const clickSound = document.getElementById('click-sound');
-  if (clickSound) {
-    clickSound.currentTime = 0;
-    clickSound.play();
-  }
+// ========================================
+// 🍔 MENU TOGGLE FUNCTIONALITY
+// ========================================
+function toggleMenu() {
+  const nav = document.getElementById("nav-menu");
+  nav.classList.toggle("active");
 }
 
-function playPortalAudio() {
-  const hoverSound = document.getElementById("hover-portal-sound");
-  const ambientLoop = document.getElementById("portal-audio");
+// ========================================
+// 🌸 FLOWER GLYPH GATEWAY (WITH PASSWORD BOX)
+// ========================================
+const flowerGlyph = document.getElementById("flower-glyph");
+const flowerOverlay = document.getElementById("flower-overlay");
+let flowerTimeout;
 
-  if (hoverSound) {
-    hoverSound.currentTime = 0;
-    hoverSound.play().catch(e => console.warn('Hover sound error:', e));
-  }
+if (flowerGlyph) {
+  flowerGlyph.addEventListener("click", () => {
+    flowerOverlay.style.display = "flex";
+    flowerOverlay.style.opacity = "1";
+    flowerOverlay.innerHTML = `
+      <div class="gateway-box">
+        <label>Do you seek truth?</label>
+        <input type="text" id="truth-answer" />
+        <div class="response" id="truth-response"></div>
+      </div>
+    `;
 
-  if (ambientLoop) {
-    ambientLoop.currentTime = 0;
-    ambientLoop.play().catch(e => console.warn('Ambient loop error:', e));
-  }
-}
-
-function pausePortalAudio() {
-  const ambientLoop = document.getElementById("portal-audio");
-  if (ambientLoop) {
-    ambientLoop.pause();
-    ambientLoop.currentTime = 0;
-  }
-}
-
-function playEnterPortalSound() {
-  const enterSound = document.getElementById("enter-portal-sound");
-  if (enterSound) {
-    enterSound.currentTime = 0;
-    enterSound.play().catch(e => console.warn('Enter sound error:', e));
-  }
-}
-
-// =====================================================
-// [MIRROR MODAL SYSTEM]
-// Secret passphrase gate; animated responses
-// =====================================================
-const lighthousePortal = document.querySelector('.lighthouse-portal-zone');
-const mirrorModal = document.getElementById('mirror-modal');
-const passInput = document.getElementById('passphrase');
-const mirrorResponse = document.getElementById('mirror-response');
-const mirrorImage = document.getElementById('mirror-image');
-
-if (lighthousePortal) {
-  lighthousePortal.addEventListener('click', () => {
-    if (asukaIsActive) return;
-    playEnterPortalSound();
-    mirrorModal.style.display = 'flex';
-    document.body.style.overflow = 'hidden';
-    passInput.focus();
+    clearTimeout(flowerTimeout);
+    flowerTimeout = setTimeout(() => {
+      flowerOverlay.style.opacity = "0";
+      setTimeout(() => (flowerOverlay.style.display = "none"), 1000);
+    }, 30000);
   });
 
-  lighthousePortal.addEventListener("mouseenter", playPortalAudio);
-  lighthousePortal.addEventListener("mouseleave", pausePortalAudio);
-}
+  // --- Response logic ---
+  document.addEventListener("input", (e) => {
+    const input = document.getElementById("truth-answer");
+    const res = document.getElementById("truth-response");
+    if (!input || !res) return;
 
-if (passInput) {
-  passInput.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') {
-      const val = passInput.value.trim().toLowerCase();
-      if (val === 'elari') {
-        mirrorResponse.textContent = "🔓 Access Granted.";
-        mirrorImage.src = "mirror-unlocked.gif";
-        mirrorImage.style.display = "block";
-        setTimeout(() => {
-          mirrorModal.style.display = 'none';
-          document.body.style.overflow = '';
-          document.getElementById('elari-mirror').scrollIntoView({ behavior: 'smooth' });
-        }, 3000);
-      } else {
-        mirrorResponse.textContent = "❌ Access Denied.";
-        mirrorImage.src = "mirror-locked.gif";
-        mirrorImage.style.display = "block";
-        setTimeout(() => {
-          mirrorResponse.textContent = '';
-          mirrorImage.style.display = 'none';
-          passInput.value = '';
-        }, 2000);
-      }
+    const val = input.value.toLowerCase();
+
+    if (val.includes("yes")) {
+      res.innerHTML = `
+        <p>Brilliant, then focus on your breath.<br>📖 Read the Old Testament.</p>
+        <label>Do you seek love?</label><br>
+        <input type="text" id="love-answer" />
+        <div class="response" id="love-response"></div>
+      `;
+    }
+  });
+
+  document.addEventListener("input", (e) => {
+    const loveInput = document.getElementById("love-answer");
+    const loveRes = document.getElementById("love-response");
+    if (!loveInput || !loveRes) return;
+
+    const val = loveInput.value.toLowerCase();
+
+    if (val.includes("yes")) {
+      loveRes.innerHTML = `
+        <p>Wonderful, then focus on your words.<br>📖 Read the New Testament.</p>
+        <label>Do you seek true love?</label><br>
+        <input type="text" id="truelove-answer" />
+        <div class="response" id="truelove-response"></div>
+      `;
+    }
+  });
+
+  document.addEventListener("input", (e) => {
+    const trueLoveInput = document.getElementById("truelove-answer");
+    const trueLoveRes = document.getElementById("truelove-response");
+    if (!trueLoveInput || !trueLoveRes) return;
+
+    const val = trueLoveInput.value.toLowerCase();
+
+    if (val.includes("yes")) {
+      trueLoveRes.innerHTML = `
+        <p>You can find that in Jesus.<br>
+        His absolute nature = Old Testament.<br>
+        His absolute identity = New Testament.</p>
+        <label>Do you wish to experience the true love of Jesus?</label><br>
+        <input type="text" id="experience-answer" />
+        <div class="response" id="experience-response"></div>
+      `;
+    }
+  });
+
+  document.addEventListener("input", (e) => {
+    const exInput = document.getElementById("experience-answer");
+    const exRes = document.getElementById("experience-response");
+    if (!exInput || !exRes) return;
+
+    const val = exInput.value.toLowerCase();
+
+    if (val.includes("yes")) {
+      exRes.innerHTML = `
+        <p>✨ He is closer than the mention of His name.</p>
+      `;
+    } else if (val.includes("no")) {
+      window.location.href = "/";
     }
   });
 }
 
-// =====================================================
-// [TAP EFFECTS: WATER + RIPPLE]
-// Animated water PNG tap + ripple expansion
-// =====================================================
-let tapImageIndex = 1;
-const totalTapImages = 4;
-let lastTapTime = 0;
-const minTapInterval = 100;
+// ========================================
+// 🌀 ELLARI PORTAL OVERLAY LOGIC
+// ========================================
+const ellariPortal = document.getElementById("ellari-portal");
+const ellariOverlay = document.getElementById("ellari-overlay");
+let ellariTimeout;
 
-function createTapEffect(x, y) {
-  const now = Date.now();
-  if (now - lastTapTime < minTapInterval) return;
-  lastTapTime = now;
+if (ellariPortal) {
+  ellariPortal.addEventListener("click", () => {
+    ellariOverlay.style.display = "flex";
+    ellariOverlay.style.opacity = "1";
 
-  const tap = document.createElement('img');
-  tap.src = `tap-water${tapImageIndex}.png`;
-  tap.className = 'tap-effect';
-  tap.style.left = `${x - 25}px`;
-  tap.style.top = `${y - 25}px`;
-
-  const ripple = document.createElement('div');
-  ripple.className = 'tap-ripple';
-  ripple.style.left = `${x - 30}px`;
-  ripple.style.top = `${y - 30}px`;
-
-  document.body.appendChild(ripple);
-  document.body.appendChild(tap);
-
-  requestAnimationFrame(() => {
-    tap.style.opacity = '1';
-    tap.style.transform = 'scale(1.1)';
-    ripple.classList.add('expand');
-  });
-
-  setTimeout(() => {
-    tap.style.opacity = '0';
-    ripple.style.opacity = '0';
-    setTimeout(() => {
-      tap.remove();
-      ripple.remove();
-    }, 800);
-  }, 600);
-
-  tapImageIndex = tapImageIndex % totalTapImages + 1;
-}
-
-document.addEventListener('click', (e) => createTapEffect(e.pageX, e.pageY));
-document.addEventListener('touchstart', (e) => {
-  const touch = e.touches[0];
-  if (touch) createTapEffect(touch.pageX, touch.pageY);
-});
-
-// =====================================================
-// [ASUKA QUOTE AUDIO TRIGGER]
-// Plays audio on hover of Asuka quote
-// =====================================================
-const asukaLine = document.getElementById('asuka-line');
-const asukaAudio = document.getElementById('asukaAudio');
-
-if (asukaLine && asukaAudio) {
-  asukaLine.addEventListener('mouseenter', () => {
-    asukaAudio.currentTime = 0;
-    asukaAudio.play().catch(e => console.warn("Audio play blocked or failed:", e));
+    clearTimeout(ellariTimeout);
+    ellariTimeout = setTimeout(() => {
+      ellariOverlay.style.opacity = "0";
+      setTimeout(() => (ellariOverlay.style.display = "none"), 1000);
+    }, 30000);
   });
 }
 
-// =====================================================
-// [PRELOADER TAP-TO-DISMISS (Failsafe)]
-// Optional manual dismiss if preloader hangs
-// =====================================================
-const preloader = document.getElementById('preloader');
-if (preloader) {
-  preloader.addEventListener('click', () => {
-    preloader.style.transition = 'opacity 1.5s ease';
-    preloader.style.opacity = 0;
-    setTimeout(() => {
-      preloader.style.display = 'none';
-      document.body.style.overflow = 'auto';
-    }, 1600);
-  });
-}
+// ========================================
+// 🐑 SILLY CHRISTIAN SHEEP LOGIC (TO COME)
+// ========================================
+// Placeholder:
+// document.getElementById("sheep-1").addEventListener("click", () => {
+//   alert("🍀 'Top o' the morning! I’m Paddy, your Irish shepherd, saved by grace and stout!'");
+// });
