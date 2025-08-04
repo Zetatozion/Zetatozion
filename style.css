@@ -1,331 +1,265 @@
-/* ========================================== */
-/*               🌌 BASE RESET                */
-/* ========================================== */
-html, body {
+/* ========================================================= */
+/*                    GLOBAL BASE STYLES                    */
+/* ========================================================= */
+body, html {
   margin: 0;
   padding: 0;
   height: 100%;
   overflow-x: hidden;
   font-family: 'Lancelot', serif;
+  background-color: black;
+  color: white;
 }
 
-/* ========================================== */
-/*           🌄 BACKGROUND LAYER              */
-/* ========================================== */
+/* Smooth fade overlays */
+.fade-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: black;
+  opacity: 1;
+  transition: opacity 2s ease;
+  z-index: 9998;
+}
+
+/* ========================================================= */
+/*                   [ASUKA FALLBACK LAYER]                  */
+/* ========================================================= */
+.asuka-fallback-img img {
+  display: none;
+}
+
+#asukaFallback {
+  animation: slowFadeOut 4s ease forwards;
+}
+
+#asuka-line {
+  font-size: 2rem;
+  font-family: 'Orbitron', sans-serif;
+  color: white;
+  z-index: 2;
+  position: relative;
+  margin-top: 3rem;
+}
+
+.quote-author {
+  font-family: 'Share Tech Mono', monospace;
+}
+
+.asuka-shimmer-bg {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: radial-gradient(circle, rgba(255,255,255,0.1), transparent);
+  z-index: 0;
+}
+
+/* Optional: shimmer movement (if needed) */
+/*
+@keyframes shimmer {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+*/
+
+#asukabypass {
+  /* Invisible zone to skip preloader */
+}
+
+/* ========================================================= */
+/*                     [PRELOADER TEXT]                      */
+/* ========================================================= */
+#preloader-text {
+  font-family: 'Orbitron', sans-serif;
+  color: #ccc;
+  text-align: center;
+  z-index: 9000;
+}
+
+/* ========================================================= */
+/*                  [BACKGROUND CONTAINER]                   */
+/* ========================================================= */
 .bg-container {
   position: fixed;
   top: 0; left: 0;
   width: 100vw;
   height: 100vh;
-  background: url('your-image.jpg') center center no-repeat;
+  background: url('image.jpg') center center no-repeat;
   background-size: cover;
   background-attachment: fixed;
   z-index: -1;
 }
 
-/* ========================================== */
-/*        🧭 MENU TOGGLE (HAMBURGER)         */
-/* ========================================== */
+/* ========================================================= */
+/*                     [NAVIGATION MENU]                     */
+/* ========================================================= */
 .menu-toggle {
   position: fixed;
-  top: 12px;
-  left: 12px;
-  font-size: 28px;
-  color: white;
-  z-index: 10001;
+  top: 20px; left: 20px;
+  font-size: 2rem;
+  z-index: 9999;
   cursor: pointer;
-  user-select: none;
+  color: white;
+  font-family: 'Orbitron', sans-serif;
 }
 
-/* ========================================== */
-/*              🌌 MAIN NAVIGATION            */
-/* ========================================== */
-nav {
+#nav-menu {
+  display: none;
   position: fixed;
   top: 0; left: 0;
   width: 100%;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.96);
-  display: none;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  z-index: 10000;
-}
-
-nav ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+  background-color: rgba(0, 0, 0, 0.95);
+  z-index: 9998;
+  padding-top: 4rem;
   text-align: center;
 }
 
-nav ul li {
-  margin: 15px 0;
+#nav-menu ul {
+  list-style: none;
+  padding: 0;
 }
 
-nav ul li a {
+#nav-menu li {
+  margin: 1.5rem 0;
+}
+
+#nav-menu a {
   color: white;
   text-decoration: none;
-  font-size: 22px;
-  text-transform: uppercase;
-  letter-spacing: 2px;
+  font-size: 1.4rem;
+  font-family: 'Orbitron', sans-serif;
 }
 
-/* ========================================== */
-/*         ✨ LIGHTHOUSE PORTAL ZONE          */
-/* ========================================== */
+/* ========================================================= */
+/*             [LIGHTHOUSE PORTAL + MIRROR]                  */
+/* ========================================================= */
 .lighthouse-portal-zone {
-  position: absolute;
-  top: 21%;
-  left: 83%;
-  width: 6%;
-  height: 10%;
-  z-index: 1001;
+  position: fixed;
+  top: 5%; right: 5%;
+  z-index: 9999;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.3s ease;
+}
+
+.lighthouse-portal-zone:hover {
+  transform: scale(1.1);
 }
 
 .lighthouse-star {
-  position: absolute;
-  top: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 40px;
-  height: 40px;
-  background: radial-gradient(circle, #fffacd 0%, #ffa 40%, #ff8 70%, transparent 100%);
+  width: 20px;
+  height: 20px;
+  background: gold;
   border-radius: 50%;
-  box-shadow: 0 0 12px 4px #fffdc1;
-  opacity: 0.75;
-  animation: pulseStar 2s ease-in-out infinite;
+  box-shadow: 0 0 10px 3px gold;
+  margin-bottom: 5px;
 }
 
-@keyframes pulseStar {
-  0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.75; }
-  50% { transform: translateX(-50%) scale(1.2); opacity: 1; }
-}
-
-/* ============ 🪞 ELARI MIRROR PORTAL ============ */
 .elari-mirror {
-  position: absolute;
-  top: -20px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(255,255,255,0.1) 10%, rgba(0,255,255,0.2) 50%, transparent 70%);
-  opacity: 0;
-  pointer-events: none;
-  z-index: 1002;
-  transition: opacity 0.8s ease;
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
 }
 
-.lighthouse-portal-zone:hover .elari-mirror {
-  opacity: 1;
-  animation: fadePulse 2s ease-in-out infinite;
-}
-
-@keyframes fadePulse {
-  0%, 100% { opacity: 0.3; transform: translateX(-50%) scale(1); }
-  50% { opacity: 1; transform: translateX(-50%) scale(1.2); }
-}
-
-/* ========================================== */
-/*                 🔐 MODAL BOX               */
-/* ========================================== */
+/* ========================================================= */
+/*                  [MIRROR MODAL GATE]                      */
+/* ========================================================= */
 .modal {
   display: none;
   position: fixed;
   top: 0; left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.95);
-  color: white;
-  z-index: 99999;
+  width: 100vw; height: 100vh;
+  background-color: rgba(0,0,0,0.95);
+  z-index: 10000;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  animation: fadeIn 0.8s ease;
-}
-
-.modal input {
-  padding: 12px;
-  font-size: 16px;
-  border: none;
-  width: 80%;
-  max-width: 500px;
-  text-align: center;
-  margin-top: 20px;
-  font-family: 'Lancelot', serif;
-  letter-spacing: 1px;
-}
-
-.modal img {
-  margin-top: 20px;
-  width: 200px;
-  display: none;
-}
-
-.modal p {
-  margin-top: 20px;
-  font-style: italic;
-  opacity: 0.8;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-/* ========================================== */
-/*            🕊️ ASUKA FALLBACK LAYER         */
-/* ========================================== */
-#asukaFallback {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  width: 100vw;
-  background-color: rgba(0, 0, 0, 0.85);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1001;
-  overflow: hidden;
-  transition: opacity 2s ease;
-  font-family: 'Zapfino', cursive;
-  font-size: 1.8rem;
-  color: #ff69b4;
-  text-shadow: 0 0 8px rgba(255, 105, 180, 0.5);
-  line-height: 2rem;
-  letter-spacing: 1px;
+  gap: 1rem;
   padding: 2rem;
-  box-sizing: border-box;
 }
 
-#asukaFallback img {
+#close-mirror {
   position: absolute;
-  top: 0; left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  filter: brightness(0.9);
-  z-index: 1;
-  pointer-events: none;
-}
-
-/* ========================================== */
-/*       📝 ASUKA QUOTE: STYLED + HOVER       */
-/* ========================================== */
-#asuka-line {
-  position: absolute;
-  top: 5%;
-  left: 50%;
-  transform: translateX(-50%);
-  text-align: center;
+  top: 20px; right: 20px;
+  background: none;
+  color: white;
   font-size: 1.5rem;
-  line-height: 2.2rem;
-  color: #ff4d8b;
-  font-family: 'Zapfino', cursive, 'Segoe Script', 'Brush Script MT', sans-serif;
-  font-weight: bold;
-  letter-spacing: 1px;
-  text-shadow: 0 0 5px rgba(0, 0, 0, 0.6);
-  z-index: 10;
-  text-transform: uppercase;
-  opacity: 0;
-  transition: opacity 6s ease;
+  border: none;
+  cursor: pointer;
 }
 
-#asuka-line span {
-  display: inline-block;
-  opacity: 0.5;
-  transition: opacity 0.4s ease;
-}
-#asuka-line:hover span {
-  opacity: 1;
-}
-
-/* ========================================== */
-/*           🎬 PRELOADER STYLING             */
-/* ========================================== */
-#preloader {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: black;
-  z-index: 999999;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
-#preloader-img {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0.25;
-  z-index: 1;
-}
-
-#preloader-text {
-  font-size: 1.4rem;
-  color: #ff0080;
+#passphrase {
+  padding: 0.5rem;
+  font-size: 1.2rem;
+  width: 250px;
   text-align: center;
-  text-shadow: 0 0 6px #ff0080, 0 0 12px #ff0080;
-  opacity: 1;
-  z-index: 2;
+  font-family: 'Orbitron', sans-serif;
 }
 
-#preloader-text span {
-  opacity: 0;
-  animation: fadeInWords 0.6s forwards;
+#mirror-response {
+  font-size: 1.2rem;
+  color: #ccc;
+  font-family: 'Lancelot', serif;
 }
 
-#preloader-text span:nth-child(1) { animation-delay: 0.2s; }
-#preloader-text span:nth-child(2) { animation-delay: 0.6s; }
-#preloader-text span:nth-child(3) { animation-delay: 1.0s; }
-#preloader-text span:nth-child(4) { animation-delay: 1.4s; }
-#preloader-text span:nth-child(5) { animation-delay: 1.8s; }
-#preloader-text span:nth-child(6) { animation-delay: 2.2s; }
-#preloader-text span:nth-child(7) { animation-delay: 2.6s; }
-
-@keyframes fadeInWords {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+/* ========================================================= */
+/*                [ELARI MIRROR CONTENT]                     */
+/* ========================================================= */
+#elari-mirror {
+  display: none;
+  padding: 3rem;
+  text-align: center;
+  font-family: 'Lancelot', serif;
 }
 
-/* ========================================== */
-/*          📱 RESPONSIVE TWEAKS              */
-/* ========================================== */
-@media (max-width: 768px) {
-  .bg-container {
-    background-attachment: scroll;
-    background-position: center top;
-    background-size: cover;
-    height: 100vh;
-  }
+#elari-mirror h1 {
+  font-size: 2.4rem;
+  margin-bottom: 1rem;
+}
 
-  nav ul li a {
-    font-size: 18px;
-    letter-spacing: 1px;
-  }
+#elari-mirror p {
+  font-size: 1.2rem;
+  color: #bbb;
+}
 
-  .menu-toggle {
-    font-size: 24px;
-  }
+/* ========================================================= */
+/*               [AUDIO CONTROLS INTERFACE]                  */
+/* ========================================================= */
+#audio-controls {
+  position: fixed;
+  bottom: 20px; right: 20px;
+  z-index: 9999;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-family: 'Orbitron', sans-serif;
+  color: white;
+  backdrop-filter: blur(6px);
+}
 
-  .tap-effect {
-    width: 36px;
-    height: 54px;
-  }
+#mute-toggle {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
 
-  .modal input {
-    font-size: 14px;
-  }
+#volume-slider {
+  width: 100px;
+  cursor: pointer;
+}
 
-  .modal img {
-    width: 150px;
-  }
+/* ========================================================= */
+/*              [ANIMATIONS & TRANSITIONS]                   */
+/* ========================================================= */
+@keyframes slowFadeOut {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
 }
