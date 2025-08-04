@@ -52,6 +52,7 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+// ======== [ASUKA PRELOADER: FADE-OUT] =========
 window.addEventListener("load", () => {
   const overlay = document.getElementById("asukaFallback");
   const fallbackImg = overlay?.querySelector("img");
@@ -59,10 +60,10 @@ window.addEventListener("load", () => {
   const audio = document.getElementById("bg-music");
   const body = document.body;
 
-  // 🔒 Prevent scroll during preloader
+  // ======== [LOCK SCROLL DURING LOAD] =========
   body.style.overflow = "hidden";
 
-  // ✴️ Animate quote letters slowly
+  // ======== [QUOTE ANIMATION: LETTER FADE-IN] =========
   if (quote) {
     const text = quote.innerHTML.replace(/<br>/g, '\n');
     quote.innerHTML = "";
@@ -72,8 +73,7 @@ window.addEventListener("load", () => {
       span.style.opacity = "0";
       span.style.transition = "opacity 0.8s ease";
       span.style.display = "inline-block";
-      if (char === "\n") span.innerHTML = "<br>";
-      else span.textContent = char;
+      span.innerHTML = char === "\n" ? "<br>" : char;
       return span;
     });
 
@@ -88,17 +88,11 @@ window.addEventListener("load", () => {
     indices.forEach((i, idx) => {
       setTimeout(() => {
         letters[i].style.opacity = "1";
-      }, 80 * idx); // Slower reveal
+      }, 80 * idx); // slower staggered fade-in
     });
   }
 
-  // Add top category label (optional)
-  const category = document.createElement("div");
-  category.className = "asuka-category";
-  category.textContent = "LAST UP"; // 👈 Change label here if needed
-  overlay?.appendChild(category);
-
-  // ✴️ Fade everything slowly after delay
+  // ======== [FADE-OUT TRIGGER AFTER DELAY] =========
   setTimeout(() => {
     if (fallbackImg) {
       fallbackImg.style.transition = "opacity 5s ease";
@@ -110,27 +104,24 @@ window.addEventListener("load", () => {
       quote.style.opacity = "0";
     }
 
-    if (category) {
-      category.style.transition = "opacity 5s ease";
-      category.style.opacity = "0";
-    }
-
     setTimeout(() => {
       if (fallbackImg) fallbackImg.remove();
+
       overlay.style.transition = "opacity 2s ease";
       overlay.style.opacity = "0";
 
       setTimeout(() => {
         overlay.style.display = "none";
-        body.style.overflow = ""; // ✅ Re-enable scrolling
+        body.style.overflow = ""; // unlock scroll
 
+        // ======== [OPTIONAL: MUSIC AUTOPLAY] =========
         if (audio) {
           audio.volume = 0.5;
           audio.play().catch(e => console.warn("Autoplay blocked:", e));
         }
       }, 2000);
-    }, 5000);
-  }, 4000); // Initial wait before fade starts
+    }, 5000); // fade duration before cleanup
+  }, 4000); // wait before fade starts
 });
 
 // -----------------------------------------
