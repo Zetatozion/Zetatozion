@@ -57,21 +57,65 @@ window.addEventListener("DOMContentLoaded", () => {
 // -----------------------------------------
 window.addEventListener("load", () => {
   const overlay = document.getElementById("asukaFallback");
-  const audio = document.getElementById("asukaAudio");
+  const quote = document.getElementById("asuka-line");
+  const audio = document.getElementById("bg-music");
+  const body = document.body;
 
-  if (overlay && audio) {
-    audio.play().catch(e => console.warn("Audio autoplay blocked"));
+  // Disable scrolling until preload ends
+  document.body.style.overflow = "hidden";
+
+  // Reveal quote letters
+  if (quote) {
+    const text = quote.innerHTML.replace(/<br>/g, '\n');
+    quote.innerHTML = "";
+
+    const letters = text.split("").map(char => {
+      const span = document.createElement("span");
+      if (char === "\n") {
+        span.innerHTML = "<br>";
+      } else {
+        span.textContent = char;
+      }
+      span.style.opacity = "0";
+      span.style.transition = "opacity 0.6s ease";
+      span.style.display = "inline-block";
+      return span;
+    });
+
+    letters.forEach(span => quote.appendChild(span));
+
+    const indices = [...Array(letters.length).keys()];
+    for (let i = indices.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [indices[i], indices[j]] = [indices[j], indices[i]];
+    }
+
+    indices.forEach((i, idx) => {
+      setTimeout(() => {
+        letters[i].style.opacity = "1";
+      }, 40 * idx);
+    });
+  }
+
+  // Wait 2.5s before fading out
+  setTimeout(() => {
+    overlay.style.opacity = "0";
+    overlay.style.transition = "opacity 1s ease";
 
     setTimeout(() => {
-      overlay.style.transition = "opacity 1s ease";
-      overlay.style.opacity = "0";
+      overlay.remove(); // 💥 this REMOVES the Asuka layer
+      body.style.overflow = ""; // re-enable scrolling
 
-      setTimeout(() => {
-        overlay.style.display = "none";
-        // No Ellari trigger here
-      }, 1000);
-    }, 5000);
-  }
+      // Start music safely
+      if (audio) {
+        audio.volume = 0.5;
+        audio.play().catch(e => console.warn("Autoplay blocked:", e));
+      }
+
+      // Optional: reset background
+      body.style.background = "#000"; // or your site's background
+    }, 1000); // after fade-out
+  }, 2500);
 });
 
 // -----------------------------------------
