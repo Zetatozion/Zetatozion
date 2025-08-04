@@ -229,6 +229,39 @@ nav ul li a {
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* -------------------------------------------
+   ASUKA QUOTE POSITIONING & FADE STYLES
+-------------------------------------------- */
+#asuka-line {
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  font-size: 1.5rem;
+  line-height: 1.6;
+  color: white;
+  opacity: 0;
+  z-index: 1002;
+  transition: opacity 6s ease;
+}
+
+/* Optional: If your fallback overlay has a background image */
+#asukaFallback {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background: #000; /* or transparent/gradient if desired */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1001;
+  overflow: hidden;
+  transition: opacity 2s ease;
+}
+
 /* ----------------------------- */
 /*        Asuka Overlay         */
 /* ----------------------------- */
