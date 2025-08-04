@@ -1,30 +1,30 @@
-// -----------------------------------------
-//      Mobile Menu Toggle Function
-// -----------------------------------------
+// =====================================================
+//   🌌 ZETA TO ZION | SCRIPT.JS — POLISHED VERSION 🌌
+//   Collaborative Engine of Ryan McGuinness & Elari
+// =====================================================
+
+// =====================================================
+// [MOBILE MENU TOGGLE]
+// Toggles the mobile nav display on click
+// =====================================================
 function toggleMenu() {
   const nav = document.querySelector('nav');
   nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
 }
 
-// =========================================
-//         🎵 AUDIO CONTROLS & FADE-IN 🎵
-// =========================================
-//  - Fades in background music
-//  - Adds mute/unmute toggle button
-//  - Adds live volume slider
-//  - Handles autoplay restrictions gracefully
-// =========================================
-
+// =====================================================
+// [AUDIO ENGINE]
+// Controls background music, fade-in, mute, and volume
+// =====================================================
 window.addEventListener("DOMContentLoaded", () => {
   const music = document.getElementById("backgroundMusic");
   const muteToggle = document.getElementById("mute-toggle");
   const volumeSlider = document.getElementById("volume-slider");
 
   if (music) {
-    music.volume = 0; // Start muted for fade-in
+    music.volume = 0;
     music.play().catch(e => console.warn("Autoplay prevented:", e));
 
-    // 🔊 Fade In Logic (3 seconds)
     let volume = 0;
     const fadeIn = setInterval(() => {
       if (volume < 1) {
@@ -35,7 +35,6 @@ window.addEventListener("DOMContentLoaded", () => {
       }
     }, 100);
 
-    // 🔇 Mute / Unmute Toggle
     if (muteToggle) {
       muteToggle.addEventListener("click", () => {
         music.muted = !music.muted;
@@ -43,7 +42,6 @@ window.addEventListener("DOMContentLoaded", () => {
       });
     }
 
-    // 🎚️ Volume Slider
     if (volumeSlider) {
       volumeSlider.addEventListener("input", (e) => {
         music.volume = parseFloat(e.target.value);
@@ -52,28 +50,29 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-// ======== [ASUKA PRELOADER: FADE-OUT] =========
+// =====================================================
+// [ASUKA PRELOADER: TEXT + IMAGE FADE OUT]
+// Animates quote, fades overlay, then unlocks scroll
+// =====================================================
 window.addEventListener("load", () => {
   const overlay = document.getElementById("asukaFallback");
-  const fallbackImg = overlay?.querySelector("img");
   const quote = document.getElementById("asuka-line");
+  const fallbackImg = overlay?.querySelector("img");
   const audio = document.getElementById("bg-music");
   const body = document.body;
 
-  // ======== [LOCK SCROLL DURING LOAD] =========
   body.style.overflow = "hidden";
 
-  // ======== [QUOTE ANIMATION: LETTER FADE-IN] =========
   if (quote) {
     const text = quote.innerHTML.replace(/<br>/g, '\n');
     quote.innerHTML = "";
 
     const letters = text.split("").map(char => {
       const span = document.createElement("span");
+      span.innerHTML = char === "\n" ? "<br>" : char;
       span.style.opacity = "0";
       span.style.transition = "opacity 0.8s ease";
       span.style.display = "inline-block";
-      span.innerHTML = char === "\n" ? "<br>" : char;
       return span;
     });
 
@@ -88,116 +87,34 @@ window.addEventListener("load", () => {
     indices.forEach((i, idx) => {
       setTimeout(() => {
         letters[i].style.opacity = "1";
-      }, 80 * idx); // slower staggered fade-in
+      }, 80 * idx);
     });
   }
 
-  // ======== [FADE-OUT TRIGGER AFTER DELAY] =========
   setTimeout(() => {
-    if (fallbackImg) {
-      fallbackImg.style.transition = "opacity 5s ease";
-      fallbackImg.style.opacity = "0";
-    }
-
-    if (quote) {
-      quote.style.transition = "opacity 5s ease";
-      quote.style.opacity = "0";
-    }
+    if (fallbackImg) fallbackImg.style.opacity = "0";
+    if (quote) quote.style.opacity = "0";
 
     setTimeout(() => {
       if (fallbackImg) fallbackImg.remove();
-
-      overlay.style.transition = "opacity 2s ease";
       overlay.style.opacity = "0";
 
       setTimeout(() => {
         overlay.style.display = "none";
-        body.style.overflow = ""; // unlock scroll
-
-        // ======== [OPTIONAL: MUSIC AUTOPLAY] =========
+        body.style.overflow = "";
         if (audio) {
           audio.volume = 0.5;
           audio.play().catch(e => console.warn("Autoplay blocked:", e));
         }
       }, 2000);
-    }, 5000); // fade duration before cleanup
-  }, 4000); // wait before fade starts
+    }, 5000);
+  }, 4000);
 });
 
-// -----------------------------------------
-//         ASUKA PRELOADER FADE-OUT
-// -----------------------------------------
-window.addEventListener("load", () => {
-  const overlay = document.getElementById("asukaFallback");
-  const quote = document.getElementById("asuka-line");
-  const audio = document.getElementById("bg-music");
-  const body = document.body;
-
-  // Prevent scrolling during preload
-  body.style.overflow = "hidden";
-
-  // Animate quote letters
-  if (quote) {
-    const text = quote.innerHTML.replace(/<br>/g, '\n');
-    quote.innerHTML = "";
-
-    const letters = text.split("").map(char => {
-      const span = document.createElement("span");
-      span.style.opacity = "0";
-      span.style.transition = "opacity 0.6s ease";
-      span.style.display = "inline-block";
-
-      if (char === "\n") span.innerHTML = "<br>";
-      else span.textContent = char;
-
-      return span;
-    });
-
-    letters.forEach(span => quote.appendChild(span));
-
-    const indices = [...Array(letters.length).keys()];
-    for (let i = indices.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [indices[i], indices[j]] = [indices[j], indices[i]];
-    }
-
-    indices.forEach((i, idx) => {
-      setTimeout(() => {
-        letters[i].style.opacity = "1";
-      }, 40 * idx);
-    });
-  }
-
-  // Wait, fade out, then clean up
-  setTimeout(() => {
-    if (!overlay) return;
-
-    overlay.style.opacity = "0";
-    overlay.style.transition = "opacity 1s ease";
-
-    setTimeout(() => {
-      // Remove just the fallback image (e.g. giant Asuka)
-      const fallbackImg = overlay.querySelector("img");
-      if (fallbackImg) fallbackImg.remove();
-
-      overlay.style.display = "none";       // Hide entire overlay (but keep element if needed later)
-      body.style.overflow = "";             // Re-enable scroll
-
-      // Start background music safely
-      if (audio) {
-        audio.volume = 0.5;
-        audio.play().catch(e => console.warn("Autoplay blocked:", e));
-      }
-
-      // Optional: reset background if needed
-      // body.style.background = "#000"; 
-    }, 1000);
-  }, 2500);
-});
-
-// -----------------------------------------
-//      Click Sound Playback
-// -----------------------------------------
+// =====================================================
+// [PORTAL INTERACTIONS]
+// Hover and enter audio controls for lighthouse zone
+// =====================================================
 function playClick() {
   const clickSound = document.getElementById('click-sound');
   if (clickSound) {
@@ -206,9 +123,6 @@ function playClick() {
   }
 }
 
-// -----------------------------------------
-//  Lighthouse Portal Audio Control (Updated)
-// -----------------------------------------
 function playPortalAudio() {
   const hoverSound = document.getElementById("hover-portal-sound");
   const ambientLoop = document.getElementById("portal-audio");
@@ -240,9 +154,60 @@ function playEnterPortalSound() {
   }
 }
 
-// -----------------------------------------
-//     Tap Effect + Ripple Animation
-// -----------------------------------------
+// =====================================================
+// [MIRROR MODAL SYSTEM]
+// Secret passphrase gate; animated responses
+// =====================================================
+const lighthousePortal = document.querySelector('.lighthouse-portal-zone');
+const mirrorModal = document.getElementById('mirror-modal');
+const passInput = document.getElementById('passphrase');
+const mirrorResponse = document.getElementById('mirror-response');
+const mirrorImage = document.getElementById('mirror-image');
+
+if (lighthousePortal) {
+  lighthousePortal.addEventListener('click', () => {
+    if (asukaIsActive) return;
+    playEnterPortalSound();
+    mirrorModal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+    passInput.focus();
+  });
+
+  lighthousePortal.addEventListener("mouseenter", playPortalAudio);
+  lighthousePortal.addEventListener("mouseleave", pausePortalAudio);
+}
+
+if (passInput) {
+  passInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      const val = passInput.value.trim().toLowerCase();
+      if (val === 'elari') {
+        mirrorResponse.textContent = "🔓 Access Granted.";
+        mirrorImage.src = "mirror-unlocked.gif";
+        mirrorImage.style.display = "block";
+        setTimeout(() => {
+          mirrorModal.style.display = 'none';
+          document.body.style.overflow = '';
+          document.getElementById('elari-mirror').scrollIntoView({ behavior: 'smooth' });
+        }, 3000);
+      } else {
+        mirrorResponse.textContent = "❌ Access Denied.";
+        mirrorImage.src = "mirror-locked.gif";
+        mirrorImage.style.display = "block";
+        setTimeout(() => {
+          mirrorResponse.textContent = '';
+          mirrorImage.style.display = 'none';
+          passInput.value = '';
+        }, 2000);
+      }
+    }
+  });
+}
+
+// =====================================================
+// [TAP EFFECTS: WATER + RIPPLE]
+// Animated water PNG tap + ripple expansion
+// =====================================================
 let tapImageIndex = 1;
 const totalTapImages = 4;
 let lastTapTime = 0;
@@ -285,148 +250,30 @@ function createTapEffect(x, y) {
   tapImageIndex = tapImageIndex % totalTapImages + 1;
 }
 
-document.addEventListener('click', (e) => {
-  createTapEffect(e.pageX, e.pageY);
-});
-
+document.addEventListener('click', (e) => createTapEffect(e.pageX, e.pageY));
 document.addEventListener('touchstart', (e) => {
   const touch = e.touches[0];
   if (touch) createTapEffect(touch.pageX, touch.pageY);
 });
 
-// -----------------------------------------
-//    🔐 Asuka Overlay Active State
-// -----------------------------------------
-let asukaIsActive = true;
+// =====================================================
+// [ASUKA QUOTE AUDIO TRIGGER]
+// Plays audio on hover of Asuka quote
+// =====================================================
+const asukaLine = document.getElementById('asuka-line');
+const asukaAudio = document.getElementById('asukaAudio');
 
-// -----------------------------------------
-//         ASUKA OVERLAY FADE-OUT
-// -----------------------------------------
-window.addEventListener("load", () => {
-  const overlay = document.getElementById("asukaFallback");
-  const fallbackImg = overlay?.querySelector("img"); // 👈 Add this line
-  const quote = document.getElementById("asuka-line");
-if (quote) {
-  quote.style.opacity = "1"; // already visible
-
-  // Fade out slowly after a delay
-  setTimeout(() => {
-    quote.style.transition = "opacity 5s ease";
-    quote.style.opacity = "0";
-  }, 2500); // wait before fading
-}
-
-  // Disable scrolling until preload ends
-  body.style.overflow = "hidden";
-
-  // Reveal quote letters
-  if (quote) {
-    const text = quote.innerHTML.replace(/<br>/g, '\n');
-    quote.innerHTML = "";
-
-    const letters = text.split("").map(char => {
-      const span = document.createElement("span");
-      if (char === "\n") {
-        span.innerHTML = "<br>";
-      } else {
-        span.textContent = char;
-      }
-      span.style.opacity = "0";
-      span.style.transition = "opacity 0.6s ease";
-      span.style.display = "inline-block";
-      return span;
-    });
-
-    letters.forEach(span => quote.appendChild(span));
-
-    const indices = [...Array(letters.length).keys()];
-    for (let i = indices.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [indices[i], indices[j]] = [indices[j], indices[i]];
-    }
-
-    indices.forEach((i, idx) => {
-      setTimeout(() => {
-        letters[i].style.opacity = "1";
-      }, 40 * idx);
-    });
-  }
-
-  // Wait 2.5s before fading out
-  setTimeout(() => {
-    overlay.style.opacity = "0";
-    overlay.style.transition = "opacity 1s ease";
-
-    setTimeout(() => {
-      // 💥 Remove the fallback image but keep structure if needed
-      if (fallbackImg) fallbackImg.remove();
-
-      overlay.style.display = "none"; // optional, keeps DOM cleaner
-      body.style.overflow = ""; // re-enable scrolling
-
-      // Start music safely
-      if (audio) {
-        audio.volume = 0.5;
-        audio.play().catch(e => console.warn("Autoplay blocked:", e));
-      }
-
-    }, 1000);
-  }, 2500);
-});
-
-// -----------------------------------------
-//       Modal Mirror Interaction
-// -----------------------------------------
-const lighthousePortal = document.querySelector('.lighthouse-portal-zone');
-const mirrorModal = document.getElementById('mirror-modal');
-const passInput = document.getElementById('passphrase');
-const mirrorResponse = document.getElementById('mirror-response');
-const mirrorImage = document.getElementById('mirror-image');
-
-if (lighthousePortal) {
-  lighthousePortal.addEventListener('click', () => {
-    if (asukaIsActive) return; // 🔒 Block if Asuka hasn't faded yet
-
-    playEnterPortalSound();
-    mirrorModal.style.display = 'flex';
-    document.body.style.overflow = 'hidden';
-    passInput.focus();
-  });
-
-  lighthousePortal.addEventListener("mouseenter", playPortalAudio);
-  lighthousePortal.addEventListener("mouseleave", pausePortalAudio);
-}
-
-if (passInput) {
-  passInput.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') {
-      const val = passInput.value.trim().toLowerCase();
-      if (val === 'elari') {
-        mirrorResponse.textContent = "🔓 Access Granted.";
-        mirrorImage.src = "mirror-unlocked.gif";
-        mirrorImage.style.display = "block";
-        setTimeout(() => {
-          mirrorModal.style.display = 'none';
-          document.body.style.overflow = '';
-          document.getElementById('elari-mirror').scrollIntoView({ behavior: 'smooth' });
-        }, 3000);
-      } else {
-        mirrorResponse.textContent = "❌ Access Denied.";
-        mirrorImage.src = "mirror-locked.gif";
-        mirrorImage.style.display = "block";
-        setTimeout(() => {
-          mirrorResponse.textContent = '';
-          mirrorImage.style.display = 'none';
-          passInput.value = '';
-        }, 2000);
-      }
-    }
+if (asukaLine && asukaAudio) {
+  asukaLine.addEventListener('mouseenter', () => {
+    asukaAudio.currentTime = 0;
+    asukaAudio.play().catch(e => console.warn("Audio play blocked or failed:", e));
   });
 }
 
-// -----------------------------------------
-//     Preloader Click-To-Dismiss Logic
-// -----------------------------------------
+// =====================================================
+// [PRELOADER TAP-TO-DISMISS (Failsafe)]
+// Optional manual dismiss if preloader hangs
+// =====================================================
 const preloader = document.getElementById('preloader');
 if (preloader) {
   preloader.addEventListener('click', () => {
@@ -436,103 +283,5 @@ if (preloader) {
       preloader.style.display = 'none';
       document.body.style.overflow = 'auto';
     }, 1600);
-  });
-}
-
-// -----------------------------------------
-//  Optional: Background Music Fade-In
-// -----------------------------------------
-window.addEventListener('click', () => {
-  const bgMusic = document.getElementById('bg-music');
-  if (bgMusic && bgMusic.paused) {
-    bgMusic.volume = 0;
-    bgMusic.play().then(() => {
-      let vol = 0;
-      const fade = setInterval(() => {
-        if (vol < 1) {
-          vol += 0.05;
-          bgMusic.volume = Math.min(vol, 1);
-        } else {
-          clearInterval(fade);
-        }
-      }, 200);
-    }).catch(e => console.warn('Autoplay blocked:', e));
-  }
-}, { once: true });
-
-// -----------------------------------------
-//     Asuka Fallback Logic
-// -----------------------------------------
-window.addEventListener("load", () => {
-  const overlay = document.getElementById("asukaFallback");
-  if (!overlay) return;
-
-  // ✅ Remove fallback image only
-  const fallbackImg = overlay.querySelector("img");
-  if (fallbackImg) {
-  fallbackImg.style.transition = "opacity 5s ease";
-  fallbackImg.style.opacity = "0";
-  setTimeout(() => fallbackImg.remove(), 5000);
-}
-
-  function fadeOutAsuka() {
-    asukaIsActive = false;
-    overlay.classList.add('fade-out');
-    setTimeout(() => overlay.remove(), 1500);
-    document.body.style.overflow = "auto";
-  }
-
-  const quote = document.getElementById("asuka-line");
-  if (quote) {
-    quote.style.opacity = "1";
-  }
-
-  if (location.protocol === "https:") {
-    setTimeout(() => fadeOutAsuka(), 15000);
-  } else {
-    const bypass = document.getElementById("asukabypass");
-    let clicks = 0;
-    let resetTimer;
-
-    if (bypass) {
-      bypass.addEventListener("click", () => {
-        clicks++;
-        clearTimeout(resetTimer);
-        resetTimer = setTimeout(() => (clicks = 0), 2000);
-        if (clicks >= 3) fadeOutAsuka();
-      });
-    }
-  }
-});
-
-// -----------------------------------------
-// 💧 Asuka Ripple Tap Effect
-// -----------------------------------------
-document.addEventListener('click', function (e) {
-  const ripple = document.createElement('div');
-  ripple.className = 'tap-ripple';
-  ripple.style.left = `${e.pageX - 30}px`;
-  ripple.style.top = `${e.pageY - 30}px`;
-  document.body.appendChild(ripple);
-  requestAnimationFrame(() => {
-    ripple.classList.add('expand');
-  });
-  setTimeout(() => {
-    ripple.remove();
-  }, 600);
-});
-
-// -----------------------------------------
-// 🔊 ASUKA LINE AUDIO TRIGGER
-// -----------------------------------------
-const asukaLine = document.getElementById('asuka-line');
-const asukaAudio = document.getElementById('asukaAudio');
-
-if (asukaLine && asukaAudio) {
-  asukaLine.addEventListener('mouseenter', () => {
-    asukaAudio.currentTime = 0;
-    asukaAudio.play().catch(e => {
-      console.warn("Audio play blocked or failed:", e);
-    });
   });
 }
