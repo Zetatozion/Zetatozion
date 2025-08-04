@@ -1,140 +1,160 @@
-// -------------------------------
-//       ▪️ ASUKA PRELOADER
-// -------------------------------
+/* ========================================================= */
+/*                    🌐 GLOBAL BOOTSTRAP                    */
+/* ========================================================= */
 window.addEventListener("load", () => {
-  const overlay = document.getElementById("asukaFallback");
-  const quote = document.getElementById("asuka-line");
+  const preloader = document.getElementById("asukaFallback");
+  const mainContent = document.getElementById("main-content");
 
-  if (quote) {
-    const text = quote.innerHTML.replace(/<br>/g, '\n');
-    quote.innerHTML = "";
-
-    const letters = text.split("").map(char => {
-      const span = document.createElement("span");
-      span.innerHTML = char === "\n" ? "<br>" : char;
-      span.style.opacity = "0";
-      span.style.transition = "opacity 0.6s ease";
-      span.style.display = "inline-block";
-      return span;
-    });
-
-    letters.forEach(span => quote.appendChild(span));
-
-    const indices = [...Array(letters.length).keys()];
-    for (let i = indices.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [indices[i], indices[j]] = [indices[j], indices[i]];
-    }
-
-    indices.forEach((i, idx) => {
-      setTimeout(() => {
-        letters[i].style.opacity = "1";
-      }, idx * 50);
-    });
-
-    // ⏳ Preloader duration: 10 seconds
+  // Delay fade-out of preloader for dramatic effect
+  setTimeout(() => {
+    preloader.style.opacity = "0";
     setTimeout(() => {
-      overlay.style.opacity = "0";
-      setTimeout(() => overlay.style.display = "none", 1000);
-      document.getElementById("main-content").style.opacity = "1";
-    }, 10000);
-  }
+      preloader.style.display = "none";
+      if (mainContent) {
+        mainContent.style.opacity = "1";
+      }
+    }, 2000); // match transition duration
+  }, 10000); // 10 second preloader delay
 });
 
-// -------------------------------
-//       ▪️ MENU TOGGLE
-// -------------------------------
+/* ========================================================= */
+/*                🍔 NAVIGATION MENU TOGGLE                  */
+/* ========================================================= */
 function toggleMenu() {
-  const menu = document.getElementById("nav-menu");
-  menu.classList.toggle("open");
+  const nav = document.getElementById("nav-menu");
+  nav.classList.toggle("active");
 }
 
-// -------------------------------
-//     ▪️ FLOWER GATEWAY LOGIC
-// -------------------------------
-function openFlowerGateway() {
-  const flowerOverlay = document.getElementById("flower-overlay");
-  flowerOverlay.style.display = "flex";
-  flowerOverlay.style.opacity = "1";
+/* ========================================================= */
+/*           🌟 LIGHTHOUSE PORTAL (Elari Mirror)            */
+/* ========================================================= */
+const mirrorZone = document.querySelector(".lighthouse-portal-zone");
+const mirrorModal = document.getElementById("elari-mirror");
+const closeMirror = document.getElementById("close-mirror");
+const passInput = document.getElementById("passphrase");
+const responseBox = document.getElementById("mirror-response");
 
-  // ⏱ Auto-close after 30s
+if (mirrorZone) {
+  mirrorZone.addEventListener("click", () => {
+    mirrorModal.style.display = "flex";
+    passInput.focus();
+    resetMirror();
+    timeoutFade(mirrorModal);
+  });
+}
+
+if (closeMirror) {
+  closeMirror.addEventListener("click", () => {
+    mirrorModal.style.display = "none";
+  });
+}
+
+if (passInput) {
+  passInput.addEventListener("keyup", (e) => {
+    const input = e.target.value.toLowerCase().trim();
+
+    if (input === "yes") {
+      mirrorStepOne();
+    } else if (input === "truth") {
+      mirrorStepTwo();
+    } else if (input === "love") {
+      mirrorStepThree();
+    } else if (input === "jesus") {
+      mirrorStepFinal();
+    } else {
+      responseBox.textContent = "";
+    }
+  });
+}
+
+function resetMirror() {
+  passInput.value = "";
+  responseBox.textContent = "Do you seek truth?";
+}
+
+function mirrorStepOne() {
+  responseBox.textContent = "Brilliant. Then focus on your breath.\nRead the Old Testament.\nDo you seek love?";
+}
+
+function mirrorStepTwo() {
+  responseBox.textContent = "Wonderful. Then focus on your words.\nRead the New Testament.\nDo you seek true love?";
+}
+
+function mirrorStepThree() {
+  responseBox.textContent = "You can find that in Jesus.\nHis nature is truth (Old Testament), His identity is love (New Testament).\nDo you wish to experience true love?";
+}
+
+function mirrorStepFinal() {
+  responseBox.textContent = `"He is closer than the mention of His name."`;
+}
+
+/* ========================================================= */
+/*         🌸 FLOWER GLYPH GATEWAY + OVERLAY SYSTEM          */
+/* ========================================================= */
+const flowerGlyph = document.getElementById("flower-glyph");
+const flowerOverlay = document.getElementById("flower-overlay");
+
+if (flowerGlyph) {
+  flowerGlyph.addEventListener("click", () => {
+    flowerOverlay.style.display = "flex";
+    timeoutFade(flowerOverlay);
+  });
+}
+
+/* ========================================================= */
+/*           🌀 ELLARI PORTAL (Scenic Interactive)           */
+/* ========================================================= */
+const ellariPortal = document.getElementById("ellari-portal");
+const ellariOverlay = document.getElementById("ellari-overlay");
+
+if (ellariPortal) {
+  ellariPortal.addEventListener("click", () => {
+    ellariOverlay.style.display = "flex";
+    timeoutFade(ellariOverlay);
+  });
+}
+
+/* ========================================================= */
+/*       🕒 UNIVERSAL INACTIVITY FADE FOR OVERLAYS           */
+/* ========================================================= */
+function timeoutFade(element) {
   setTimeout(() => {
-    flowerOverlay.style.opacity = "0";
-    setTimeout(() => flowerOverlay.style.display = "none", 1000);
-  }, 30000);
+    if (element.style.display === "flex") {
+      element.style.opacity = "0";
+      setTimeout(() => {
+        element.style.display = "none";
+        element.style.opacity = "1";
+      }, 1000);
+    }
+  }, 30000); // 30 seconds inactivity
 }
 
-function handleTruthInput() {
-  const input = document.getElementById("truthInput").value.trim().toLowerCase();
-  const res = document.getElementById("truthResponse");
-  const q2 = document.getElementById("loveQuestion");
-  const r2 = document.getElementById("loveResponse");
-  const q3 = document.getElementById("trueLoveQuestion");
-  const r3 = document.getElementById("trueLoveResponse");
-  const invite = document.getElementById("jesusInvite");
+/* ========================================================= */
+/*            🐑 SILLY SHEEP INTERACTION SETUP               */
+/* ========================================================= */
+const sheepIcons = document.querySelectorAll(".sheep-icon");
 
-  if (input === "yes") {
-    res.innerText = "Brilliant, then focus on your breath.\n📖 Read the Old Testament.";
-    q2.style.display = "block";
-    q2.innerText = "Do you seek love?";
-    q2.onclick = () => {
-      r2.innerText = "Wonderful, then focus on your words.\n📖 Read the New Testament.";
-      q3.style.display = "block";
-      q3.innerText = "Do you seek true love?";
-      q3.onclick = () => {
-        r3.innerText = "You can find that in Jesus.\n\n📘 His nature (truth) is in the Old Testament.\n💗 His identity (love) is in the New.";
-        invite.style.display = "block";
-        invite.innerText = "Do you wish to experience the true love of Jesus?";
-        invite.onclick = () => {
-          invite.innerText = "📖 Scripture: 'He is closer than the mention of His name.'";
-        };
-      };
-    };
-  } else if (input === "no") {
-    window.location.href = "index.html"; // Return to homepage
-  } else {
-    res.innerText = "";
-    q2.style.display = "none";
-    r2.innerText = "";
-    q3.style.display = "none";
-    r3.innerText = "";
-    invite.style.display = "none";
-  }
-}
+sheepIcons.forEach((sheep, index) => {
+  sheep.addEventListener("click", () => {
+    alert(`Sheep ${index + 1} says: “Baaa! More fun to come!”`);
+    // Later: Launch dialog interface based on sheep personality
+  });
+});
 
-// -------------------------------
-//     ▪️ ELLARI PORTAL LOGIC
-// -------------------------------
-function openEllariOverlay() {
-  const ellariOverlay = document.getElementById("ellari-overlay");
-  ellariOverlay.style.display = "flex";
-  ellariOverlay.style.opacity = "1";
+/* ========================================================= */
+/*              🔊 AUDIO SETUP (DEFERRED CONFIG)             */
+/* ========================================================= */
+const muteBtn = document.getElementById("mute-toggle");
+const volumeSlider = document.getElementById("volume-slider");
+const bgAudio = document.getElementById("background-audio");
 
-  // ⏱ Auto-close after 30s
-  setTimeout(() => {
-    ellariOverlay.style.opacity = "0";
-    setTimeout(() => ellariOverlay.style.display = "none", 1000);
-  }, 30000);
-}
+if (bgAudio && muteBtn && volumeSlider) {
+  muteBtn.addEventListener("click", () => {
+    bgAudio.muted = !bgAudio.muted;
+    muteBtn.textContent = bgAudio.muted ? "🔇" : "🔊";
+  });
 
-// -------------------------------
-//     ▪️ SHEEP PERSONALITIES
-// -------------------------------
-function talkToSheep(id) {
-  let msg = "";
-  switch(id) {
-    case 1:
-      msg = "☘️ Irish Christian Sheep: 'The blood of the Lamb and a wee bit of Guinness, eh?'";
-      break;
-    case 2:
-      msg = "🧑‍🎓 Pastor’s Son Sheep: 'Actually, the Greek for that word is…'";
-      break;
-    case 3:
-      msg = "🤓 Nerdy Christian Sheep: 'According to my calculations, grace is statistically miraculous!'";
-      break;
-    case 4:
-      msg = "💃 Stripper Christian Sheep: 'Jesus loved me *before* the pole came down.'";
-      break;
-  }
-  alert(msg);
+  volumeSlider.addEventListener("input", (e) => {
+    bgAudio.volume = e.target.value;
+  });
 }
