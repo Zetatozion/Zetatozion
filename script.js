@@ -234,8 +234,15 @@ window.addEventListener("load", () => {
   const overlay = document.getElementById("asukaFallback");
   const fallbackImg = overlay?.querySelector("img"); // 👈 Add this line
   const quote = document.getElementById("asuka-line");
-  const audio = document.getElementById("bg-music");
-  const body = document.body;
+if (quote) {
+  quote.style.opacity = "1"; // already visible
+
+  // Fade out slowly after a delay
+  setTimeout(() => {
+    quote.style.transition = "opacity 5s ease";
+    quote.style.opacity = "0";
+  }, 2500); // wait before fading
+}
 
   // Disable scrolling until preload ends
   body.style.overflow = "hidden";
