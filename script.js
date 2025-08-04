@@ -53,7 +53,7 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 
 // -----------------------------------------
-//         ASUKA OVERLAY FADE-OUT
+//         ASUKA PRELOADER FADE-OUT
 // -----------------------------------------
 window.addEventListener("load", () => {
   const overlay = document.getElementById("asukaFallback");
@@ -61,24 +61,23 @@ window.addEventListener("load", () => {
   const audio = document.getElementById("bg-music");
   const body = document.body;
 
-  // Disable scrolling until preload ends
-  document.body.style.overflow = "hidden";
+  // Prevent scrolling during preload
+  body.style.overflow = "hidden";
 
-  // Reveal quote letters
+  // Animate quote letters
   if (quote) {
     const text = quote.innerHTML.replace(/<br>/g, '\n');
     quote.innerHTML = "";
 
     const letters = text.split("").map(char => {
       const span = document.createElement("span");
-      if (char === "\n") {
-        span.innerHTML = "<br>";
-      } else {
-        span.textContent = char;
-      }
       span.style.opacity = "0";
       span.style.transition = "opacity 0.6s ease";
       span.style.display = "inline-block";
+
+      if (char === "\n") span.innerHTML = "<br>";
+      else span.textContent = char;
+
       return span;
     });
 
@@ -97,24 +96,30 @@ window.addEventListener("load", () => {
     });
   }
 
-  // Wait 2.5s before fading out
+  // Wait, fade out, then clean up
   setTimeout(() => {
+    if (!overlay) return;
+
     overlay.style.opacity = "0";
     overlay.style.transition = "opacity 1s ease";
 
     setTimeout(() => {
-      overlay.remove(); // 💥 this REMOVES the Asuka layer
-      body.style.overflow = ""; // re-enable scrolling
+      // Remove just the fallback image (e.g. giant Asuka)
+      const fallbackImg = overlay.querySelector("img");
+      if (fallbackImg) fallbackImg.remove();
 
-      // Start music safely
+      overlay.style.display = "none";       // Hide entire overlay (but keep element if needed later)
+      body.style.overflow = "";             // Re-enable scroll
+
+      // Start background music safely
       if (audio) {
         audio.volume = 0.5;
         audio.play().catch(e => console.warn("Autoplay blocked:", e));
       }
 
-      // Optional: reset background
-      body.style.background = "#000"; // or your site's background
-    }, 1000); // after fade-out
+      // Optional: reset background if needed
+      // body.style.background = "#000"; 
+    }, 1000);
   }, 2500);
 });
 
