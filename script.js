@@ -388,6 +388,10 @@ window.addEventListener("load", () => {
   const overlay = document.getElementById("asukaFallback");
   if (!overlay) return;
 
+  // ✅ Remove fallback image only
+  const fallbackImg = overlay.querySelector("img");
+  if (fallbackImg) fallbackImg.remove();
+
   function fadeOutAsuka() {
     asukaIsActive = false;
     overlay.classList.add('fade-out');
