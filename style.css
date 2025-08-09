@@ -25,7 +25,7 @@ body {
 .bg.hero-home           { background-image: url("/assets/images/bg/hero-home.webp"); }
 .bg.hero-mathematics    { background-image: url("/assets/images/bg/hero-mathematics.webp"); }
 .bg.hero-biodome        { background-image: url("/assets/images/bg/hero-biodome.webp"); }
-.bg.hero-gundam         { background-image: url("/assets/images/bg/hero-gundam.webp"); } /* or .jpg if you prefer */
+.bg.hero-gundam         { background-image: url("/assets/images/bg/hero-gundam.jpg"); } /* or .jpg if you prefer */
 .bg.hero-infrastructure { background-image: url("/assets/images/bg/hero-infrastructure.webp"); }
 .bg.hero-poetry         { background-image: url("/assets/images/bg/hero-poetry.webp"); }
 .bg.hero-resume         { background-image: url("/assets/images/bg/hero-resume.webp"); }
