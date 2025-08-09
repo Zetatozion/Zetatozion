@@ -1,8 +1,4 @@
-/* --------------------------
-   ZETA TO ZION • Base Styles
---------------------------- */
-
-/* Reset-ish */
+/* Base */
 * { box-sizing: border-box; }
 html, body { height: 100%; }
 body {
@@ -13,20 +9,35 @@ body {
   line-height: 1.5;
 }
 
-/* Background */
+/* Background layer */
 .bg {
   position: fixed;
   inset: 0;
-  background: #0a0f1a url("/assets/images/bg/hero-home.webp") center / cover no-repeat;
+  background-color: #0a0f1a; /* base tone */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   filter: saturate(1) brightness(0.9);
   z-index: -1;
 }
 
+/* Hero image slots — just upload files to these exact paths */
+.bg.hero-home           { background-image: url("/assets/images/bg/hero-home.webp"); }
+.bg.hero-mathematics    { background-image: url("/assets/images/bg/hero-mathematics.webp"); }
+.bg.hero-biodome        { background-image: url("/assets/images/bg/hero-biodome.webp"); }
+.bg.hero-gundam         { background-image: url("/assets/images/bg/hero-gundam.webp"); } /* or .jpg if you prefer */
+.bg.hero-infrastructure { background-image: url("/assets/images/bg/hero-infrastructure.webp"); }
+.bg.hero-poetry         { background-image: url("/assets/images/bg/hero-poetry.webp"); }
+.bg.hero-resume         { background-image: url("/assets/images/bg/hero-resume.webp"); }
+.bg.hero-events         { background-image: url("/assets/images/bg/hero-events.webp"); }
+.bg.hero-shop           { background-image: url("/assets/images/bg/hero-shop.webp"); }
+.bg.hero-links          { background-image: url("/assets/images/bg/hero-links.webp"); }
+
 /* Header / Nav */
 .site-header {
-  position: fixed;
-  top: 0; left: 0; right: 0;
+  position: fixed; top: 0; left: 0; right: 0;
   display: flex; align-items: center;
+  gap: 10px;
   padding: 12px 14px;
   backdrop-filter: blur(6px);
   background: rgba(10,15,26,0.35);
@@ -34,32 +45,16 @@ body {
   z-index: 1000;
 }
 .menu-toggle {
-  margin-right: 10px;
-  font-size: 20px;
-  line-height: 1;
+  font-size: 20px; line-height: 1;
   padding: 6px 10px;
   color: #cfe3ff;
   background: transparent;
   border: 1px solid rgba(255,255,255,0.18);
   border-radius: 8px;
 }
-.nav {
-  display: flex;
-  gap: 18px;
-  align-items: center;
-}
-.nav .brand {
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-decoration: none;
-  color: #e9eef7;
-}
-.nav ul {
-  display: flex;
-  gap: 14px;
-  padding: 0; margin: 0;
-  list-style: none;
-}
+.nav { display: flex; gap: 18px; align-items: center; }
+.nav .brand { font-weight: 700; letter-spacing: 0.06em; text-decoration: none; color: #e9eef7; }
+.nav ul { display: flex; gap: 14px; padding: 0; margin: 0; list-style: none; }
 .nav a { color: #cfe3ff; text-decoration: none; }
 .nav a:hover { text-decoration: underline; }
 
@@ -68,8 +63,7 @@ body {
   .nav ul { display: none; }
   .nav.open ul {
     display: flex;
-    position: absolute;
-    top: 48px; left: 12px; right: 12px;
+    position: absolute; top: 48px; left: 12px; right: 12px;
     flex-direction: column;
     background: rgba(10,15,26,0.9);
     padding: 12px; border-radius: 10px;
@@ -77,44 +71,34 @@ body {
   }
 }
 
-/* Hero */
+/* Sections */
+.section {
+  padding: 100px 24px 72px;
+  min-height: 75vh;
+  background: linear-gradient(to bottom, rgba(10,15,26,0.0), rgba(10,15,26,0.38));
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
 .hero {
-  min-height: 88vh;
-  padding: 120px 24px 48px;
-  display: grid;
-  place-content: center;
-  text-align: center;
-  gap: 10px;
+  display: grid; place-content: center; text-align: center; gap: 10px;
+  min-height: 90vh; padding-top: 120px;
   background: radial-gradient(40% 40% at 50% 30%, rgba(255,255,255,0.08), transparent);
 }
-.hero h1 {
-  margin: 0 0 6px;
-  font-size: clamp(36px, 6vw, 64px);
-  letter-spacing: 0.02em;
-}
-.tag {
-  opacity: 0.9;
-  font-size: clamp(16px, 2.6vw, 20px);
-}
+.hero h1 { margin: 0 0 6px; font-size: clamp(36px, 6vw, 64px); letter-spacing: 0.02em; }
+.tag { opacity: 0.9; font-size: clamp(16px, 2.6vw, 20px); }
 
 /* Buttons */
 .btn {
-  margin-top: 16px;
-  padding: 10px 14px;
-  border-radius: 10px;
-  border: 1px solid rgba(255,255,255,0.16);
-  background: rgba(255,255,255,0.06);
-  color: #e9eef7;
+  margin-top: 16px; padding: 10px 14px;
+  border-radius: 10px; border: 1px solid rgba(255,255,255,0.16);
+  background: rgba(255,255,255,0.06); color: #e9eef7;
 }
 .btn:hover { background: rgba(255,255,255,0.12); }
 
-/* Portal hotspot — adjust these % to match where your lighthouse is on the bg */
+/* Portal hotspot (adjust % to land over your lighthouse) */
 .hotspot {
   position: absolute;
-  inset: auto;
-  left: 60%;
-  top: 52%;
-  width: 10vw; max-width: 120px; min-width: 60px;
+  left: 60%; top: 52%;
+  width: clamp(60px, 10vw, 120px);
   aspect-ratio: 1 / 1;
   background: rgba(255,255,255,0.06);
   border: 1px dashed rgba(255,255,255,0.25);
@@ -124,19 +108,9 @@ body {
 }
 .hotspot:hover { transform: scale(1.04); background: rgba(255,255,255,0.12); }
 
-/* Sections */
-.section {
-  padding: 72px 24px;
-  background: linear-gradient(to bottom, rgba(10,15,26,0.0), rgba(10,15,26,0.35));
-  border-top: 1px solid rgba(255,255,255,0.06);
-}
-.section h2 { margin: 0 0 8px; font-size: clamp(22px, 3.4vw, 32px); }
-
 /* Footer */
 .site-footer {
-  padding: 28px 24px;
-  text-align: center;
-  opacity: 0.8;
+  padding: 28px 24px; text-align: center; opacity: 0.8;
   border-top: 1px solid rgba(255,255,255,0.08);
   background: rgba(10,15,26,0.45);
 }
