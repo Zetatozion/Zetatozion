@@ -4,59 +4,70 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>ZETA TO ZION</title>
-
-  <!-- Preload your hero image for faster paint -->
-  <link rel="preload" as="image" href="/assets/images/bg/hero.webp" />
-
+  <link rel="preload" as="image" href="/assets/images/bg/hero-home.webp" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- Background image -->
-  <div class="bg" aria-hidden="true"></div>
+  <!-- Dynamic background (class changes as sections change) -->
+  <div class="bg hero-home" aria-hidden="true"></div>
 
-  <!-- Top nav -->
   <header class="site-header">
     <button class="menu-toggle" aria-expanded="false" aria-controls="site-nav">☰</button>
     <nav id="site-nav" class="nav">
-  <a href="/" class="brand">ZETA TO ZION</a>
-  <ul>
-    <li><a href="#home" data-sfx>Home</a></li>
-    <li><a href="#math" data-sfx>Mathematics</a></li>
-    <li><a href="#biodome" data-sfx>Biodome</a></li>
-    <li><a href="#gundam" data-sfx>Gundam</a></li>
-    <li><a href="#infrastructure" data-sfx>Infrastructure</a></li>
-    <li><a href="#poetry" data-sfx>Poetry</a></li>
-    <li><a href="#resume" data-sfx>Resume</a></li>
-    <li><a href="#events" data-sfx>Events</a></li>
-    <li><a href="#shop" data-sfx>Shop</a></li>
-    <li><a href="#links" data-sfx>Links</a></li>
-  </ul>
-</nav>
+      <a href="#home" class="brand" data-sfx>ZETA TO ZION</a>
+      <ul>
+        <li><a href="#home" data-sfx>Home</a></li>
+        <li><a href="#mathematics" data-sfx>Mathematics</a></li>
+        <li><a href="#biodome" data-sfx>Biodome</a></li>
+        <li><a href="#gundam" data-sfx>Gundam</a></li>
+        <li><a href="#infrastructure" data-sfx>Infrastructure</a></li>
+        <li><a href="#poetry" data-sfx>Poetry</a></li>
+        <li><a href="#resume" data-sfx>Resume</a></li>
+        <li><a href="#events" data-sfx>Events</a></li>
+        <li><a href="#shop" data-sfx>Shop</a></li>
+        <li><a href="#links" data-sfx>Links</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <!-- Hero -->
   <main>
-    <section class="hero" id="mission">
+    <!-- Home / Hero -->
+    <section class="hero section" id="home" data-hero="home">
       <h1>From Zeta to Zion</h1>
       <p class="tag">A quiet signal through the noise — truth, love, structure.</p>
-
       <div class="controls">
         <button id="audioToggle" class="btn" aria-pressed="false">Enable ambient audio</button>
       </div>
-
-      <!-- Secret portal hotspot (positioned via CSS percentages) -->
       <button id="portalHotspot" class="hotspot" aria-label="Interact"></button>
     </section>
 
-    <!-- Placeholder sections so scrolling feels real -->
-    <section id="philosophy" class="section">
-      <h2>Philosophy</h2>
-      <p>Seed text goes here. We’ll swap this for your real copy once assets are set.</p>
+    <!-- Stub sections (we can fill content later) -->
+    <section class="section" id="mathematics" data-hero="mathematics">
+      <h2>Mathematics</h2><p>Placeholder copy.</p>
     </section>
-
-    <section id="infrastructure" class="section">
-      <h2>Interplanetary Infrastructure</h2>
-      <p>Another placeholder. Keep the skeleton light while we line up visuals.</p>
+    <section class="section" id="biodome" data-hero="biodome">
+      <h2>Biodome</h2><p>Placeholder copy.</p>
+    </section>
+    <section class="section" id="gundam" data-hero="gundam">
+      <h2>Gundam</h2><p>Placeholder copy.</p>
+    </section>
+    <section class="section" id="infrastructure" data-hero="infrastructure">
+      <h2>Infrastructure</h2><p>Placeholder copy.</p>
+    </section>
+    <section class="section" id="poetry" data-hero="poetry">
+      <h2>Poetry</h2><p>Placeholder copy.</p>
+    </section>
+    <section class="section" id="resume" data-hero="resume">
+      <h2>Resume</h2><p>Placeholder copy.</p>
+    </section>
+    <section class="section" id="events" data-hero="events">
+      <h2>Events</h2><p>Placeholder copy.</p>
+    </section>
+    <section class="section" id="shop" data-hero="shop">
+      <h2>Shop</h2><p>Placeholder copy.</p>
+    </section>
+    <section class="section" id="links" data-hero="links">
+      <h2>Links</h2><p>Placeholder copy.</p>
     </section>
   </main>
 
@@ -64,11 +75,9 @@
     <small>© <span id="year"></span> Zeta to Zion</small>
   </footer>
 
-  <!-- Audio (off by default) -->
   <audio id="ambient" preload="none">
     <source src="/assets/audio/ambient.mp3" type="audio/mpeg" />
   </audio>
-
   <script src="script.js"></script>
   <noscript>This site works best with JavaScript enabled.</noscript>
 </body>
