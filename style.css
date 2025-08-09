@@ -17,7 +17,7 @@ body {
 .bg {
   position: fixed;
   inset: 0;
-  background: #0a0f1a url("/assets/images/bg/hero.webp") center / cover no-repeat;
+  background: #0a0f1a url("/assets/images/bg/hero-home.webp") center / cover no-repeat;
   filter: saturate(1) brightness(0.9);
   z-index: -1;
 }
