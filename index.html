@@ -1,1 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ZETA TO ZION</title>
 
+  <!-- Preload your hero image for faster paint -->
+  <link rel="preload" as="image" href="/assets/images/bg/hero.webp" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Background image -->
+  <div class="bg" aria-hidden="true"></div>
+
+  <!-- Top nav -->
+  <header class="site-header">
+    <button class="menu-toggle" aria-expanded="false" aria-controls="site-nav">☰</button>
+    <nav id="site-nav" class="nav">
+      <a href="/" class="brand">ZETA TO ZION</a>
+      <ul>
+        <li><a href="#mission" data-sfx>Mission</a></li>
+        <li><a href="#philosophy" data-sfx>Philosophy</a></li>
+        <li><a href="#infrastructure" data-sfx>Infrastructure</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <main>
+    <section class="hero" id="mission">
+      <h1>From Zeta to Zion</h1>
+      <p class="tag">A quiet signal through the noise — truth, love, structure.</p>
+
+      <div class="controls">
+        <button id="audioToggle" class="btn" aria-pressed="false">Enable ambient audio</button>
+      </div>
+
+      <!-- Secret portal hotspot (positioned via CSS percentages) -->
+      <button id="portalHotspot" class="hotspot" aria-label="Interact"></button>
+    </section>
+
+    <!-- Placeholder sections so scrolling feels real -->
+    <section id="philosophy" class="section">
+      <h2>Philosophy</h2>
+      <p>Seed text goes here. We’ll swap this for your real copy once assets are set.</p>
+    </section>
+
+    <section id="infrastructure" class="section">
+      <h2>Interplanetary Infrastructure</h2>
+      <p>Another placeholder. Keep the skeleton light while we line up visuals.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <small>© <span id="year"></span> Zeta to Zion</small>
+  </footer>
+
+  <!-- Audio (off by default) -->
+  <audio id="ambient" preload="none">
+    <source src="/assets/audio/ambient.mp3" type="audio/mpeg" />
+  </audio>
+
+  <script src="script.js"></script>
+  <noscript>This site works best with JavaScript enabled.</noscript>
+</body>
+</html>
